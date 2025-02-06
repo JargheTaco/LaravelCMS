@@ -3,12 +3,6 @@
 @section('title', 'Detail Article - Admin')
 
 @section('content')
-<style>
-    .article-content img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
 
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
@@ -29,8 +23,7 @@
             </tr>
             <tr>
                 <th>Description</th>
-                <td class="article-content">: {!! $article->desc !!}</td>
-
+                <td>: {!! $article->desc !!}</td>
             </tr>
             <tr>
                 <th>Image</th>
