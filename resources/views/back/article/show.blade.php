@@ -4,18 +4,23 @@
 
 @section('content')
 <style>
-    .article-content img {
-    max-width: 300px; /* Atur ukuran maksimal gambar */
+    .article-content {
+    max-width: 700px; /* Batasi lebar konten deskripsi */
+    font-size: 14px; /* Kecilkan ukuran font */
+    line-height: 1.5;
+    word-wrap: break-word; /* Pastikan teks panjang tidak melebihi kontainer */
+    overflow: auto; /* Gunakan scroll jika konten melebihi batas */
+    white-space: normal; /* Biarkan teks turun ke baris berikutnya */
+}
+
+
+.article-content img {
+    max-width: 100%; /* Buat gambar responsif */
     height: auto;
     display: block;
     margin: 10px 0;
 }
 
-.article-content {
-    max-width: 700px; /* Batasi lebar konten deskripsi */
-    font-size: 14px; /* Kecilkan ukuran font */
-    line-height: 1.5;
-}
 
 </style>
 
@@ -38,12 +43,13 @@
             </tr>
             <tr>
                 <th>Description</th>
-                <td class="article-content" style="max-width: 700px; overflow: hidden;">
-                    {!! $article->desc !!}
+                <td>
+                    <div class="article-content">
+                        {!! $article->desc !!}
+                    </div>
                 </td>
-
-
             </tr>
+
             <tr>
                 <th>Image</th>
                 <td>
