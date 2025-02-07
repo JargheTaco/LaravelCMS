@@ -5,13 +5,22 @@
 @section('content')
 <style>
     .article-content img {
-        max-width: 100%;
-        height: auto;
-    }
+    max-width: 300px; /* Atur ukuran maksimal gambar */
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+.article-content {
+    max-width: 700px; /* Batasi lebar konten deskripsi */
+    font-size: 14px; /* Kecilkan ukuran font */
+    line-height: 1.5;
+}
+
 </style>
 
 
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Detail Articles</h1>
 
@@ -29,7 +38,10 @@
             </tr>
             <tr>
                 <th>Description</th>
-                <td class="article-content">: {!! $article->desc !!}</td>
+                <td class="article-content" style="max-width: 700px; overflow: hidden;">
+                    {!! $article->desc !!}
+                </td>
+
 
             </tr>
             <tr>
