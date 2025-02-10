@@ -209,6 +209,7 @@
                 <li><a href="{{ url('/kontak') }}" class="nav__link"><i class="fas fa-envelope"></i>Kontak</a></li>
                 <li><a href="{{ url('/kebijakan') }}" class="nav__link"><i class="fas fa-shield-alt"></i>Kebijakan &
                         Privasi</a></li>
+                <li ><a href="{{ route('login') }}" class="nav__link btn btn-outline-primary">Login</a></li>
             </ul>
         </div>
     </nav>
