@@ -28,6 +28,17 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/inovasi', [HomeController::class, 'inovasi']);
+Route::get('/galeri', [HomeController::class, 'galeri']);
+Route::get('/kontak', [HomeController::class, 'kontak']);
+Route::get('/kebijakan', [HomeController::class, 'kebijakan']);
+
+Route::get('/profil/{profileNumber}', [HomeController::class, 'profile']);
+Route::get('/aduan/{aduanNumber}', [HomeController::class, 'aduan']);
+Route::get('/infodisduk/{infodisdukNumber}', [HomeController::class, 'infodisduk']);
+Route::get('/informasi/{informasiNumber}', [HomeController::class, 'informasi']);
+Route::get('/program/{programNumber}', [HomeController::class, 'program']);
+
 
 Route::middleware('auth')->group(function () {
 
@@ -51,4 +62,3 @@ Route::middleware('auth')->group(function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

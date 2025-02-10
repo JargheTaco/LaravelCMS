@@ -1,0 +1,400 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  --black-color: hsl(209, 100%, 50%);
+  --black-color-light: hsl(209, 100%, 50%);
+  --black-color-lighten: hsl(204, 100%, 50%);
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 0.8rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body, html {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  overflow-x: hidden;  /* Menyembunyikan konten yang melampaui batas horizontal */
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--black-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+}
+
+.nav__logo, 
+.nav__burger, 
+.nav__close {
+  color: var(--white-color);
+}
+
+.nav__data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-weight: var(--font-semi-bold);
+}
+
+.nav__logo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.nav__burger, 
+.nav__close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.nav__close {
+  opacity: 0;
+}
+
+/*=============== MOBILE NAVIGATION ===============*/
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .nav__list {
+    background-color: var(--black-color);
+    padding-top: 1rem;
+    column-gap: 2rem;  /* Mengatur jarak antar item di menu */
+  }
+}
+
+.nav__link {
+  color: var(--white-color);
+  background-color: var(--black-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;  /* Menjaga teks tetap dalam satu baris */
+  overflow: hidden;     /* Menghindari teks yang terpotong */
+  text-overflow: ellipsis;  /* Jika teks terlalu panjang, gunakan elipsis (...) */
+  transition: background-color .3s;
+}
+
+.nav__link:hover {
+  background-color: var(--black-color-light);
+}
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .nav__burger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.show-icon .nav__close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  cursor: pointer;
+  margin-bottom: 0; /* Menghapus jarak bawah antara item dropdown */
+}
+
+.dropdown__arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+/* Dropdown link styling */
+.dropdown__link, 
+.dropdown__sublink {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  color: var(--white-color);
+  background-color: var(--black-color-light);
+  display: flex;
+  align-items: center;
+  column-gap: 0;  /* Menghilangkan jarak antar elemen */
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+  white-space: nowrap;  /* Menjaga teks tetap dalam satu baris */
+}
+
+.dropdown__link i, 
+.dropdown__sublink i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.dropdown__link:hover, 
+.dropdown__sublink:hover {
+  background-color: var(--black-color);
+}
+
+.dropdown__menu, 
+.dropdown__submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out;
+}
+
+/* Show dropdown menu & submenu */
+.dropdown__item:hover .dropdown__menu, 
+.dropdown__subitem:hover > .dropdown__submenu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+/* Rotate dropdown icon */
+.dropdown__item:hover .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+/*=============== DROPDOWN SUBMENU ===============*/
+.dropdown__submenu {
+  display: flex;  /* This ensures items within the submenu are aligned horizontally */
+  flex-direction: column;  /* Displaying items vertically in the dropdown */
+  padding: 0;  /* Removing padding */
+  margin: 0;  /* Removing margin */
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav__link {
+    padding-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    height: 100%;
+    display: flex;
+    column-gap: 1rem;  /* Menghilangkan jarak antar elemen */
+  }
+  .nav__link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+  .dropdown__item, 
+  .dropdown__subitem {
+    position: relative;
+  }
+
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdown__subitem .dropdown__link {
+    padding-inline: 1rem;
+  }
+
+  .dropdown__submenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  /* Show dropdown menu */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+  /* Show dropdown submenu */
+  .dropdown__subitem:hover > .dropdown__submenu {
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+
+/* Kontainer utama yang menampung grup layanan utama tombol */
+.btn-container {
+  display: flex;
+  justify-content: space-between;  /* Menyebar grup tombol */
+  gap: 20px;  /* Memberikan jarak antar grup tombol */
+  margin-top: 20px;
+  flex-wrap: wrap;  /* Membuat grup tombol berpindah ke baris berikutnya jika ruang terbatas */
+}
+
+/* Setiap grup tombol */
+.btn-group {
+  display: flex;
+  flex-direction: column;  /* Tombol dalam satu kolom */
+  gap: 10px;  /* Memberikan jarak antar tombol dalam grup */
+  text-align: center;  /* Memastikan tombol terletak di tengah */
+  flex: 1;  /* Membuat grup tombol memiliki ukuran yang sama */
+  max-width: 300px; /* Membatasi lebar grup tombol agar tidak terlalu lebar */
+}
+
+/* Setiap tombol */
+.btn {
+  display: inline-block;
+  padding: 8px 15px;
+  margin: 5px 0;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 12px;
+  transition: background-color 0.3s;
+}
+
+/* Efek hover untuk tombol */
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Media query untuk tampilan mobile */
+@media (max-width: 768px) {
+  /* Mengubah orientasi menjadi kolom pada layar kecil */
+  .btn-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+  }
+
+  .btn-group {
+      width: 100%;  /* Membuat setiap grup tombol mengambil lebar penuh */
+      margin-bottom: 15px;  /* Memberikan jarak antar grup tombol */
+  }
+
+  /* Untuk memastikan tombol tidak terlalu besar di tampilan mobile */
+  .btn {
+      font-size: 14px; /* Menyesuaikan ukuran font tombol di mobile */
+  }
+}
+
+/* Carousel Gambar */
+.carousel-item img {
+  width: 100%;
+  height: 100vh; /* Memastikan gambar mengisi layar penuh */
+  object-fit: cover; /* Memastikan gambar tidak terdistorsi dan tetap memenuhi ruang */
+  object-position: center; /* Menjaga gambar tetap terpusat */
+}
