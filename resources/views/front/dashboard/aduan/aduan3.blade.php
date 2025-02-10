@@ -1,163 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>DINAS DUKCAPIL KOTA TEGAL</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{{  asset('back/assets/img/Tegal.svg.png') }}" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link rel="stylesheet" href="{{  asset('back/css/styles.css') }}">
-        
+@include('front.layout.assets')
+@include('front.layout.navbar')
 
-    </head>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top">
-                <img src="{{ asset('back/assets/img/DUKCAPIL KOTA TEGAL.png') }}" alt="Logo" style="height: 40px;" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/index"><i class="fas fa-home"></i> Beranda</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-clipboard-list"></i> Profil</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/profil/1">VISI & MISI DISDUK KOTA TEGAL</a></li>
-                            <li><a class="dropdown-item" href="/profil/2">TUGAS DAN FUNGSI DINAS DUKCAPIL KOTA TEGAL</a></li>
-                            <li><a class="dropdown-item" href="/profil/3">STRUKTUR ORGANISASI DINAS DUKCAPIL KOTA TEGAL</a></li>
-                            <li><a class="dropdown-item" href="/profil/4">SEJARAH</a></li>
-                            <li><a class="dropdown-item" href="/profil/5">PROFIL PEJABAT</a></li>
-                            <li><a class="dropdown-item" href="/profil/6">LHKPN</a></li>
-                            <li><a class="dropdown-item" href="/profil/7">KEPEGAWAIAN</a></li>
-                            <li><a class="dropdown-item" href="/profil/8">ASET DAN INTERISASI BARANG</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-clipboard-list"></i> Program & Kegiatan
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="/program/1">RENSTRA</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">RENJA</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program1">TAHUN ANGGARAN 2021</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">TAHUN ANGGARAN 2022</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program1">TAHUN ANGGARAN 2023</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">TAHUN ANGGARAN 2024</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">TAHUN ANGGARAN 2025</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/inovasi"><i class="fas fa-lightbulb"></i> Inovasi</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-info-circle"></i> Info DisDuk</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/infodisduk/1">BERITA</a></li>
-                            <li><a class="dropdown-item" href="/infodisduk/2">ARTIKEL</a></li>
-                            <li><a class="dropdown-item" href="/infodisduk/3">INFO KEGIATAN</a></li>
-                            <li><a class="dropdown-item" href="/infodisduk/4">PENGUMUMAN</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-info"></i> Informasi</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">PPID/INFORMASI PUBLIK</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">ALUR LAYANAN</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="dropdown-item" href="#program1">PERMOHONAN INFORMASI</a></li>
-                            <li><a class="dropdown-item" href="#program2">LAPORAN INFORMASI PUBLIK</a></li>
-                            <li><a class="dropdown-item" href="#program2">PENGADAAN BARANG DAN JASA</a></li>
-                            <li><a class="dropdown-item" href="#program1">AGENDA PIMPINAN</a></li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#program2">PRODUK HUKUM</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#subprogram1">Subprogram 1</a></li>
-                                    <li><a class="dropdown-item" href="#subprogram2">Subprogram 2</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-comments"></i> Aduan</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/aduan/1">SALURAN PENGADUAN</a></li>
-                            <li><a class="dropdown-item" href="/aduan/2">FORMULIR ADUAN</a></li>
-                            <li><a class="dropdown-item" href="/aduan/3">FAQ</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/galeri"><i class="fas fa-images"></i> Galeri</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/kontak"><i class="fas fa-envelope"></i> Kontak</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/kebijakan&privasi"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
-                </ul>
-                <a class="btn btn-primary ms-3" href="#contact">Contact Us</a>
-            </div>
-        </div>
-    </nav>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Add mouseenter and mouseleave events to dropdown-submenu items
@@ -231,7 +76,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{{  asset('back/assets/img/portfolio/1.jpg') }}" alt="..." />
+                                <img class="img-fluid" src="{{  asset('front/img/portfolio/1.jpg') }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Threads</div>
@@ -246,7 +91,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{{  asset('back/assets/img/portfolio/2.jpg') }}" alt="..." />
+                                <img class="img-fluid" src="{{  asset('front/img/portfolio/2.jpg') }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Explore</div>
@@ -261,7 +106,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{{  asset('back/assets/img/portfolio/3.jpg') }}" alt="..." />
+                                <img class="img-fluid" src="{{  asset('front/img/portfolio/3.jpg') }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Finish</div>
@@ -276,7 +121,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{{  asset('back/assets/img/portfolio/4.jpg') }}" alt="..." />
+                                <img class="img-fluid" src="{{  asset('front/img/portfolio/4.jpg') }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Lines</div>
@@ -291,7 +136,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{{  asset('back/assets/img/portfolio/5.jpg') }}" alt="..." />
+                                <img class="img-fluid" src="{{  asset('front/img/portfolio/5.jpg') }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Southwest</div>
@@ -306,7 +151,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="{{  asset('back/assets/img/portfolio/6.jpg') }}" alt="..." />
+                                <img class="img-fluid" src="{{  asset('front/img/portfolio/6.jpg') }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Window</div>
@@ -326,7 +171,7 @@
                 </div>
                 <ul class="timeline">
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('back/assets/img/about/1.jpg') }}" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('front/img/about/1.jpg') }}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>2009-2011</h4>
@@ -336,7 +181,7 @@
                         </div>
                     </li>
                     <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('back/assets/img/about/2.jpg') }}" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('front/img/about/2.jpg') }}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>March 2011</h4>
@@ -346,7 +191,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('back/assets/img/about/3.jpg') }}" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('front/img/about/3.jpg') }}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>December 2015</h4>
@@ -356,7 +201,7 @@
                         </div>
                     </li>
                     <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('back/assets/img/about/4.jpg') }}" alt="..." /></div>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{  asset('front/img/about/4.jpg') }}" alt="..." /></div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>July 2020</h4>
@@ -389,7 +234,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{  asset('back/assets/img/team/1.jpg') }}" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{  asset('front/img/team/1.jpg') }}" alt="..." />
                             <h4>Parveen Anand</h4>
                             <p class="text-muted">Lead Designer</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -399,7 +244,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{  asset('back/assets/img/team/2.jpg') }}" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{  asset('front/img/team/2.jpg') }}" alt="..." />
                             <h4>Diana Petersen</h4>
                             <p class="text-muted">Lead Marketer</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -409,7 +254,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="{{  asset('back/assets/img/team/3.jpg') }}" alt="..." />
+                            <img class="mx-auto rounded-circle" src="{{  asset('front/img/team/3.jpg') }}" alt="..." />
                             <h4>Larry Parker</h4>
                             <p class="text-muted">Lead Developer</p>
                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -428,16 +273,16 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('back/assets/img/logos/microsoft.svg') }}" alt="..." aria-label="Microsoft Logo" /></a>
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('front/img/logos/microsoft.svg') }}" alt="..." aria-label="Microsoft Logo" /></a>
                     </div>
                     <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('back/assets/img/logos/google.svg') }}" alt="..." aria-label="Google Logo" /></a>
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('front/img/logos/google.svg') }}" alt="..." aria-label="Google Logo" /></a>
                     </div>
                     <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('back/assets/img/logos/facebook.svg') }}" alt="..." aria-label="Facebook Logo" /></a>
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('front/img/logos/facebook.svg') }}" alt="..." aria-label="Facebook Logo" /></a>
                     </div>
                     <div class="col-md-3 col-sm-6 my-3">
-                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('back/assets/img/logos/ibm.svg') }}" alt="..." aria-label="IBM Logo" /></a>
+                        <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{  asset('front/img/logos/ibm.svg') }}" alt="..." aria-label="IBM Logo" /></a>
                     </div>
                 </div>
             </div>

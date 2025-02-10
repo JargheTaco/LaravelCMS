@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-lg-4 col-sm-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="{{ asset('back/assets/img/portfolio/2.jpg') }}"
+                <a href="#"><img class="card-img-top" src="{{ asset('front/img/portfolio/2.jpg') }}"
                         alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -40,7 +40,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="{{ asset('back/assets/img/portfolio/2.jpg') }}"
+                <a href="#"><img class="card-img-top" src="{{ asset('front/img/portfolio/2.jpg') }}"
                         alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -55,7 +55,7 @@
         <div class="col-lg-4 col-sm-6 mb-4">
             <div class="card h-100">
                 <a href="#"><img class="card-img-top"
-                        src="{{ asset('back/assets/img/portfolio/2.jpg') }}"alt=""></a>
+                        src="{{ asset('front/img/portfolio/2.jpg') }}"alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a>Project Three</a>
