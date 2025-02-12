@@ -6,6 +6,8 @@ use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Back\BeritaController;
+use App\Models\Berita;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::resource('/article', ArticleController::class);
+
+    Route::resource('/berita', BeritaController::class);
 
     Route::resource('/categories', CategoryController::class)->only([
         'index',
