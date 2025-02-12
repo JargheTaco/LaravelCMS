@@ -9975,28 +9975,6 @@ section#contact form#contactForm :-ms-input-placeholder {
   gap: 10px;
 }
 
-.btn2 {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.btn2:hover {
-  background-color: #0056b3;
-}
-
-.btn2 i {
-  font-size: 16px;
-}
-
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .container2 {
@@ -10006,10 +9984,5 @@ section#contact form#contactForm :-ms-input-placeholder {
   .button-group2 {
       flex-direction: column;
       gap: 5px;
-  }
-
-  .btn2 {
-      width: 100%;
-      text-align: center;
   }
 }

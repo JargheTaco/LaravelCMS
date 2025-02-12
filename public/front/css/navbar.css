@@ -57,7 +57,7 @@ a {
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 1120px;
-  margin-inline: 1.5rem;
+  /* margin-inline: 1.5rem; */
 }
 
 /*=============== HEADER ===============*/
@@ -149,12 +149,13 @@ a {
   font-weight: var(--font-semi-bold);
   padding: 1.25rem 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  white-space: nowrap;  /* Menjaga teks tetap dalam satu baris */
-  overflow: hidden;     /* Menghindari teks yang terpotong */
-  text-overflow: ellipsis;  /* Jika teks terlalu panjang, gunakan elipsis (...) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: background-color .3s;
+  gap: 5px;
 }
 
 .nav__link:hover {
@@ -335,7 +336,7 @@ a {
 /* Kontainer utama yang menampung grup layanan utama tombol */
 .btn-container {
   display: flex;
-  justify-content: space-between;  /* Menyebar grup tombol */
+  justify-content: center;  /* Menyebar grup tombol */
   gap: 20px;  /* Memberikan jarak antar grup tombol */
   margin-top: 20px;
   flex-wrap: wrap;  /* Membuat grup tombol berpindah ke baris berikutnya jika ruang terbatas */
@@ -377,7 +378,7 @@ a {
   .btn-container {
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 0px;
   }
 
   .btn-group {
@@ -397,4 +398,70 @@ a {
   height: 100vh; /* Memastikan gambar mengisi layar penuh */
   object-fit: cover; /* Memastikan gambar tidak terdistorsi dan tetap memenuhi ruang */
   object-position: center; /* Menjaga gambar tetap terpusat */
+}
+.carousel_item {
+  height: 65vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* Class dasar untuk tombol */
+.btn-custom {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 5px;
+  gap: 5px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px; /* Memberikan jarak antar tombol */
+  font-size: 14px; /* Sesuaikan ukuran font */
+  transition: background 0.3s;
+}
+
+/* Tombol Download dengan warna biru */
+.btn-custom-download-1 {
+  background-color: #007bff; /* Warna Biru */
+}
+
+.btn-custom-download-1:hover {
+  background-color: #0056b3; /* Warna Biru Gelap */
+}
+
+/* Tombol Baca dengan warna hijau */
+.btn-custom-read-2 {
+  background-color: #28a745; /* Warna Hijau */
+}
+
+.btn-custom-read-2:hover {
+  background-color: #218838; /* Warna Hijau Gelap */
+}
+
+/* Tombol Link dengan warna kuning */
+.btn-custom-link-3 {
+  background-color: #ffc107; /* Warna Kuning */
+}
+
+.btn-custom-link-3:hover {
+  background-color: #e0a800; /* Warna Kuning Gelap */
+}
+
+/* Hover efek untuk semua tombol */
+.btn-custom:hover {
+  opacity: 0.8;
+}
+
+/* Styling ikon dalam tombol */
+.btn-custom i {
+  margin-right: 5px; /* Menambahkan jarak antara ikon dan teks */
+  font-size: 18px; /* Ukuran ikon agar sesuai */
+}
+
+/* Menambahkan jarak lebih besar antara ikon dan teks */
+.btn-custom span {
+  margin-left: 8px; /* Memberikan jarak antara ikon dan teks */
 }
