@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 @include('front.layout.assets')
 @include('front.layout.navbar')
 
@@ -15,8 +16,7 @@
                 aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active"
-                style="background-image: url('{{ asset('front/img/bg2.jpg') }}');">
+            <div class="carousel-item active" style="background-image: url('{{ asset('front/img/bg2.jpg') }}');">
                 <div class="carousel-caption">
                     <h5>Selamat Datang</h5>
                     <p>DINAS DUKCAPIL Kota Tegal</p>
@@ -58,31 +58,13 @@
 
         <div class="btn-container">
             <div class="btn-group">
-                <a href="#" class="btn btn-primary">Informasi Kuota magang di Dinas DisDuk Kota Tegal</a>
-                <a href="#" class="btn btn-primary">Samsung</a>
-                <a href="#" class="btn btn-primary">Sony</a>
+                <a href="#" class="btn btn-primary">Pencatatan Sipil</a>
+                <a href="#" class="btn btn-primary">Pendaftaran Penduduk</a>
             </div>
             <div class="btn-group">
-                <a href="#" class="btn btn-primary">Informasi Kuota magang di Dinas DisDuk Kota Tegal</a>
-                <a href="#" class="btn btn-primary">Samsung</a>
-                <a href="#" class="btn btn-primary">Sony</a>
+                <a href="#" class="btn btn-primary">Pengelolaan SIAK</a>
+                <a href="#" class="btn btn-primary">Pemanfaatan Data</a>
             </div>
-            <div class="btn-group">
-                <a href="#" class="btn btn-primary">Informasi Kuota magang di Dinas DisDuk Kota Tegal</a>
-                <a href="#" class="btn btn-primary">Samsung</a>
-                <a href="#" class="btn btn-primary">Sony</a>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- About-->
-<section class="page-section" id="about">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">About</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
     </div>
 </section>
@@ -90,7 +72,7 @@
 <section class="page-section bg-light" id="team">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+            <h2 class="section-heading text-uppercase">kepala </h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
         </div>
         <div class="row">
@@ -145,62 +127,6 @@
         </div>
     </div>
 </section>
-<!-- Clients-->
-<div class="py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                        src="{{ asset('front/img/logos/microsoft.svg') }}" alt="..."
-                        aria-label="Microsoft Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                        src="{{ asset('front/img/logos/google.svg') }}" alt="..."
-                        aria-label="Google Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                        src="{{ asset('front/img/logos/facebook.svg') }}" alt="..."
-                        aria-label="Facebook Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto"
-                        src="{{ asset('front/img/logos/ibm.svg') }}" alt="..."
-                        aria-label="IBM Logo" /></a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">Copyright &copy; DINAS DUKCAPIL KOTA TEGAL</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
-                        class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-            </div>
-        </div>
-    </div>
-</footer>
+@include('front.layout.footer')
+@include('front.layout.scripts')
 @yield('content')
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="https://laravel-project-self.vercel.app/back/js/navbar.js"></script>  
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<!-- * *                               SB Forms JS                               * *-->
-<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
-</html>

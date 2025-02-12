@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Article; 
+use App\Models\Berita;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -36,8 +39,15 @@ class HomeController extends Controller
         return view("front.dashboard.aduan.aduan" . $aduanNumber);
     }
     public function infodisduk($infodisdukNumber) {
-        return view("front.dashboard.infodisduk.infodisduk" . $infodisdukNumber);
+        return view("front.dashboard.infodisduk.infodisduk" . $infodisdukNumber, [
+            'latest_post_article' => Article::latest()->first(),
+            'articles' => Article::latest()->paginate(5),
+            'beritas' => Berita::latest()->paginate(5),
+            'categories' => Category::latest()->get(),
+            'latest_post_berita' => Berita::latest()->first(),
+        ]);
     }
+    
     public function informasi($informasiNumber) {
         return view("front.dashboard.informasi.informasi" . $informasiNumber);
     }
