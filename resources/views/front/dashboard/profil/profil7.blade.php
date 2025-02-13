@@ -1,75 +1,67 @@
 @include('front.layout.assets')
 @include('front.layout.navbar')
 
-<!-- Header - set the background image for the header in the line below-->
-<header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
-    <div class="text-center my-5">
-        <h1 class="text-white fs-3 fw-bolder">Full Width Pics</h1>
-        <p class="text-white-50 mb-0">Landing Page Template</p>
-        <h2>KEPEGAWAIAN</h2>
-    </div>
+<header class="header2" style="padding-top: 100px">
+    <h1>Profil</h1>
+    <h2>Kepegawaian</h2>
+    <div class="divider2"></div>
 </header>
-<!-- Content section-->
-<section class="py-5">
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h2>Full Width Backgrounds</h2>
-                <p class="lead">A single, lightweight helper class allows you to add engaging, full width background
-                    images to sections of your page.</p>
-                <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting
-                    here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the
-                    universe.</p>
+
+
+    <div class="container mt-5">
+        <h2>DAFTAR KEPEGAWAIAN</h2>
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <select class="form-select" id="tahunSelect">
+                    <option value="">Tahun</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="searchInput" placeholder="Cari berdasarkan judul...">
             </div>
         </div>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>File</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr data-tahun="2023" data-judul="Aset dan Inventarisasi Barang Tahun 2023">
+                    <td>1</td>
+                    <td>Aset dan Inventarisasi Barang Tahun 2023</td>
+                    <td class="button-group3">
+                        <a href="#" class="btn-custom btn-custom-download-1"><i class="fa fa-download"></i> Download</a>
+                        <a href="#" class="btn-custom btn-custom-read-2"><i class="fa fa-book"></i> Baca</a>
+                        <a href="#" class="btn-custom btn-custom-link-3"><i class="fa fa-link"></i> Link</a>
+                    </td>
+                </tr>
+                <tr data-tahun="2022" data-judul="Aset dan Inventarisasi Barang Tahun 2022">
+                    <td>2</td>
+                    <td>Aset dan Inventarisasi Barang Tahun 2022</td>
+                    <td class="button-group3">
+                        <a href="#" class="btn-custom btn-custom-download-1"><i class="fa fa-download"></i> Download</a>
+                        <a href="#" class="btn-custom btn-custom-read-2"><i class="fa fa-book"></i> Baca</a>
+                        <a href="#" class="btn-custom btn-custom-link-3"><i class="fa fa-link"></i> Link</a>
+                    </td>
+                </tr>
+                <tr data-tahun="2021" data-judul="Aset dan Inventarisasi Barang Tahun 2021">
+                    <td>3</td>
+                    <td>Aset dan Inventarisasi Barang Tahun 2021</td>
+                    <td class="button-group3">
+                        <a href="#" class="btn-custom btn-custom-download-1"><i class="fa fa-download"></i> Download</a>
+                        <a href="#" class="btn-custom btn-custom-read-2"><i class="fa fa-book"></i> Baca</a>
+                        <a href="#" class="btn-custom btn-custom-link-3"><i class="fa fa-link"></i> Link</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</section>
-<!-- Content section-->
-<section class="py-5">
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h2>Engaging Background Images</h2>
-                <p class="lead">The background images used in this template are sourced from Unsplash and are open
-                    source and free to use.</p>
-                <p class="mb-0">I can't tell you how many people say they were turned off from science because of a
-                    science teacher that completely sucked out all the inspiration and enthusiasm they had for the
-                    course.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">Copyright &copy; DINAS DUKCAPIL KOTA TEGAL</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
-                        class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="https://laravel-project-self.vercel.app/back/js/navbar.js"></script>  
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<!-- * *                               SB Forms JS                               * *-->
-<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
-
-</html>
+@include('front.layout.footer')
+@include('front.layout.scripts')

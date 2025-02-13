@@ -12,7 +12,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('front.dashboard.index');
+        return view('front.dashboard.index', [ 'latest_post_article' => Article::latest()->first(),
+        'articles' => Article::latest()->paginate(5),
+        'beritas' => Berita::latest()->paginate(5),
+        'categories' => Category::latest()->get(),
+        'latest_post_berita' => Berita::latest()->first(),
+    ]);
     }
     public function inovasi()
     {
@@ -41,7 +46,7 @@ class HomeController extends Controller
     public function infodisduk($infodisdukNumber) {
         return view("front.dashboard.infodisduk.infodisduk" . $infodisdukNumber, [
             'latest_post_article' => Article::latest()->first(),
-            'articles' => Article::latest()->paginate(5),
+            'articles' => Article::whereStatus(1)->latest()->paginate(5),
             'beritas' => Berita::latest()->paginate(5),
             'categories' => Category::latest()->get(),
             'latest_post_berita' => Berita::latest()->first(),

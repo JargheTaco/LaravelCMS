@@ -4,9 +4,11 @@ use App\Http\Controllers\Back\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\ArticleController;
+use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Back\BeritaController;
+use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
 use App\Models\Berita;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +32,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/partikel/{slug}', [FrontArticleController::class, 'show']);
+Route::get('/pberita/{slug}', [FrontBeritaController::class, 'show']);
 Route::get('/inovasi', [HomeController::class, 'inovasi']);
 Route::get('/galeri', [HomeController::class, 'galeri']);
 Route::get('/kontak', [HomeController::class, 'kontak']);

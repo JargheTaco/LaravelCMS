@@ -68,6 +68,54 @@
         </div>
     </div>
 </section>
+
+<div class="container">
+    <div class="row">
+        <!-- Berita Terkini -->
+        <div class="col-md-6">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Berita Terkini</h2>
+            </div>
+            <div class="card mb-4">
+                <a href="{{ url('pberita/'.$latest_post_berita->slug) }}">
+                    <img class="card-img-top featured-img" src="{{ asset('storage/back/' .$latest_post_berita->img) }}" alt="..." />
+                </a>
+                <div class="card-body card-height">
+                    <div class="small text-muted">
+                        {{ $latest_post_berita->created_at->format('d-m-Y')}}
+                        |
+                        {{ $latest_post_berita->Category->name}}
+                    </div>
+                    <h2 class="card-title">{{ $latest_post_berita->title }}</h2>
+                    <p class="card-text">{{ Str::limit(strip_tags($latest_post_berita->desc), 250, '...') }}</p>
+                    <a class="btn btn-primary" href="{{url('pberita/'.$latest_post_berita->slug)}}">Read more →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Artikel Terkini -->
+        <div class="col-md-6">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Artikel Terkini</h2>
+            </div>
+            <div class="card mb-4">
+                <a href="{{url('partikel/'.$latest_post_article->slug)}}">
+                    <img class="card-img-top featured-img" src="{{ asset('storage/back/' .$latest_post_article->img) }}" alt="..." />
+                </a>
+                <div class="card-body card-height">
+                    <div class="small text-muted">
+                        {{ $latest_post_article->created_at->format('d-m-Y')}}
+                        |
+                        {{ $latest_post_article->Category->name}}
+                    </div>
+                    <h2 class="card-title">{{ $latest_post_article->title }}</h2>
+                    <p class="card-text">{{ Str::limit(strip_tags($latest_post_article->desc), 250, '...') }}</p>
+                    <a class="btn btn-primary" href="{{url ('p/'. $latest_post_article->slug)}}">Read more →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Team-->
 <section class="page-section bg-light" id="team">
     <div class="container">
@@ -127,6 +175,49 @@
         </div>
     </div>
 </section>
+<header class="header2" style="padding-top: 100px">
+    <h1>Sistem Informasi</h1>
+    <div class="divider2"></div>
+</header>
+<div class="system-card-container">
+    <div class="system-card">
+        <h3>JAMU LAN PIJAT, AGAWE AWET URIP, TINEBIH ING RUBEDO</h3>
+        <img src="jampi-ati.png" alt="Jampi Ati">
+        <p>Jamu lan Pijat, Agawe awet urip, Tinebih ing rubedo</p>
+        <div class="system-card-buttons">
+            <a href="#" class="btn-system">Kunjungi Sistem</a>
+            <a href="#" class="btn-system-outline">Selengkapnya</a>
+        </div>
+    </div>
+
+    <div class="system-card">
+        <h3>SISTEM INFORMASI KOMUNIKASI DATA KESEHATAN KELUARGA</h3>
+        <img src="icon-database.png" alt="Database Icon">
+        <p>Sistem Informasi Komunikasi Data Kesehatan Keluarga</p>
+        <div class="system-card-buttons">
+            <a href="#" class="btn-system">Kunjungi Sistem</a>
+            <a href="#" class="btn-system-outline">Selengkapnya</a>
+        </div>
+    </div>
+
+    <div class="system-card system-card-highlight">
+        <h3>SISTEM INFORMASI IMUNISASI TERPADU</h3>
+        <img src="icon-imunisasi.png" alt="Imunisasi Icon">
+        <p>Sistem pengolah data dan pelaporan terkait imunisasi di Puskesmas.</p>
+        <div class="system-card-buttons">
+            <a href="#" class="btn-system">Kunjungi Sistem</a>
+            <a href="#" class="btn-system-outline">Selengkapnya</a>
+        </div>
+    </div>
+
+    <div class="system-card">
+        <h3>SISTEM PENANGGULANGAN GAWAT DARURAT TERPADU</h3>
+        <img src="icon-ambulance.png" alt="Ambulance Icon">
+        <div class="system-card-buttons">
+            <a href="#" class="btn-system">Kunjungi Sistem</a>
+            <a href="#" class="btn-system-outline">Selengkapnya</a>
+        </div>
+    </div>
 @include('front.layout.footer')
 @include('front.layout.scripts')
 @yield('content')
