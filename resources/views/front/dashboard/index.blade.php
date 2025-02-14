@@ -110,7 +110,7 @@
                     </div>
                     <h2 class="card-title">{{ $latest_post_article->title }}</h2>
                     <p class="card-text">{{ Str::limit(strip_tags($latest_post_article->desc), 250, '...') }}</p>
-                    <a class="btn btn-primary" href="{{url ('p/'. $latest_post_article->slug)}}">Read more →</a>
+                    <a class="btn btn-primary" href="{{url ('partikel/'. $latest_post_article->slug)}}">Read more →</a>
                 </div>
             </div>
         </div>

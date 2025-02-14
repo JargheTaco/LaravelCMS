@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class BeritaController extends Controller
 {
+
+    //public function index()
+    //{
+      //  return view('front.infodisduk.infodisduk1', [
+        //    'berita' => Berita::whereStatus(1)->latest()->paginate(6),
+        //]);
+    //}
+
     public function show($slug)
     {
         return view('front.berita.show', [

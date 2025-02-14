@@ -11,6 +11,10 @@ class ArticleController extends Controller
 {
     public function show($slug)
     {
+        //return view('front.infodisduk.infodisduk2', [
+        //    'article' => Article::whereStatus(1)->latest()->paginate(6),
+       // ]);
+
         return view('front.article.show', [
             'article' => Article::whereSlug($slug)->first(),
             'categories' => Category::latest()->get(),

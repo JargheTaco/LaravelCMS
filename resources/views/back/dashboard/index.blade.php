@@ -22,11 +22,11 @@
 
     <div class="col-6">
       <div class="card text-bg-success mb-3" style="max-width: 100%;">
-        <div class="card-header">Total Categories</div>
+        <div class="card-header">Total Berita</div>
         <div class="card-body">
-          <h5 class="card-title">{{ $total_categories }} Categories</h5>
+          <h5 class="card-title">{{ $total_beritas }} Berita</h5>
           <p class="card-text">
-            <a href="{{ url('categories')}}" class="text-white">View Categories</a>
+            <a href="{{ url('berita')}}" class="text-white">View Categories</a>
           </p>
         </div>
       </div>
@@ -63,33 +63,34 @@
       </div>
 
       <div class="col-6">
-        <h4>Popular Articles</h4>
+        <h4>Latest Berita</h4>
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>No</th>
               <th>Title</th>
               <th>Category</th>
-              <th>Views</th>
+              <th>Create At</th>
               <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
-            @foreach( $popular_article as $item )
+            @foreach($latest_berita as $item)
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $item->title }}</td>
               <td>{{ $item->Category->name }}</td>
-              <td>{{ $item->view }}x</td>
+              <td>{{ $item->created_at }}</td>
               <td class="text-center">
-                <a href="{{ url('article/' .$item->id) }}" class="btn btn-sm btn-secondary">Detail</a>
+                <a href="{{ url('berita/' .$item->id) }}" class="btn btn-sm btn-secondary">Detail</a>
               </td>
             </tr>
             @endforeach
           </tbody>
         </table>
       </div>
+
     </div>
   </div>
 

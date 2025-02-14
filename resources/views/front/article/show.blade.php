@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card mb-4">
-                <a href="{{ url('p/'.$article->slug) }}" alt="..." />
+                <a href="{{ url('partikel/'.$article->slug) }}" alt="..." />
                 <img class="card-img-top featured-img" src="{{ asset('storage/back/' .$article->img) }}" alt="..." />
                 </a>
                 <div class="card-body">

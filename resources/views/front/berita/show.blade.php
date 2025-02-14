@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card mb-4">
-                <a href="{{ url('p/'.$berita->slug) }}" alt="..." />
+                <a href="{{ url('pberita/'.$berita->slug) }}" alt="..." />
                 <img class="card-img-top featured-img" src="{{ asset('storage/back/' .$berita->img) }}" alt="..." />
                 </a>
                 <div class="card-body">
