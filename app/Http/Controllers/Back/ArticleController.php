@@ -66,8 +66,18 @@ class ArticleController extends Controller
 
         if ($request->hasFile('img')) {
             $uploadedFile = $request->file('img');
-            $upload = Cloudinary::upload($uploadedFile->getRealPath());
-            $data['img'] = $upload->getSecurePath(); // Simpan URL gambar di database
+        
+            if ($uploadedFile->isValid()) { // Cek apakah file valid
+                $upload = Cloudinary::upload($uploadedFile->getRealPath());
+        
+                if ($upload) { // Cek apakah upload berhasil
+                    $data['img'] = $upload->getSecurePath();
+                } else {
+                    return back()->with('error', 'Gagal mengunggah gambar ke Cloudinary');
+                }
+            } else {
+                return back()->with('error', 'File tidak valid');
+            }
         }
         
         $data['slug'] = Str::slug($data['title']);
