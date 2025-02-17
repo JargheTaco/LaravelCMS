@@ -71,7 +71,7 @@
             });
         }
 
-        function deleteArticle(e) {
+        function deleteDokumentasi(e) {
             let id = $(e).data('id');
 
             Swal.fire({
@@ -90,7 +90,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'DELETE',
-                        url: '/article/' + id,
+                        url: '/dokumentasi/' + id,
                         dataType: "json",
                         success: function(response) {
                             Swal.fire({
