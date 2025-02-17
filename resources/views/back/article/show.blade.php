@@ -54,7 +54,7 @@
                 <th>Image</th>
                 <td>
                     <a href="{{ asset('storage/back/'.$article->img) }}" target="_blank" rel="noopener noreferrer">
-                    <img src="{{ asset('storage/back/'.$article->img) }}" alt="" width="50%">
+                    <img src="{{ asset('storage/back/'.$article->img) }}" alt="Gambar" width="50%">
                     </a>
                 </td>
             </tr>
