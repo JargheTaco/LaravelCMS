@@ -19,7 +19,7 @@ class DokumentasiController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $dokumentasi = Dokumentasi::with('Category')->latest()->get();
+            $dokumentasi = Dokumentasi::latest()->get();
 
             return DataTables::of($dokumentasi)
                 ->addIndexColumn()
