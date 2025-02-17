@@ -11,6 +11,7 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateArticleRequest;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ArticleController extends Controller
 {
@@ -63,11 +64,12 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-        $file = $request->file('img');
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/back/', $fileName);
-
-        $data['img'] = $fileName;
+        if ($request->hasFile('img')) {
+            $uploadedFile = $request->file('img');
+            $upload = Cloudinary::upload($uploadedFile->getRealPath());
+            $data['img'] = $upload->getSecurePath(); // Simpan URL gambar di database
+        }
+        
         $data['slug'] = Str::slug($data['title']);
 
         Article::create($data);
