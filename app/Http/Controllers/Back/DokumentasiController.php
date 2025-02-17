@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Dokumentasi;
 use Illuminate\Http\Request;
@@ -31,7 +30,7 @@ class DokumentasiController extends Controller
                 ->addColumn('button', function ($dokumentasi) {
                     return '<div class="text-center">
                                 <a href="dokumentasi/'.$dokumentasi->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="#" onclick="deletedokumentasi(this)" data-id="'.$dokumentasi->id.'" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteDokumentasi(this)" data-id="'.$dokumentasi->id.'" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['status', 'button'])

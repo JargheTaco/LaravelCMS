@@ -72,7 +72,7 @@
             });
         }
 
-        function deleteArticle(e) {
+        function deleteBerita(e) {
             let id = $(e).data('id');
 
             Swal.fire({
