@@ -41,8 +41,8 @@
             <tr>
                 <th>Image</th>
                 <td>
-                    <a href="{{ asset('storage/app/public/back/'.$dokumentasi->img) }}" target="_blank" rel="noopener noreferrer">
-                    <img src="{{ asset('storage/app/public/back/'.$dokumentasi->img) }}" alt="" width="50%">
+                    <a href="{{ asset('storage/back/'.$dokumentasi->img) }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ asset('storage/back/'.$dokumentasi->img) }}" alt="" width="50%">
                     </a>
                 </td>
             </tr>
