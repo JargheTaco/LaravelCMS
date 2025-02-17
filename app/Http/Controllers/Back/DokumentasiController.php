@@ -30,8 +30,8 @@ class DokumentasiController extends Controller
                 })
                 ->addColumn('button', function ($dokumentasi) {
                     return '<div class="text-center">
-                                <a href="dokumentasi$dokumentasi/'.$dokumentasi->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="#" onclick="deletedokumentasi$dokumentasi(this)" data-id="'.$dokumentasi->id.'" class="btn btn-danger">Delete</a>
+                                <a href="dokumentasi/'.$dokumentasi->id.'" class="btn btn-secondary">Detail</a>
+                                <a href="#" onclick="deletedokumentasi(this)" data-id="'.$dokumentasi->id.'" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['status', 'button'])
