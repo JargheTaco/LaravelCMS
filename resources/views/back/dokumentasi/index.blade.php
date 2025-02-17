@@ -5,18 +5,18 @@
 ">
 @endpush
 
-@section('title', 'List Berita - Admin')
+@section('title', 'List Dokumentasi - Admin')
 
 @section('content')
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Berita</h1>
+        <h1 class="h2">Dokumentasi</h1>
 
     </div>
 
     <div class="mt-3">
-        <a href="{{ url('berita/create') }}" class="btn btn-success mb-2">Create</a>
+        <a href="{{ url('dokumentasi/create') }}" class="btn btn-success mb-2">Create</a>
         @if ($errors->any())
         <div class="my-3">
             <div class="alert alert-danger">
@@ -36,8 +36,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Title</th>
-                    <th>Category</th>
+                    <th>Judul</th>
                     <th>Views</th>
                     <th>Status</th>
                     <th>Publish date</th>
@@ -76,7 +75,7 @@
             let id = $(e).data('id');
 
             Swal.fire({
-                title: 'Delete this berita?',
+                title: 'Delete this Dokumentasi?',
                 text: "Are you sure you want to delete?",
                 icon: 'warning',
                 showCancelButton: true,
@@ -91,7 +90,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'DELETE',
-                        url: '/berita/' + id,
+                        url: '/article/' + id,
                         dataType: "json",
                         success: function(response) {
                             Swal.fire({
@@ -99,7 +98,7 @@
                                 text: response.message,
                                 icon: 'success',
                             }).then((result) => {
-                                window.location.href = '/berita';
+                                window.location.href = '/dokumentasi';
                             });      
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -125,10 +124,6 @@
                     {
                         data: 'title',
                         name: 'title'
-                    },
-                    {
-                        data: 'category_id',
-                        name: 'category_id'
                     },
                     {
                         data: 'view',

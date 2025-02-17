@@ -9,7 +9,9 @@ use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Back\BeritaController;
 use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
+use App\Http\Controllers\Back\DokumentasiController;
 use App\Models\Berita;
+use App\Models\Dokumentasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/article', ArticleController::class);
 
     Route::resource('/berita', BeritaController::class);
+
+    Route::resource('/dokumentasi', DokumentasiController::class);
 
     Route::resource('/categories', CategoryController::class)->only([
         'index',
