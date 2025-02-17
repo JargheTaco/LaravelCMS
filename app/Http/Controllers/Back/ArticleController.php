@@ -11,7 +11,6 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateArticleRequest;
 use Illuminate\Support\Facades\Storage;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ArticleController extends Controller
 {
@@ -64,22 +63,11 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('img')) {
-            $uploadedFile = $request->file('img');
-        
-            if ($uploadedFile->isValid()) { // Cek apakah file valid
-                $upload = Cloudinary::upload($uploadedFile->getRealPath());
-        
-                if ($upload) { // Cek apakah upload berhasil
-                    $data['img'] = $upload->getSecurePath();
-                } else {
-                    return back()->with('error', 'Gagal mengunggah gambar ke Cloudinary');
-                }
-            } else {
-                return back()->with('error', 'File tidak valid');
-            }
-        }
-        
+        $file = $request->file('img');
+        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/back/', $fileName);
+
+        $data['img'] = $fileName;
         $data['slug'] = Str::slug($data['title']);
 
         Article::create($data);
