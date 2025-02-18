@@ -67,7 +67,7 @@ class ArticleController extends Controller
         // Upload image to Cloudinary
         $file = $request->file('img');
         $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-            'folder' => 'articles/'
+            'folder' => 'article/'
         ]);
         
         // Get the public ID from Cloudinary response
