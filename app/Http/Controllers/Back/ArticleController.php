@@ -64,13 +64,25 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
+        $article = \App\Models\Article::latest()->first();
+        dd($article->img);
+
         $data = $request->validated();
 
         if ($request->hasFile('img')) {
             $uploadedFile = $request->file('img');
             $upload = Cloudinary::upload($uploadedFile->getRealPath());
-            $data['img'] = $upload->getSecurePath(); // Simpan URL gambar di database
+
+            // Hapus gambar lama dari Cloudinary jika ada
+            if ($article->img) {
+                Cloudinary::destroy($article->img);
+            }
+
+            $data['img'] = $upload->getSecurePath();
+        } else {
+            $data['img'] = $article->img;
         }
+
 
         $data['slug'] = Str::slug($data['title']);
         Article::create($data);
