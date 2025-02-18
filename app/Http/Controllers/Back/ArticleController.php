@@ -11,7 +11,6 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateArticleRequest;
 use Illuminate\Support\Facades\Storage;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ArticleController extends Controller
 {
@@ -64,14 +63,11 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-        // Upload image to Cloudinary
         $file = $request->file('img');
-        $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-            'folder' => 'article/'
-        ]);
-        
-        // Get the public ID from Cloudinary response
-        $data['img'] = $uploadedFile->getPublicId();
+        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/back/', $fileName);
+
+        $data['img'] = $fileName;
         $data['slug'] = Str::slug($data['title']);
 
         Article::create($data);
@@ -79,6 +75,32 @@ class ArticleController extends Controller
         return redirect(url('article'))->with('success', 'Article Created Successfully');
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $article = Article::findOrFail($id);
+
+        return view('back.article.show', compact('article'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $article = Article::findOrFail($id);
+
+        return view('back.article.update', [
+            'article' => $article,
+            'categories' => Category::get(),
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(UpdateArticleRequest $request, string $id)
     {
         $article = Article::findOrFail($id);
@@ -86,19 +108,16 @@ class ArticleController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('img')) {
-            // Upload new image to Cloudinary
             $file = $request->file('img');
-            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'article/'
-            ]);
-            
-            // Get the public ID from Cloudinary response
-            $data['img'] = $uploadedFile->getPublicId();
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/back/', $fileName);
 
-            // Delete the old image from Cloudinary
-            if ($article->img) {
-                Cloudinary::destroy($article->img);
+            // Delete the old image if it exists
+            if ($article->img && Storage::exists('public/back/' . $article->img)) {
+                Storage::delete('public/back/' . $article->img);
             }
+
+            $data['img'] = $fileName;
         } else {
             $data['img'] = $article->img;
         }
@@ -110,13 +129,15 @@ class ArticleController extends Controller
         return redirect(url('article'))->with('success', 'Article Updated Successfully');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
         $article = Article::findOrFail($id);
 
-        // Delete the image from Cloudinary
-        if ($article->img) {
-            Cloudinary::destroy($article->img);
+        if ($article->img && Storage::exists('public/back/' . $article->img)) {
+            Storage::delete('public/back/' . $article->img);
         }
 
         $article->delete();
