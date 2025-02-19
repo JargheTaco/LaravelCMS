@@ -11,6 +11,8 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateArticleRequest;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 
 class ArticleController extends Controller
 {
@@ -34,9 +36,9 @@ class ArticleController extends Controller
                 })
                 ->addColumn('button', function ($article) {
                     return '<div class="text-center">
-                                <a href="article/'.$article->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="article/'.$article->id.'/edit" class="btn btn-primary">Edit</a>
-                                <a href="#" onclick="deleteArticle(this)" data-id="'.$article->id.'" class="btn btn-danger">Delete</a>
+                                <a href="article/' . $article->id . '" class="btn btn-secondary">Detail</a>
+                                <a href="article/' . $article->id . '/edit" class="btn btn-primary">Edit</a>
+                                <a href="#" onclick="deleteArticle(this)" data-id="' . $article->id . '" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['category_id', 'status', 'button'])
@@ -60,18 +62,24 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(ArticleRequest $request)
-    {
-        $data = $request->validated();
+    { $data = $request->validated();
 
         $file = $request->file('img');
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/back/', $fileName);
-
-        $data['img'] = $fileName;
+        if ($file) {
+            // Upload ke Cloudinary
+            $upload = Cloudinary::upload($file->getRealPath(), [
+                'folder' => 'image'
+            ]);
+    
+            // Simpan Public ID & URL ke database
+            $data['img'] = $upload->getSecurePath();
+            $data['public_id'] = $upload->getPublicId(); 
+        }
+    
         $data['slug'] = Str::slug($data['title']);
-
+    
         Article::create($data);
-
+    
         return redirect(url('article'))->with('success', 'Article Created Successfully');
     }
 
