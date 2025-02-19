@@ -78,7 +78,7 @@
             </div>
             <div class="card mb-4">
                 <a href="{{ url('pberita/'.$latest_post_berita->slug) }}">
-                    <img class="card-img-top featured-img" src="{{ $article->img }}" alt="..." />
+                    <img class="card-img-top featured-img" src="{{ $latest_post_berita->img }}" alt="..." />
                 </a>
                 <div class="card-body card-height">
                     <div class="small text-muted">
@@ -100,7 +100,7 @@
             </div>
             <div class="card mb-4">
                 <a href="{{url('partikel/'.$latest_post_article->slug)}}">
-                    <img class="card-img-top featured-img" src="{{ $article->img }}" alt="..." />
+                    <img class="card-img-top featured-img" src="{{ $latest_post_article->img }}" alt="..." />
                 </a>
                 <div class="card-body card-height">
                     <div class="small text-muted">
