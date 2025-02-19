@@ -62,24 +62,36 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(ArticleRequest $request)
-    { $data = $request->validated();
+    {
 
-        $file = $request->file('img');
-        if ($file) {
-            // Upload ke Cloudinary
-            $upload = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'image'
-            ]);
-    
-            // Simpan Public ID & URL ke database
-            $data['img'] = $upload->getSecurePath();
-            $data['public_id'] = $upload->getPublicId(); 
+        $data = $request->validated();
+
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+
+            if ($file->isValid()) {
+                // Upload ke Cloudinary
+                $upload = Cloudinary::upload($file->getRealPath(), [
+                    'folder' => 'image'
+                ]);
+
+                // Pastikan URL tidak null
+                if ($upload) {
+                    $data['img'] = $upload->getSecurePath();
+                    $data['public_id'] = $upload->getPublicId();
+                } else {
+                    return back()->withErrors(['msg' => 'Gagal mengupload gambar ke Cloudinary']);
+                }
+            } else {
+                return back()->withErrors(['msg' => 'File tidak valid']);
+            }
+        } else {
+            return back()->withErrors(['msg' => 'Tidak ada file yang diunggah']);
         }
-    
+
         $data['slug'] = Str::slug($data['title']);
-    
         Article::create($data);
-    
+
         return redirect(url('article'))->with('success', 'Article Created Successfully');
     }
 
