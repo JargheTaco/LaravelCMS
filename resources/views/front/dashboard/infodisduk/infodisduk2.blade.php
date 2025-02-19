@@ -12,7 +12,9 @@
                     <!-- Blog post-->
                     <div class="card mb-4 shadow-sm">
                         <a href="{ url('partikel/'.$item->slug) }}"
-                             <img class="card-img-top post-img" src="{{ str_replace('https://raw.githubusercontent.com/', 'https://cdn.jsdelivr.net/gh/', $item->img) }}" alt="..." /></a>
+                             <img class="card-img-top post-img" 
+     src="{{ 'https://cdn.statically.io/gh/' . str_replace('https://raw.githubusercontent.com/', '', $item->img) }}" 
+     alt="..."/>
                         <div class="card-body card-height">
                             <div class="small text-muted">
                                 {{ $item->created_at->format('d-m-Y')}}
