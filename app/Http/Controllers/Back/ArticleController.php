@@ -71,7 +71,7 @@ class ArticleController extends Controller
         $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
         $client = new Client();
-        $response = $client->request('PUT', 'https://api.github.com/repos/your-username/your-repo/contents/' . $fileName, [
+        $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
             'headers' => [
                 'Authorization' => 'token ' . env('GITHUB_TOKEN'),
                 'Accept' => 'application/vnd.github.v3+json',
