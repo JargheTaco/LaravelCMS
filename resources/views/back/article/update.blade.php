@@ -62,7 +62,7 @@
                 <input type="file" name="img" id="img" class="form-control">
                 <div class="mt-1">
                     <small>Gambar Lama</small><br>
-                    <img src="{{ asset('storage/back/' . $article->img) }}" class="img-thumbnail img-preview" width="100px">
+                    <img src="{{ $article->img }}" class="img-thumbnail img-preview" width="100px">
                 </div>
             </div>
 

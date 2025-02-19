@@ -4,34 +4,33 @@
 
 <!-- Page content-->
 <div class="container">
-        <!-- Blog entries-->
-            <!-- Nested row for non-featured blog posts-->
-            <div class="row">
-                @foreach ($articles as $item)
-                <div class="col-lg-4">
-                    <!-- Blog post-->
-                    <div class="card mb-4 shadow-sm">
-                        <a href="{ url('partikel/'.$item->slug) }}"
-                             <img class="card-img-top post-img" 
-     src="{{ 'https://cdn.statically.io/gh/' . str_replace('https://raw.githubusercontent.com/', '', $item->img) }}" 
-     alt="..."/>
-                        <div class="card-body card-height">
-                            <div class="small text-muted">
-                                {{ $item->created_at->format('d-m-Y')}}
-                                |
-                                {{ $item->Category->name}}
-                            </div>
-                            <h2 class="card-title h4">{{ $item->title}}</h2>
-                            <p class="card-text">{{ Str::limit(strip_tags($item->desc), 250, '...') }}</p>
-                            <a class="btn btn-primary" href="{ url('partikel/'.$item->slug) }}">Read more →</a>
-                        </div>
+    <!-- Blog entries-->
+    <!-- Nested row for non-featured blog posts-->
+    <div class="row">
+        @foreach ($articles as $item)
+        <div class="col-lg-4">
+            <!-- Blog post-->
+            <div class="card mb-4 shadow-sm">
+                <a href="{{ url('partikel/'.$item->slug) }}">
+                    <img class="card-img-top post-img" src="{{ $item->img }}" alt="Gambar Artikel" />
+                </a>
+                <div class="card-body card-height">
+                    <div class="small text-muted">
+                        {{ $item->created_at->format('d-m-Y')}}
+                        |
+                        {{ $item->Category->name}}
                     </div>
+                    <h2 class="card-title h4">{{ $item->title}}</h2>
+                    <p class="card-text">{{ Str::limit(strip_tags($item->desc), 250, '...') }}</p>
+                    <a class="btn btn-primary" href="{ url('partikel/'.$item->slug) }}">Read more →</a>
                 </div>
-                @endforeach
             </div>
-            <div>
-                {{ $articles->links() }}
-            </div>
+        </div>
+        @endforeach
+    </div>
+    <div>
+        {{ $articles->links() }}
+    </div>
 </div>
 @include('front.layout.footer')
 @include('front.layout.scripts')
