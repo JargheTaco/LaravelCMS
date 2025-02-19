@@ -11,6 +11,8 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateArticleRequest;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
+
 
 class ArticleController extends Controller
 {
@@ -63,16 +65,32 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
+    if ($request->hasFile('img')) {
         $file = $request->file('img');
+        $fileContent = base64_encode(file_get_contents($file));
         $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/back/', $fileName);
 
-        $data['img'] = $fileName;
-        $data['slug'] = Str::slug($data['title']);
+        $client = new Client();
+        $response = $client->request('PUT', 'https://api.github.com/repos/your-username/your-repo/contents/' . $fileName, [
+            'headers' => [
+                'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                'Accept' => 'application/vnd.github.v3+json',
+            ],
+            'json' => [
+                'message' => 'Upload image ' . $fileName,
+                'content' => $fileContent,
+            ],
+        ]);
 
-        Article::create($data);
+        $result = json_decode($response->getBody(), true);
+        $data['img'] = $result['content']['download_url']; // URL gambar
 
-        return redirect(url('article'))->with('success', 'Article Created Successfully');
+    }
+
+    $data['slug'] = Str::slug($data['title']);
+    Article::create($data);
+
+    return redirect(url('article'))->with('success', 'Article Created Successfully');
     }
 
     /**
