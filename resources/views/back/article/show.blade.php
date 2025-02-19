@@ -53,8 +53,8 @@
             <tr>
                 <th>Image</th>
                 <td>
-                    <a href="https://raw.githubusercontent.com/JargheTaco/LaravelCMS/main/{{ $article->img }}" target="_blank" rel="noopener noreferrer">
-                    <img src="https://raw.githubusercontent.com/JargheTaco/LaravelCMS/main/{{ $article->img }}" width="50%">
+                    <a href="{{ $article->img }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ $article->img }}" width="50%">
                     </a>
                 </td>
             </tr>
