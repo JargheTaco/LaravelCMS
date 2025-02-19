@@ -36,9 +36,9 @@ class ArticleController extends Controller
                 })
                 ->addColumn('button', function ($article) {
                     return '<div class="text-center">
-                                <a href="article/'.$article->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="article/'.$article->id.'/edit" class="btn btn-primary">Edit</a>
-                                <a href="#" onclick="deleteArticle(this)" data-id="'.$article->id.'" class="btn btn-danger">Delete</a>
+                                <a href="article/' . $article->id . '" class="btn btn-secondary">Detail</a>
+                                <a href="article/' . $article->id . '/edit" class="btn btn-primary">Edit</a>
+                                <a href="#" onclick="deleteArticle(this)" data-id="' . $article->id . '" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['category_id', 'status', 'button'])
@@ -65,32 +65,32 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
 
-    if ($request->hasFile('img')) {
-        $file = $request->file('img');
-        $fileContent = base64_encode(file_get_contents($file));
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileContent = base64_encode(file_get_contents($file));
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-        $client = new Client();
-        $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
-            'headers' => [
-                'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                'Accept' => 'application/vnd.github.v3+json',
-            ],
-            'json' => [
-                'message' => 'Upload image ' . $fileName,
-                'content' => $fileContent,
-            ],
-        ]);
+            $client = new Client();
+            $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
+                'headers' => [
+                    'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                    'Accept' => 'application/vnd.github.v3+json',
+                ],
+                'json' => [
+                    'message' => 'Upload image ' . $fileName,
+                    'content' => $fileContent,
+                ],
+            ]);
 
-        $result = json_decode($response->getBody(), true);
-        $data['img'] = $result['content']['download_url']; // URL gambar
+            $result = json_decode($response->getBody(), true);
+            $data['img'] = $result['content']['download_url']; // URL gambar
 
-    }
+        }
 
-    $data['slug'] = Str::slug($data['title']);
-    Article::create($data);
+        $data['slug'] = Str::slug($data['title']);
+        Article::create($data);
 
-    return redirect(url('article'))->with('success', 'Article Created Successfully');
+        return redirect(url('article'))->with('success', 'Article Created Successfully');
     }
 
     /**
@@ -122,25 +122,67 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request, string $id)
     {
         $article = Article::findOrFail($id);
-
         $data = $request->validated();
+        $client = new Client();
 
         if ($request->hasFile('img')) {
             $file = $request->file('img');
+            $fileContent = base64_encode(file_get_contents($file));
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/back/', $fileName);
 
-            // Delete the old image if it exists
-            if ($article->img && Storage::exists('public/back/' . $article->img)) {
-                Storage::delete('public/back/' . $article->img);
+            // Hapus gambar lama jika ada
+            if ($article->img) {
+                $oldFileName = basename($article->img);
+                try {
+                    // Ambil SHA file dari GitHub
+                    $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
+                        'headers' => [
+                            'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                            'Accept' => 'application/vnd.github.v3+json',
+                        ],
+                    ]);
+                    $oldFileData = json_decode($response->getBody(), true);
+                    $fileSha = $oldFileData['sha'];
+
+                    // Hapus file lama
+                    $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
+                        'headers' => [
+                            'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                            'Accept' => 'application/vnd.github.v3+json',
+                        ],
+                        'json' => [
+                            'message' => 'Delete old image ' . $oldFileName,
+                            'sha' => $fileSha,
+                        ],
+                    ]);
+                } catch (\Exception $e) {
+                    return redirect()->back()->with('error', 'Failed to delete old image.');
+                }
             }
 
-            $data['img'] = $fileName;
-        } else {
-            $data['img'] = $article->img;
+            // Upload gambar baru ke GitHub
+            try {
+                $response = $client->request('PUT', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                    'json' => [
+                        'message' => 'Upload new image ' . $fileName,
+                        'content' => $fileContent,
+                    ],
+                ]);
+                $result = json_decode($response->getBody(), true);
+                $data['img'] = $result['content']['download_url'];
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload new image.');
+            }
         }
 
-        $data['slug'] = Str::slug($data['title']);
+        // Update slug hanya jika title berubah
+        if ($data['title'] !== $article->title) {
+            $data['slug'] = Str::slug($data['title']);
+        }
 
         $article->update($data);
 
@@ -152,16 +194,47 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        $article = Article::findOrFail($id);
+        $client = new Client();
 
-        if ($article->img && Storage::exists('public/back/' . $article->img)) {
-            Storage::delete('public/back/' . $article->img);
+        try {
+            $article = Article::findOrFail($id);
+
+            if ($article->img) {
+                $fileName = basename($article->img);
+
+                // Ambil SHA file dari GitHub
+                $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                ]);
+                $fileData = json_decode($response->getBody(), true);
+                $fileSha = $fileData['sha'];
+
+                // Hapus file dari GitHub
+                $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                    'json' => [
+                        'message' => 'Delete image ' . $fileName,
+                        'sha' => $fileSha,
+                    ],
+                ]);
+            }
+
+            $article->delete();
+
+            return response()->json([
+                'message' => 'Article Deleted Successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to delete article',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $article->delete();
-
-        return response()->json([
-            'message' => 'Article Deleted Successfully',
-        ]);
     }
 }
