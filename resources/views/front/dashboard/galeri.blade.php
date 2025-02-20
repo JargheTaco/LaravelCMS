@@ -27,6 +27,10 @@
         @endforeach
            
 </section>
+<div>
+    {{ $dokumentasi->links }}
+</div>
+
 @include('front.layout.footer')
 <!-- Portfolio item 1 modal popup-->
 @foreach ($dokumentasi as $item)
@@ -54,11 +58,5 @@
     </div>
 @endforeach
 
-<div>
-    {{ $dokumen->links }}
-</div>
 
 @include('front.layout.scripts')
-</body>
-
-</html>
