@@ -70,7 +70,7 @@
 </section>
 
 <div class="container">
-    <div class="row">
+    <div class="row" style="height: 50px;">
         <!-- Berita Terkini -->
         <div class="col-md-6">
             <div class="text-center">
