@@ -14,6 +14,8 @@ use App\Models\Berita;
 use App\Models\Dokumentasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InfoRequestController;
 
 
 
@@ -32,6 +34,8 @@ use Illuminate\Support\Facades\Auth;
 //   return view('welcome');
 //});
 
+Route::post('/send-info-request', [InfoRequestController::class, 'sendInfoRequest']);
+Route::post('/send-message', [ContactController::class, 'sendMessage']);
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/partikel/{slug}', [FrontArticleController::class, 'show']);
