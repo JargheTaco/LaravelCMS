@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article; 
 use App\Models\Berita;
 use App\Models\Category;
+use App\Models\Dokumentasi;
 
 class HomeController extends Controller
 {
@@ -23,9 +24,11 @@ class HomeController extends Controller
     {
         return view('front.dashboard.inovasi');
     }
-    public function galeri()
+    public function galeri($dokumentasi)
     {
-        return view('front.dashboard.galeri');
+        return view('front.dashboard.galeri' .$dokumentasi, [
+            'dokumentasi' => Dokumentasi::whereStatus(1)->latest()->paginate(6),
+        ]);
     }
     public function kontak()
     {
