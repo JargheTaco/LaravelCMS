@@ -28,7 +28,7 @@
            
 </section>
 <div>
-    {{ $dokumentasi->links }}
+    {{ $dokumentasi->links() }}
 </div>
 
 @include('front.layout.footer')
