@@ -74,7 +74,7 @@
 @endforeach
 
 <div>
-    {{ $beritas->links() }}
+    {{ $dokumentasi->links() }}
 </div>
 
 
