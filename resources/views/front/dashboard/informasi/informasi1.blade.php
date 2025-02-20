@@ -2,8 +2,8 @@
 @include('front.layout.navbar')
 @include('front.layout.headinfor',['title' => 'Permohonan Informasi'])  
 
-
-    <form class="info-request-form">
+<form class="info-request-form" action="{{ url('/send-info-request') }}" method="POST">
+    @csrf
     <label for="namaPemohon" class="input-label">Nama Pemohon</label>
     <input type="text" id="namaPemohon" class="input-field" name="namaPemohon">
 
@@ -29,36 +29,39 @@
     <label for="lembaga" class="radio-label">Lembaga</label>
 
     <label class="input-label">Cara Memperoleh Informasi</label>
-    <input type="checkbox" id="melihat" name="caraMemperolehInformasi" value="Melihat" class="checkbox-input">
+    <input type="checkbox" id="melihat" name="caraMemperolehInformasi[]" value="Melihat" class="checkbox-input">
     <label for="melihat" class="checkbox-label">Melihat</label>
-    <input type="checkbox" id="mendengarkan" name="caraMemperolehInformasi" value="Mendengarkan" class="checkbox-input">
+    <input type="checkbox" id="mendengarkan" name="caraMemperolehInformasi[]" value="Mendengarkan" class="checkbox-input">
     <label for="mendengarkan" class="checkbox-label">Mendengarkan</label>
-    <input type="checkbox" id="membaca" name="caraMemperolehInformasi" value="Membaca" class="checkbox-input">
+    <input type="checkbox" id="membaca" name="caraMemperolehInformasi[]" value="Membaca" class="checkbox-input">
     <label for="membaca" class="checkbox-label">Membaca</label>
-    <input type="checkbox" id="mencatat" name="caraMemperolehInformasi" value="Mencatat" class="checkbox-input">
+    <input type="checkbox" id="mencatat" name="caraMemperolehInformasi[]" value="Mencatat" class="checkbox-input">
     <label for="mencatat" class="checkbox-label">Mencatat</label>
 
     <label class="input-label">Mendapatkan Salinan Informasi</label>
-    <input type="checkbox" id="softcopy" name="mendapatkanSalinanInformasi" value="Softcopy" class="checkbox-input">
+    <input type="checkbox" id="softcopy" name="mendapatkanSalinanInformasi[]" value="Softcopy" class="checkbox-input">
     <label for="softcopy" class="checkbox-label">Softcopy</label>
-    <input type="checkbox" id="hardcopy" name="mendapatkanSalinanInformasi" value="Hardcopy" class="checkbox-input">
+    <input type="checkbox" id="hardcopy" name="mendapatkanSalinanInformasi[]" value="Hardcopy" class="checkbox-input">
     <label for="hardcopy" class="checkbox-label">Hardcopy</label>
 
     <label class="input-label">Cara Mendapatkan Salinan Informasi</label>
-    <input type="checkbox" id="ambilLangsung" name="caraMendapatkanSalinanInformasi" value="Mengambil Langsung" class="checkbox-input">
+    <input type="checkbox" id="ambilLangsung" name="caraMendapatkanSalinanInformasi[]" value="Mengambil Langsung" class="checkbox-input">
     <label for="ambilLangsung" class="checkbox-label">Mengambil Langsung</label>
-    <input type="checkbox" id="email" name="caraMendapatkanSalinanInformasi" value="E-mail" class="checkbox-input">
+    <input type="checkbox" id="email" name="caraMendapatkanSalinanInformasi[]" value="E-mail" class="checkbox-input">
     <label for="email" class="checkbox-label">E-mail</label>
-    <input type="checkbox" id="kurir" name="caraMendapatkanSalinanInformasi" value="Kurir / POS" class="checkbox-input">
+    <input type="checkbox" id="kurir" name="caraMendapatkanSalinanInformasi[]" value="Kurir / POS" class="checkbox-input">
     <label for="kurir" class="checkbox-label">Kurir / POS</label>
-
-    <div class="captcha-section">
-        <img src="captcha_image" alt="Captcha">
-        <input type="text" id="captcha" name="captcha" class="input-field">
-    </div>
-
     <button type="submit" class="submit-button">KIRIM</button>
 </form>
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+
+
 
 @include('front.layout.footer')
 @include('front.layout.scripts')
