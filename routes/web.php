@@ -14,8 +14,8 @@ use App\Models\Berita;
 use App\Models\Dokumentasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\InfoRequestController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\InfoRequestController;
 
 
 
