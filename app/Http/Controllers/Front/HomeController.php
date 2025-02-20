@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Article; 
+use App\Models\Article;
 use App\Models\Berita;
 use App\Models\Category;
 use App\Models\Dokumentasi;
@@ -13,23 +13,25 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('front.dashboard.index', [ 'latest_post_article' => Article::latest()->first(),
-        'articles' => Article::latest()->paginate(5),
-        'beritas' => Berita::latest()->paginate(5),
-        'categories' => Category::latest()->get(),
-        'latest_post_berita' => Berita::latest()->first(),
-    ]);
+        return view('front.dashboard.index', [
+            'latest_post_article' => Article::latest()->first(),
+            'articles' => Article::latest()->paginate(5),
+            'beritas' => Berita::latest()->paginate(5),
+            'categories' => Category::latest()->get(),
+            'latest_post_berita' => Berita::latest()->first(),
+        ]);
     }
     public function inovasi()
     {
         return view('front.dashboard.inovasi');
     }
-    public function galeri($dokumentasi)
+    public function galeri()
     {
-        return view('front.dashboard.galeri' .$dokumentasi, [
-            'dokumentasi' => Dokumentasi::whereStatus(1)->latest()->paginate(6),
-        ]);
+        $dokumentasi = Dokumentasi::where('status', 1)->latest()->paginate(6);
+
+        return view('front.dashboard.galeri', compact('dokumentasi'));
     }
+
     public function kontak()
     {
         return view('front.dashboard.kontak');
@@ -39,14 +41,17 @@ class HomeController extends Controller
         return view('front.dashboard.kebijakan');
     }
 
-    public function profile($profileNumber) {
+    public function profile($profileNumber)
+    {
         return view("front.dashboard.profil.profil" . $profileNumber);
     }
 
-    public function aduan($aduanNumber) {
+    public function aduan($aduanNumber)
+    {
         return view("front.dashboard.aduan.aduan" . $aduanNumber);
     }
-    public function infodisduk($infodisdukNumber) {
+    public function infodisduk($infodisdukNumber)
+    {
         return view("front.dashboard.infodisduk.infodisduk" . $infodisdukNumber, [
             'latest_post_article' => Article::latest()->first(),
             'articles' => Article::whereStatus(1)->latest()->paginate(6),
@@ -55,12 +60,13 @@ class HomeController extends Controller
             'latest_post_berita' => Berita::latest()->first(),
         ]);
     }
-    
-    public function informasi($informasiNumber) {
+
+    public function informasi($informasiNumber)
+    {
         return view("front.dashboard.informasi.informasi" . $informasiNumber);
     }
-    public function program($programNumber) {
+    public function program($programNumber)
+    {
         return view("front.dashboard.program.program" . $programNumber);
     }
-    
 }
