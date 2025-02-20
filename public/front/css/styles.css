@@ -1750,7 +1750,7 @@ progress {
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
 .table > tbody {
-  vertical-align: inherit;
+  vertical-align: inherit; 
 }
 .table > thead {
   vertical-align: bottom;
@@ -9445,9 +9445,9 @@ p {
   line-height: 1.75;
 }
 
-.page-section {
+/*.page-section {
   padding: 6rem 0;
-}
+}*/
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;
   margin-top: 0;
@@ -9462,9 +9462,9 @@ p {
 }
 
 @media (min-width: 768px) {
-  section {
+  /* section {
     padding: 9rem 0;
-  }
+  } */
 }
 .btn-xl {
   padding: 1.25rem 2.5rem;

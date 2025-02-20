@@ -899,3 +899,87 @@ a {
       width: 90%;
   }
 }
+.info-request-form {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-label {
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.radio-input, .checkbox-input {
+  margin-right: 5px;
+}
+
+.radio-label, .checkbox-label {
+  margin-right: 15px;
+}
+
+.captcha-section {
+  margin-top: 20px;
+}
+
+.submit-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centered-image {
+  width: 200px; /* Ukuran gambar dapat disesuaikan */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 18px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .content {
+      flex-direction: column;
+  }
+
+  .step {
+      margin-bottom: 20px;
+  }
+}

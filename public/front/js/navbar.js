@@ -52,3 +52,14 @@ const showMenu = (toggleId, navId) =>{
          // Show the complaint detail section
          document.getElementById('complaintDetail').style.display = 'block';
      }
+ 
+     function copyLink(url) {
+         var tempInput = document.createElement("input");
+         document.body.appendChild(tempInput);
+         tempInput.value = url; // Menyalin URL file PDF
+         tempInput.select();
+         document.execCommand("copy");
+         document.body.removeChild(tempInput);
+         alert("Link telah disalin!");
+     }
+     

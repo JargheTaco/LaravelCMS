@@ -1,77 +1,28 @@
 @include('front.layout.assets')
 @include('front.layout.navbar')
 
-<header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
-    <div class="text-center my-5">
-        <h2>VISI & MISI DINAS DUKCAPIL KOTA TEGAL</h2>
-    </div>
-</header>
-<!-- Content section-->
-<section class="py-5">
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h2>Full Width Backgrounds</h2>
-                <p class="lead">A single, lightweight helper class allows you to add engaging, full width
-                    background
-                    images to sections of your page.</p>
-                <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem
-                    starting
-                    here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in
-                    the
-                    universe.</p>
+<div class="custom-container">
+    <header class="custom-header" style="padding-top: 100px">
+        <h1>Visi & Misi DUKCAPIL Kota Tegal</h1>
+        <div class="custom-divider"></div>
+    </header>
+    <div class="custom-card-container" style="padding-top: 20px;">
+        <div class="custom-card">
+            <div class="custom-card-header">Visi Disduk Kota Tegal</div>
+            <div class="custom-card-body">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A fuga, quisquam ad earum praesentium quo
+                assumenda vero voluptas excepturi itaque saepe repellat sed totam enim vel nihil dicta alias explicabo!
+            </div>
+        </div>
+        <div class="custom-card">
+            <div class="custom-card-header">Misi Disduk Kota Tegal</div>
+            <div class="custom-card-body">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium nulla laudantium ullam sequi
+                beatae velit! Praesentium enim non aut, quibusdam illum sit ea reiciendis earum id. Expedita,
+                praesentium facilis? Nesciunt.
             </div>
         </div>
     </div>
-</section>
-<!-- Content section-->
-<section class="py-5">
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h2>Engaging Background Images</h2>
-                <p class="lead">The background images used in this template are sourced from Unsplash and are
-                    open
-                    source and free to use.</p>
-                <p class="mb-0">I can't tell you how many people say they were turned off from science because of
-                    a
-                    science teacher that completely sucked out all the inspiration and enthusiasm they had for the
-                    course.</p>
-            </div>
-        </div>
-    </div>
-</section>
+</div>
 
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">Copyright &copy; DINAS DUKCAPIL KOTA TEGAL</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i
-                        class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="{{ asset('front/js/navbar.js') }}"></script>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<!-- * *                               SB Forms JS                               * *-->
-<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
-
-</html>
+@include('front.layout.scripts')
