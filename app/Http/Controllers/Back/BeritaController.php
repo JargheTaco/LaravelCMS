@@ -11,6 +11,7 @@ use App\Http\Requests\BeritaRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateBeritaRequest;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
 
 class BeritaController extends Controller
 {
@@ -63,16 +64,32 @@ class BeritaController extends Controller
     {
         $data = $request->validated();
 
-        $file = $request->file('img');
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/back/', $fileName);
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileContent = base64_encode(file_get_contents($file));
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-        $data['img'] = $fileName;
+            $client = new Client();
+            $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
+                'headers' => [
+                    'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                    'Accept' => 'application/vnd.github.v3+json',
+                ],
+                'json' => [
+                    'message' => 'Upload image ' . $fileName,
+                    'content' => $fileContent,
+                ],
+            ]);
+
+            $result = json_decode($response->getBody(), true);
+            $data['img'] = $result['content']['download_url']; // URL gambar
+
+        }
+
         $data['slug'] = Str::slug($data['title']);
-
         Berita::create($data);
 
-        return redirect(url('berita'))->with('success', 'berita Created Successfully');
+        return redirect(url('berita'))->with('success', 'Berita Created Successfully');
     }
 
     /**
@@ -104,29 +121,71 @@ class BeritaController extends Controller
     public function update(UpdateBeritaRequest $request, string $id)
     {
         $berita = Berita::findOrFail($id);
-
         $data = $request->validated();
+        $client = new Client();
 
         if ($request->hasFile('img')) {
             $file = $request->file('img');
+            $fileContent = base64_encode(file_get_contents($file));
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/back/', $fileName);
 
-            // Delete the old image if it exists
-            if ($berita->img && Storage::exists('public/back/' . $berita->img)) {
-                Storage::delete('public/back/' . $berita->img);
+            // Hapus gambar lama jika ada
+            if ($berita->img) {
+                $oldFileName = basename($berita->img);
+                try {
+                    // Ambil SHA file dari GitHub
+                    $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
+                        'headers' => [
+                            'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                            'Accept' => 'application/vnd.github.v3+json',
+                        ],
+                    ]);
+                    $oldFileData = json_decode($response->getBody(), true);
+                    $fileSha = $oldFileData['sha'];
+
+                    // Hapus file lama
+                    $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
+                        'headers' => [
+                            'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                            'Accept' => 'application/vnd.github.v3+json',
+                        ],
+                        'json' => [
+                            'message' => 'Delete old image ' . $oldFileName,
+                            'sha' => $fileSha,
+                        ],
+                    ]);
+                } catch (\Exception $e) {
+                    return redirect()->back()->with('error', 'Failed to delete old image.');
+                }
             }
 
-            $data['img'] = $fileName;
-        } else {
-            $data['img'] = $berita->img;
+            // Upload gambar baru ke GitHub
+            try {
+                $response = $client->request('PUT', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                    'json' => [
+                        'message' => 'Upload new image ' . $fileName,
+                        'content' => $fileContent,
+                    ],
+                ]);
+                $result = json_decode($response->getBody(), true);
+                $data['img'] = $result['content']['download_url'];
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload new image.');
+            }
         }
 
-        $data['slug'] = Str::slug($data['title']);
+        // Update slug hanya jika title berubah
+        if ($data['title'] !== $berita->title) {
+            $data['slug'] = Str::slug($data['title']);
+        }
 
         $berita->update($data);
 
-        return redirect(url('berita'))->with('success', 'berita Updated Successfully');
+        return redirect(url('berita'))->with('success', 'Berita Updated Successfully');
     }
 
     /**
@@ -134,16 +193,47 @@ class BeritaController extends Controller
      */
     public function destroy(string $id)
     {
-        $berita = Berita::findOrFail($id);
+        $client = new Client();
 
-        if ($berita->img && Storage::exists('public/back/' . $berita->img)) {
-            Storage::delete('public/back/' . $berita->img);
+        try {
+            $berita = Berita::findOrFail($id);
+
+            if ($berita->img) {
+                $fileName = basename($berita->img);
+
+                // Ambil SHA file dari GitHub
+                $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                ]);
+                $fileData = json_decode($response->getBody(), true);
+                $fileSha = $fileData['sha'];
+
+                // Hapus file dari GitHub
+                $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                    'json' => [
+                        'message' => 'Delete image ' . $fileName,
+                        'sha' => $fileSha,
+                    ],
+                ]);
+            }
+
+            $berita->delete();
+
+            return response()->json([
+                'message' => 'Berita Deleted Successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to delete article',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $berita->delete();
-
-        return response()->json([
-            'message' => 'berita Deleted Successfully',
-        ]);
     }
 }

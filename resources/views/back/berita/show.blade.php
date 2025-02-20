@@ -53,8 +53,8 @@
             <tr>
                 <th>Image</th>
                 <td>
-                    <a href="{{ asset('storage/back/'.$berita->img) }}" target="_blank" rel="noopener noreferrer">
-                    <img src="{{ asset('storage/back/'.$berita->img) }}" alt="" width="50%">
+                    <a href="{{ $berita->img }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ $berita->img }}" alt="" width="50%">
                     </a>
                 </td>
             </tr>
