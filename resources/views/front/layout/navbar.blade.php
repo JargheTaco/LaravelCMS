@@ -3,8 +3,7 @@
     <nav class="nav container">
         <div class="nav__data">
             <a href="#" class="nav__logo">
-                <img src="{{ asset('front/img/DUKCAPIL KOTA TEGAL.png') }}" alt="Logo"
-                    style="height: 40px;" />
+                <img src="{{ asset('front/img/DUKCAPIL KOTA TEGAL.png') }}" alt="Logo" style="height: 40px;" />
             </a>
 
             <div class="nav__toggle" id="nav-toggle">
@@ -16,7 +15,7 @@
         <!--=============== NAV MENU ===============-->
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
-                <li><a href="{{ url('/') }}" class="nav__link"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="{{ url('/index') }}" class="nav__link"><i class="fas fa-home"></i>Home</a></li>
 
                 <!--=============== DROPDOWN 1: Profil ===============-->
                 <li class="dropdown__item">
@@ -57,29 +56,32 @@
                         @php
                             $programs = [
                                 'RENSTRA' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Dokumen Renstra 2017-2022', 'url' => url('/renstra/1')],
+                                    ['title' => 'Dokumen Renstra 2022-2027', 'url' => url('/renstra/2')],
                                 ],
-                                'RENJA' => [['title' => 'Dokumen', 'url' => '#'], ['title' => 'Dokumen', 'url' => '#']],
+                                'RENJA' => [
+                                    ['title' => 'Renja 2020-2023', 'url' => url('/renja/1')],
+                                    ['title' => 'Renja 2024-2026', 'url' => url('/renja/2')],
+                                ],
                                 'TAHUN ANGGARAN 2021' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2021/1')],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2021/2')],
                                 ],
                                 'TAHUN ANGGARAN 2022' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2022/1')],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2022/2')],
                                 ],
                                 'TAHUN ANGGARAN 2023' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2023/1')],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2023/2')],
                                 ],
                                 'TAHUN ANGGARAN 2024' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2024/1')],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2024/2')],
                                 ],
                                 'TAHUN ANGGARAN 2025' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2025/1')],
+                                    ['title' => 'Dokumen', 'url' => url('/anggaran2025/2')],
                                 ],
                             ];
                         @endphp
@@ -125,8 +127,8 @@
                         @endphp
 
                         @foreach ($infoDisduk as $id => $title)
-                            <li><a class="dropdown__link"
-                                    href="{{ url('/infodisduk/' . $id) }}">{{ $title }}</a></li>
+                            <li><a class="dropdown__link" href="{{ url('/infodisduk/' . $id) }}">{{ $title }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </li>
@@ -142,16 +144,21 @@
                         @php
                             $informasi = [
                                 'PPID/INFORMASI PUBLIK' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Informasi Berkala', 'url' => url('/ppid/1')],
+                                    ['title' => 'informasi Setiap Saat', 'url' => url('/ppid/2')],
+                                    ['title' => 'informasi Serta Merta', 'url' => url('/ppid/3')],
+                                    ['title' => 'Daftar Informasi Publik', 'url' => url('/ppid/4')],
+                                    ['title' => 'Daftar Informasi Publik Yang Dikecualikan', 'url' => url('/ppid/5')],
                                 ],
                                 'ALUR LAYANAN' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Alur Permohonan Informasi', 'url' => url('/alurlayanan/1')],
+                                    ['title' => 'Alur Pengajuan Keberatan Informasi Publik', 'url' => url('/alurlayanan/2')],
+                                    ['title' => 'Alur Penyelesaian Sengketan', 'url' => url('/alurlayanan/3')],
                                 ],
                                 'PRODUK HUKUM' => [
-                                    ['title' => 'Dokumen', 'url' => '#'],
-                                    ['title' => 'Dokumen', 'url' => '#'],
+                                    ['title' => 'Kumpulan Produk Hukum', 'url' => url('/produkhukum/1')],
+                                    ['title' => 'Rancangan Peraturan', 'url' => url('/produkhukum/2')],
+                                    ['title' => 'Standar Operasional Prosedur', 'url' => url('/produkhukum/3')],
                                 ],
                             ];
                         @endphp
@@ -176,10 +183,10 @@
                         @endforeach
 
                         <!-- Static Links -->
-                        <li><a class="dropdown__link" href="#program1">PERMOHONAN INFORMASI</a></li>
-                        <li><a class="dropdown__link" href="#program2">LAPORAN INFORMASI PUBLIK</a></li>
-                        <li><a class="dropdown__link" href="#program2">PENGADAAN BARANG DAN JASA</a></li>
-                        <li><a class="dropdown__link" href="#program1">AGENDA PIMPINAN</a></li>
+                        <li><a class="dropdown__link" href="{{ url('/informasi/1') }}">PERMOHONAN INFORMASI</a></li>
+                        <li><a class="dropdown__link" href="{{ url('/informasi/2') }}">LAPORAN INFORMASI PUBLIK</a></li>
+                        <li><a class="dropdown__link" href="{{ url('/informasi/3') }}">PENGADAAN BARANG DAN JASA</a></li>
+                        <li><a class="dropdown__link" href="{{ url('/informasi/4') }}">AGENDA PIMPINAN</a></li>
                     </ul>
                 </li>
 
@@ -209,7 +216,6 @@
                 <li><a href="{{ url('/kontak') }}" class="nav__link"><i class="fas fa-envelope"></i>Kontak</a></li>
                 <li><a href="{{ url('/kebijakan') }}" class="nav__link"><i class="fas fa-shield-alt"></i>Kebijakan &
                         Privasi</a></li>
-                <li ><a href="{{ route('login') }}" class="nav__link btn btn-outline-primary">Login</a></li>
             </ul>
         </div>
     </nav>
