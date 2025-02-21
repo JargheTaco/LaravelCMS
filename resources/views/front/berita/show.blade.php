@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <div class="card mb-4">
                 <a href="{{ url('pberita/'.$berita->slug) }}" alt="..." />
-                <img class="card-img-top featured-img" src="{{ asset('storage/back/' .$berita->img) }}" alt="..." />
+                <img class="card-img-top featured-img" src="{{ $berita->img }}" alt="..." />
                 </a>
                 <div class="card-body">
                     <div class="small text-muted">{{ $berita->created_at->format('d-m-Y')}}</div>

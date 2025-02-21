@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <div class="card mb-4">
                 <a href="{{ url('partikel/'.$article->slug) }}" alt="..." />
-                <img class="card-img-top featured-img" src="{{ asset('storage/back/' .$article->img) }}" alt="..." />
+                <img class="card-img-top featured-img" src="{{ $article->img }}" alt="..." />
                 </a>
                 <div class="card-body">
                     <div class="small text-muted">{{ $article->created_at->format('d-m-Y')}}</div>
