@@ -10,14 +10,14 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Back\BeritaController;
 use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
 use App\Http\Controllers\Back\DokumentasiController;
+use App\Http\Controllers\Back\VisiMisiController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\InfoRequestController;
-
-
+use App\Models\VisiMisi;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/berita', BeritaController::class);
 
     Route::resource('/dokumentasi', DokumentasiController::class);
+
+    Route::resource('/visimisi', VisiMisiController::class);
 
     Route::resource('/categories', CategoryController::class)->only([
         'index',
