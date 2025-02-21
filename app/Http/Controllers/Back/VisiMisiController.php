@@ -19,7 +19,7 @@ class VisiMisiController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $visimisi = VisiMisi::select(['id', 'title', 'desc'])->get();
+            $visimisi = Visimisi::select(['id', 'title', 'desc'])->get();
     
             return DataTables::of($visimisi)
                 ->addIndexColumn()
