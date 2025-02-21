@@ -1,4 +1,4 @@
-@include('front.layout.stylesheet')
+@include('front.layout.assets')
 @include('front.layout.navbar')
 
 @include('front.layout.headrenstra',['title' => 'Dokumen Renstra 2017-2022'])
