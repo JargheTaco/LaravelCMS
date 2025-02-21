@@ -15,7 +15,7 @@
         <!--=============== NAV MENU ===============-->
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
-                <li><a href="{{ url('/index') }}" class="nav__link"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="{{ url('/') }}" class="nav__link"><i class="fas fa-home"></i>Home</a></li>
 
                 <!--=============== DROPDOWN 1: Profil ===============-->
                 <li class="dropdown__item">
