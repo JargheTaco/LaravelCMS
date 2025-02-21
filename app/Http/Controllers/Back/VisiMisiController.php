@@ -61,7 +61,7 @@ class VisiMisiController extends Controller
         // Simpan data ke database
         Visimisi::create($data);
     
-        return redirect()->route('visimisi')->with('success', 'Visi Misi berhasil ditambahkan');
+        return redirect()->route('visimisi.index')->with('success', 'Visi Misi berhasil ditambahkan');
     }
 
     /**
