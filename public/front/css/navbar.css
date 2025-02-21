@@ -28,7 +28,7 @@
 /*========== Responsive typography ==========*/
 @media screen and (min-width: 1024px) {
   :root {
-    --normal-font-size: 0.8rem;
+    --normal-font-size: 0.92rem;
   }
 }
 

@@ -9573,8 +9573,7 @@ header.masthead .masthead-heading {
 }
 
 .portfolio-modal .modal-dialog {
-  margin: 1rem;
-  max-width: 100vw;
+  max-width: max-content;
 }
 .portfolio-modal .modal-content {
   padding-top: 6rem;
