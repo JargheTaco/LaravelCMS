@@ -45,9 +45,12 @@ class HomeController extends Controller
 
     public function profile($profileNumber)
     {
-        return view("front.dashboard.profil.profil" . $profileNumber ,[
-            'visimisi' => Visimisi::latest()->first(),
-        ]);
+        if ($profileNumber == 1) {
+            $visimisi = VisiMisi::all(); // Ambil semua data
+            return view("front.dashboard.profil.profil1", compact('visimisi'));
+        }
+
+        return view("front.dashboard.profil.profil" . $profileNumber);
     }
 
     public function aduan($aduanNumber)
