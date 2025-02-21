@@ -5,7 +5,6 @@
 <!-- Page content-->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8">
             <div class="card mb-4">
                 <a href="{{ url('partikel/'.$article->slug) }}" alt="..." />
                 <img class="card-img-top featured-img" src="{{ $article->img }}" alt="..." />
@@ -19,7 +18,6 @@
                 </div>
             </div>
             </div>
-        </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
     </div>
