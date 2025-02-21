@@ -8,7 +8,8 @@
     </header>
     <div class="custom-card-container" style="padding-top: 20px;">
         <div class="custom-card">
-            <div class="custom-card-header">Visi Disduk Kota Tegal</div>
+        @foreach ($visimisi as $item)
+            <div class="custom-card-header">{{$item->title}}</div>
             <div class="custom-card-body">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. A fuga, quisquam ad earum praesentium quo
                 assumenda vero voluptas excepturi itaque saepe repellat sed totam enim vel nihil dicta alias explicabo!
@@ -22,6 +23,7 @@
                 praesentium facilis? Nesciunt.
             </div>
         </div>
+        @endforeach
     </div>
 </div>
 

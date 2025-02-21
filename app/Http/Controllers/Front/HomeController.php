@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Berita;
 use App\Models\Category;
+use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
 use Illuminate\Support\Facades\File;
 
@@ -44,7 +45,9 @@ class HomeController extends Controller
 
     public function profile($profileNumber)
     {
-        return view("front.dashboard.profil.profil" . $profileNumber);
+        return view("front.dashboard.profil.profil" . $profileNumber ,[
+            'visimisi' => Visimisi::latest()->first(),
+        ]);
     }
 
     public function aduan($aduanNumber)
