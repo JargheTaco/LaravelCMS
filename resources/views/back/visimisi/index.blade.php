@@ -37,9 +37,7 @@
                 <tr>
                     <th>No</th>
                     <th>Judul</th>
-                    <th>Views</th>
-                    <th>Status</th>
-                    <th>Publish date</th>
+                    <th>Deskripsi</th>
                     <th>Function</th>
                 </tr>
             </thead>

@@ -12,5 +12,5 @@ class VisiMisi extends Model
     protected $fillable = ['title', 'desc'];
 
 
-    protected $table = 'dokumentasi'; // Menyesuaikan dengan nama tabel di database
+    protected $table = 'visi_misis'; // Menyesuaikan dengan nama tabel di database
 }
