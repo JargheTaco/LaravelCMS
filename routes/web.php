@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/berita', BeritaController::class);
 
-    Route::resource('/inovasi', InovasiController::class);
+    Route::resource('/inovasiadmin', InovasiController::class);
 
     Route::resource('/dokumentasi', DokumentasiController::class);
 
