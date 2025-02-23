@@ -5,7 +5,7 @@
     <div class="custom-divider"></div>
 </header>
 <div class="profile-card-container">
-  @foreach(@profilpejabat as $item)
+  @foreach($profilpejabat as $item)
     <div class="profile-card">
       <img src="{{$item->img}}" alt="Profile 1">
       <h3>{{$item->title}}</h3>
