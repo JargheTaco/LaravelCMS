@@ -5,64 +5,14 @@
     <div class="custom-divider"></div>
 </header>
 <div class="profile-card-container">
+  @foreach(@profilpejabat as $item)
     <div class="profile-card">
-      <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 1">
-      <h3>Nama</h3>
+      <img src="{{$item->img}}" alt="Profile 1">
+      <h3>{{$item->title}}</h3>
       <p><strong>Jabatan</strong></p>
       <a href="#" class="profile-btn">Lihat Profil</a>
     </div>
-    
-    <div class="profile-card">
-      <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 2">
-      <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-      <a href="#" class="profile-btn">Lihat Profil</a>
-    </div>
-  
-    <div class="profile-card">
-      <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 3">
-      <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-      <a href="#" class="profile-btn">Lihat Profil</a>
-    </div>
-  
-    <div class="profile-card">
-      <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 4">
-      <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-      <a href="#" class="profile-btn">Lihat Profil</a>
-    </div>
-    <div class="profile-card">
-        <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 4">
-        <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-        <a href="#" class="profile-btn">Lihat Profil</a>
-      </div>
-      <div class="profile-card">
-        <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 4">
-        <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-        <a href="#" class="profile-btn">Lihat Profil</a>
-      </div>
-      <div class="profile-card">
-        <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 4">
-        <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-        <a href="#" class="profile-btn">Lihat Profil</a>
-      </div>
-      <div class="profile-card">
-        <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 4">
-        <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-        <a href="#" class="profile-btn">Lihat Profil</a>
-      </div>
-      <div class="profile-card">
-        <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Profile 4">
-        <h3>Nama</h3>
-      <p><strong>Jabatan</strong></p>
-        <a href="#" class="profile-btn">Lihat Profil</a>
-      </div>    
-  </div>  
-
+  @endforeach
+</div>
 @include('front.layout.footer')
 @include('front.layout.scripts')

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Berita;
 use App\Models\Inovasi;
+use App\Models\ProfilPejabat;
 use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
@@ -54,7 +55,9 @@ class HomeController extends Controller
             return view("front.dashboard.profil.profil1", compact('visimisi'));
         }
 
-        return view("front.dashboard.profil.profil" . $profileNumber);
+        return view("front.dashboard.profil.profil" . $profileNumber , [
+            'profilpejabat' => ProfilPejabat::whereStatus(1)->paginate(6),
+        ]);
     }
 
     public function aduan($aduanNumber)
