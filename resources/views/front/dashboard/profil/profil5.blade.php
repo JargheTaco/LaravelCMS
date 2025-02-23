@@ -9,7 +9,7 @@
     <div class="profile-card">
       <img src="{{$item->img}}" alt="Profile 1">
       <h3>{{$item->title}}</h3>
-      <p><strong>Jabatan</strong></p>
+      <p><strong>{{$item->jabatan}}</strong></p>
       <a href="#" class="profile-btn">Lihat Profil</a>
     </div>
   @endforeach
