@@ -10,7 +10,6 @@ use App\Http\Requests\DokumentasiRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 
 class DokumentasiController extends Controller
 {
@@ -55,65 +54,33 @@ class DokumentasiController extends Controller
      */
     public function store(DokumentasiRequest $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-        ]);
-    
+        $data = $request->validated();
+
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $fileContent = base64_encode(file_get_contents($file));
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-    
+
             $client = new Client();
-            $githubApiUrl = 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName;
-    
-            try {
-                // Cek apakah file sudah ada
-                $existingFileResponse = $client->request('GET', $githubApiUrl, [
-                    'headers' => [
-                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                        'Accept' => 'application/vnd.github.v3+json',
-                    ],
-                ]);
-                
-                $existingFile = json_decode($existingFileResponse->getBody(), true);
-                $sha = $existingFile['sha'] ?? null;
-    
-            } catch (ClientException $e) {
-                // Jika file tidak ditemukan (error 404), biarkan $sha tetap null
-                if ($e->getResponse()->getStatusCode() == 404) {
-                    $sha = null;
-                } else {
-                    throw $e;
-                }
-            }
-    
-            // Lakukan upload atau update file
-            $params = [
-                'message' => 'Upload image ' . $fileName,
-                'content' => $fileContent,
-            ];
-    
-            if ($sha) {
-                $params['sha'] = $sha; // Tambahkan sha jika file sudah ada
-            }
-    
-            $response = $client->request('PUT', $githubApiUrl, [
+            $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
                 'headers' => [
                     'Authorization' => 'token ' . env('GITHUB_TOKEN'),
                     'Accept' => 'application/vnd.github.v3+json',
                 ],
-                'json' => $params,
+                'json' => [
+                    'message' => 'Upload image ' . $fileName,
+                    'content' => $fileContent,
+                ],
             ]);
-    
+
             $result = json_decode($response->getBody(), true);
             $data['img'] = $result['content']['download_url']; // URL gambar
+
         }
-    
+
         $data['slug'] = Str::slug($data['title']);
         Dokumentasi::create($data);
-    
+
         return redirect(url('dokumentasi'))->with('success', 'Dokumentasi Created Successfully');
     }
 
