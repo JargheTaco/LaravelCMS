@@ -22,6 +22,7 @@ class HomeController extends Controller
             'beritas' => Berita::latest()->paginate(5),
             'categories' => Category::latest()->get(),
             'latest_post_berita' => Berita::latest()->first(),
+            'inovasis' => Inovasi::latest()->paginate(4),
         ]);
     }
     public function inovasi()
