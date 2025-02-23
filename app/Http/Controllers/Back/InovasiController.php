@@ -93,7 +93,7 @@ class InovasiController extends Controller
     {
         $inovasi = Inovasi::findOrFail($id);
 
-        return view('back.inovasiadmin.show', compact('inovasiadmin'));
+        return view('back.inovasiadmin.show', compact('inovasi'));
     }
 
     /**
