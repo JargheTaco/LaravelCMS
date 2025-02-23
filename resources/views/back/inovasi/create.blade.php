@@ -1,12 +1,12 @@
 @extends('back.layout.template')
 
-@section('title', 'Create Dokumentasi - Admin')
+@section('title', 'Create Inovasi - Admin')
 
 @section('content')
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Create Dokumentasi</h1>
+        <h1 class="h2">Create Inovasi</h1>
 
     </div>
 
@@ -23,14 +23,21 @@
         </div>
         @endif
 
-        <form action="{{ url('dokumentasi') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('inovasi') }}" method="post" enctype="multipart/form-data">
             @csrf
 
-            <div class="col-6">
+            <div class="row">
+                <div class="col-6">
                     <div class="mb-3">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
                     </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="content">Description</label>
+                <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
             </div>
 
             <div class="mb-3">
@@ -71,26 +78,28 @@
     </div>
     @endsection
 
-    
     @push('js')
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-<script>
-    $(document).ready(function () {
+   
+    
+    <script>
+
+        $('#img').change(function() {
+            previewImage(this);
+        });
+
         function previewImage(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('.img-preview').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        
+    </script>
 
-        // Tambahkan event listener untuk input file
-        $('#img').change(function () {
-            previewImage(this);
-        });
-    });
-</script>
-@endpush
+
+    @endpush

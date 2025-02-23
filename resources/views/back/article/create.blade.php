@@ -52,7 +52,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="content">Image (Max 2MB)</label>
+                <label for="content">Image (Max 5MB)</label>
                 <input type="file" name="img" id="img" class="form-control">
 
                 <div class="mt-1">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Back\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\ArticleController;
+use App\Http\Controllers\Back\InovasiController;
 use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
@@ -74,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/article', ArticleController::class);
 
     Route::resource('/berita', BeritaController::class);
+
+    Route::resource('/inovasi', InovasiController::class);
 
     Route::resource('/dokumentasi', DokumentasiController::class);
 

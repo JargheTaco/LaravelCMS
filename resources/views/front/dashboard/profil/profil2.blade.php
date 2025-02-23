@@ -15,4 +15,5 @@
     </div>
 </section>
 
+@include('front.layout.footer')
 @include('front.layout.scripts')

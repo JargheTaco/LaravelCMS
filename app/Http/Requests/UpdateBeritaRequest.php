@@ -25,7 +25,7 @@ class UpdateBeritaRequest extends FormRequest
             'category_id'   => 'required',
             'title'         => 'required',
             'desc'          => 'required',
-            'img'           => 'nullable|image|file|mimes:png,jpg,jpeg,webp|max:2024',
+            'img'           => 'nullable|image|file|mimes:png,jpg,jpeg,webp|max:5024',
             'status'        => 'required',
             'publish_date'  => 'required',
 

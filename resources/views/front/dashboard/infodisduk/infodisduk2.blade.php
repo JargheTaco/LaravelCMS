@@ -21,7 +21,7 @@
                         {{ $item->Category->name}}
                     </div>
                     <h2 class="card-title h4">{{ $item->title}}</h2>
-                    <p class="card-text">{{ Str::limit(strip_tags($item->desc), 250, '...') }}</p>
+                    <p class="card-text">{{ Str::limit(strip_tags($item->desc), 200, '...') }}</p>
                     <a class="btn btn-primary" href="{{ url('partikel/'.$item->slug) }}">Read more →</a>
                 </div>
             </div>
