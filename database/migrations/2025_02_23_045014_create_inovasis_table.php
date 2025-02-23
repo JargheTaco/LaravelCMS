@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('inovasis', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug');
+            $table->longText('desc');
+            $table->string('img');
+            $table->integer('view')->default(0);
+            $table->string('status');
+            $table->date('publish_date');
             $table->timestamps();
         });
     }
