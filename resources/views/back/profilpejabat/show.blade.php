@@ -38,6 +38,10 @@
                 <td>: {{ $profilpejabat->title }}</td>
             </tr>
             <tr>
+                <th width="250px" >Jabatan</th>
+                <td>: {{ $profilpejabat->jabatan }}</td>
+            </tr>
+            <tr>
                 <th>Description</th>
                 <td>
                     <div class="article-content">

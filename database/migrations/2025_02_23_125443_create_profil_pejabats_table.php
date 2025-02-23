@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('profil_pejabats', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('jabatan');
             $table->string('slug');
             $table->longText('desc');
             $table->string('img');

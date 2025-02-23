@@ -37,6 +37,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Jabatan</th>
                     <th>Status</th>
                     <th>Publish date</th>
                     <th>Function</th>
@@ -123,6 +124,10 @@
                     {
                         data: 'title',
                         name: 'title'
+                    },
+                    {
+                        data: 'jabatan',
+                        name: 'jabatan'
                     },
                     {
                         data: 'status',

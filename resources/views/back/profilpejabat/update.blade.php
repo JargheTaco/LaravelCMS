@@ -37,6 +37,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="title">Jabatan</label>
+                        <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ old('jabatan', $profilpejabat->jabatan) }}">
+                    </div>
+                </div>
+            </div>
 
             <div class="mb-3">
                 <label for="content">Description</label>
@@ -44,7 +52,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="content">Image (Max 2MB)</label>
+                <label for="content">Image (Max 5MB)</label>
                 <input type="file" name="img" id="img" class="form-control">
                 <div class="mt-1">
                     <small>Gambar Lama</small><br>

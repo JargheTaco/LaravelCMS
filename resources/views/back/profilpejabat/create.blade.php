@@ -35,6 +35,15 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="title">Jabatan</label>
+                        <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ old('jabatan') }}">
+                    </div>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="content">Description</label>
                 <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
