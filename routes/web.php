@@ -12,6 +12,7 @@ use App\Http\Controllers\Back\BeritaController;
 use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
 use App\Http\Controllers\Back\DokumentasiController;
 use App\Http\Controllers\Back\VisiMisiController;
+use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
 use App\Models\User;
@@ -77,6 +78,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/berita', BeritaController::class);
 
     Route::resource('/inovasiadmin', InovasiController::class);
+
+    Route::resource('/profilpejabat', ProfilPejabatController::class);
 
     Route::resource('/dokumentasi', DokumentasiController::class);
 

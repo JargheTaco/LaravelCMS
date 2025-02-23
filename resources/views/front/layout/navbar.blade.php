@@ -2,7 +2,7 @@
 <header class="header">
     <nav class="nav container">
         <div class="nav__data">
-            <a href="#" class="nav__logo">
+            <a href="{{ url('/') }}" class="nav__logo">
                 <img src="{{ asset('front/img/Tegal.svg.png') }}" alt="Logo" style="height: 40px;" />
             </a>
 
