@@ -24,9 +24,6 @@ class InovasiController extends Controller
 
             return DataTables::of($inovasi)
                 ->addIndexColumn()
-                ->addColumn('category_id', function ($inovasi) {
-                    return $inovasi->Category->name;
-                })
                 ->addColumn('status', function ($inovasi) {
                     return $inovasi->status == 0
                         ? '<span class="badge bg-danger">Private</span>'
