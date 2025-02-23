@@ -23,6 +23,7 @@ class ProfilPejabatRequest extends FormRequest
     {
         return [
             'title'         => 'required',
+            'jabatan'         => 'required',
             'desc'          => 'required',
             'img'           => 'required|image|file|mimes:png,jpg,jpeg,webp|max:5024',
             'status'        => 'required',
