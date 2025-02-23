@@ -34,8 +34,8 @@ class InovasiController extends Controller
                 })
                 ->addColumn('button', function ($inovasi) {
                     return '<div class="text-center">
-                                <a href="inovasi/'.$inovasi->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="inovasi/'.$inovasi->id.'/edit" class="btn btn-primary">Edit</a>
+                                <a href="inovasiback/'.$inovasi->id.'" class="btn btn-secondary">Detail</a>
+                                <a href="inovasiback/'.$inovasi->id.'/edit" class="btn btn-primary">Edit</a>
                                 <a href="#" onclick="deleteInovasi(this)" data-id="'.$inovasi->id.'" class="btn btn-danger">Delete</a>
                             </div>';
                 })
@@ -43,7 +43,7 @@ class InovasiController extends Controller
                 ->make();
         }
 
-        return view('back.inovasi.index');
+        return view('back.inovasiback.index');
     }
 
     /**
@@ -51,7 +51,7 @@ class InovasiController extends Controller
      */
     public function create()
     {
-        return view('back.inovasi.create');
+        return view('back.inovasiback.create');
     }
 
     /**
@@ -86,7 +86,7 @@ class InovasiController extends Controller
         $data['slug'] = Str::slug($data['title']);
         Inovasi::create($data);
 
-        return redirect(url('inovasi'))->with('success', 'Inovasi Created Successfully');
+        return redirect(url('inovasiback'))->with('success', 'Inovasi Created Successfully');
     }
 
     /**
@@ -96,7 +96,7 @@ class InovasiController extends Controller
     {
         $inovasi = Inovasi::findOrFail($id);
 
-        return view('back.inovasi.show', compact('inovasi'));
+        return view('back.inovasiback.show', compact('inovasiback'));
     }
 
     /**
@@ -106,7 +106,7 @@ class InovasiController extends Controller
     {
         $inovasi = Inovasi::findOrFail($id);
 
-        return view('back.inovasi.update', [
+        return view('back.inovasiback.update', [
             'inovasi' => $inovasi,
         ]);
     }
@@ -181,7 +181,7 @@ class InovasiController extends Controller
 
         $inovasi->update($data);
 
-        return redirect(url('inovasi'))->with('success', 'Inovasi Updated Successfully');
+        return redirect(url('inovasiback'))->with('success', 'Inovasi Updated Successfully');
     }
 
     /**

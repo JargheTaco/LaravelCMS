@@ -23,7 +23,7 @@
         </div>
         @endif
 
-        <form action="{{ url('inovasi/' .$inovasi->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('inovasiback/' .$inovasi->id) }}" method="post" enctype="multipart/form-data">
             @method('PUT')
             @csrf
 

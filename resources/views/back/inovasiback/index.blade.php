@@ -16,7 +16,7 @@
     </div>
 
     <div class="mt-3">
-        <a href="{{ url('inovasi/create') }}" class="btn btn-success mb-2">Create</a>
+        <a href="{{ url('inovasiback/create') }}" class="btn btn-success mb-2">Create</a>
         @if ($errors->any())
         <div class="my-3">
             <div class="alert alert-danger">
@@ -90,7 +90,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'DELETE',
-                        url: '/inovasi/' + id,
+                        url: '/inovasiback/' + id,
                         dataType: "json",
                         success: function(response) {
                             Swal.fire({
@@ -98,7 +98,7 @@
                                 text: response.message,
                                 icon: 'success',
                             }).then((result) => {
-                                window.location.href = '/inovasi';
+                                window.location.href = '/inovasiback';
                             });      
                         },
                         error: function(xhr, ajaxOptions, thrownError) {

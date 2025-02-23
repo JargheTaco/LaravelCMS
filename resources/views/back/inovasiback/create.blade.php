@@ -23,7 +23,7 @@
         </div>
         @endif
 
-        <form action="{{ url('inovasi') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('inovasiback') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
