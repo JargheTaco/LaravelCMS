@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Berita;
+use App\Models\Inovasi;
 use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
@@ -25,7 +26,9 @@ class HomeController extends Controller
     }
     public function inovasi()
     {
-        return view('front.dashboard.inovasi');
+        return view('front.dashboard.inovasi' ,[
+            'inovasis' => Inovasi::latest()->paginate(5)
+        ]);
     }
     public function galeri()
     {
