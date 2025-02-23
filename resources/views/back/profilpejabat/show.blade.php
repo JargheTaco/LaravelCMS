@@ -55,10 +55,6 @@
                 </td>
             </tr>
             <tr>
-                <th>Views</th>
-                <td>: {{ $profilpejabat->view }}x</td>
-            </tr>
-            <tr>
                 <th>Status</th>
                 @if ($profilpejabat->status == 1)
                     <td>: <span class="badge bg-success">Published</span></td>
