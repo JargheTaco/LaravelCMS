@@ -7,12 +7,14 @@
     <div class="divider2"></div>
 </header>
 <section class="page-section" id="services" style="padding-top: 0px">
+@foreach($tugasfungsi as $item)
     <div class="container">
         <div class="iframe-container">
             <!-- Gantilah tag iframe dengan tag img -->
-            <img src="{{ asset('back/assets/img/portfolio/1.jpg') }}" alt="Deskripsi Gambar">
+            <img src="{{ $item->img }}" alt="Deskripsi Gambar">
         </div>
     </div>
+@endforeach
 </section>
 
 @include('front.layout.footer')
