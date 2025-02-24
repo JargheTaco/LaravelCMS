@@ -48,6 +48,12 @@
                 Profil Pejabat
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('tugasfungsi')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Tugas dan Fungsi
+              </a>
+            </li>
             @if (Auth::user()->role == 1)
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('categories')}}">
