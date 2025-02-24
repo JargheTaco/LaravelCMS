@@ -11,6 +11,7 @@ use App\Models\ProfilPejabat;
 use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
+use App\Models\Struktur;
 use App\Models\Tugasfungsi;
 use Illuminate\Support\Facades\File;
 
@@ -59,7 +60,7 @@ class HomeController extends Controller
         return view("front.dashboard.profil.profil" . $profileNumber , [
             'profilpejabat' => ProfilPejabat::whereStatus(1)->paginate(6),
             'tugasfungsi' => Tugasfungsi::whereStatus(1)->get(),
-            'struktur' => Tugasfungsi::whereStatus(1)->get(),
+            'struktur' => Struktur::whereStatus(1)->get(),
         ]);
     }
 
