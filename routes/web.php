@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
 use App\Http\Controllers\Back\DokumentasiController;
 use App\Http\Controllers\Back\VisiMisiController;
 use App\Http\Controllers\Back\TugasfungsiController;
+use App\Http\Controllers\Back\StrukturController;
 use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
@@ -85,6 +86,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dokumentasi', DokumentasiController::class);
 
     Route::resource('/tugasfungsi', TugasfungsiController::class);
+
+    Route::resource('/struktur', StrukturController::class);
 
     Route::resource('/visimisi', VisiMisiController::class);
 

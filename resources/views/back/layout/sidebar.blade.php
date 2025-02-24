@@ -54,6 +54,12 @@
                 Tugas dan Fungsi
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('struktur')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Struktur Organisasi
+              </a>
+            </li>
             @if (Auth::user()->role == 1)
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('categories')}}">
