@@ -58,8 +58,8 @@ class HomeController extends Controller
 
         return view("front.dashboard.profil.profil" . $profileNumber , [
             'profilpejabat' => ProfilPejabat::whereStatus(1)->paginate(6),
-            'tugasfungsi' => Tugasfungsi::whereStatus(1),
-            'struktur' => Tugasfungsi::whereStatus(1),
+            'tugasfungsi' => Tugasfungsi::whereStatus(1)->get(),
+            'struktur' => Tugasfungsi::whereStatus(1)->get(),
         ]);
     }
 
