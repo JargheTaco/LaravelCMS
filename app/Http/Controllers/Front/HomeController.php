@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
 use App\Models\Struktur;
+use App\Models\Lhkpn;
 use App\Models\Sejarah;
 use App\Models\Tugasfungsi;
 use Illuminate\Support\Facades\File;
@@ -63,6 +64,7 @@ class HomeController extends Controller
             'tugasfungsi' => Tugasfungsi::whereStatus(1)->get(),
             'struktur' => Struktur::whereStatus(1)->get(),
             'sejarah' => Sejarah::whereStatus(1)->get(),
+            'lhkpn' => Lhkpn::whereStatus(1)->paginate(12),
         ]);
     }
 

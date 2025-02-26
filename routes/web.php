@@ -15,6 +15,7 @@ use App\Http\Controllers\Back\VisiMisiController;
 use App\Http\Controllers\Back\TugasfungsiController;
 use App\Http\Controllers\Back\StrukturController;
 use App\Http\Controllers\Back\SejarahController;
+use App\Http\Controllers\Back\LhkpnController;
 use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
@@ -91,6 +92,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/struktur', StrukturController::class);
 
     Route::resource('/sejarah', SejarahController::class);
+
+    Route::resource('/lhkpn', LhkpnController::class);
 
     Route::resource('/visimisi', VisiMisiController::class);
 
