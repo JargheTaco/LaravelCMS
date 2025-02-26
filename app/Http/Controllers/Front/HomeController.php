@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
 use App\Models\Struktur;
+use App\Models\Sejarah;
 use App\Models\Tugasfungsi;
 use Illuminate\Support\Facades\File;
 
@@ -61,6 +62,7 @@ class HomeController extends Controller
             'profilpejabat' => ProfilPejabat::whereStatus(1)->paginate(6),
             'tugasfungsi' => Tugasfungsi::whereStatus(1)->get(),
             'struktur' => Struktur::whereStatus(1)->get(),
+            'sejarah' => Sejarah::whereStatus(1)->get(),
         ]);
     }
 
