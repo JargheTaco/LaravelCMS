@@ -68,7 +68,7 @@
   </div>
   
 
-@include('back.layout.footer')
+@include('front.layout.footer')
 
 <!--- LHKPN1 --->
 <div class="portfolio-modal modal fade" id="LHKPN1" tabindex="-1" role="dialog" aria-hidden="true">
