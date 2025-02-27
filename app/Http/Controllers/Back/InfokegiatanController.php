@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Models\Infokegiatan;
+use App\Models\InfokegiatanModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\InfokegiatanRequest;
@@ -17,7 +17,7 @@ class InfokegiatanController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $infokegiatan = Infokegiatan::with('Category')->latest()->get();
+            $infokegiatan = InfokegiatanModel::with('Category')->latest()->get();
 
             return DataTables::of($infokegiatan)
                 ->addIndexColumn()
@@ -81,7 +81,7 @@ class InfokegiatanController extends Controller
         }
 
         $data['slug'] = Str::slug($data['title']);
-        Infokegiatan::create($data);
+        InfokegiatanModel::create($data);
 
         return redirect(url('infokegiatan'))->with('success', 'Info Kegiatan Created Successfully');
     }
@@ -91,7 +91,7 @@ class InfokegiatanController extends Controller
      */
     public function show(string $id)
     {
-        $infokegiatan = Infokegiatan::findOrFail($id);
+        $infokegiatan = InfokegiatanModel::findOrFail($id);
 
         return view('back.infokegiatan.show', compact('infokegiatan'));
     }
@@ -101,7 +101,7 @@ class InfokegiatanController extends Controller
      */
     public function edit(string $id)
     {
-        $infokegiatan = Infokegiatan::findOrFail($id);
+        $infokegiatan = InfokegiatanModel::findOrFail($id);
 
         return view('back.infokegiatan.update', [
             'infokegiatan' => $infokegiatan,
@@ -113,7 +113,7 @@ class InfokegiatanController extends Controller
      */
     public function update(UpdateInfokegiatanRequest $request, string $id)
     {
-        $infokegiatan = Infokegiatan::findOrFail($id);
+        $infokegiatan = InfokegiatanModel::findOrFail($id);
         $data = $request->validated();
         $client = new Client();
 
@@ -189,7 +189,7 @@ class InfokegiatanController extends Controller
         $client = new Client();
 
         try {
-            $infokegiatan = Infokegiatan::findOrFail($id);
+            $infokegiatan = InfokegiatanModel::findOrFail($id);
 
             if ($infokegiatan->img) {
                 $fileName = basename($infokegiatan->img);
