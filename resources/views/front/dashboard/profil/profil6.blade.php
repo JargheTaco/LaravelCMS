@@ -22,7 +22,7 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="close-modal" data-bs-dismiss="modal"><img
-                  src="{{ asset('back/assets/img/close-icon.svg') }}" alt="Close modal" /></div>
+                  src="{{ asset('front/img/close-icon.svg') }}" alt="Close modal" /></div>
           <div class="container">
               <div class="row justify-content-center">
                   <div class="col-lg-8">
