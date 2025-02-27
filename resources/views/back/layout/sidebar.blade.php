@@ -72,6 +72,12 @@
                 LHKPN
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('infokegiatan')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Info Kegiatan
+              </a>
+            </li>
             @if (Auth::user()->role == 1)
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('categories')}}">

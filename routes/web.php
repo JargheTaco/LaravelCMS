@@ -9,7 +9,9 @@ use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Back\BeritaController;
+use App\Http\Controllers\Back\InfokegiatanController;
 use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
+use App\Http\Controllers\Front\InfokegiatanController as FrontInfokegiatanController;
 use App\Http\Controllers\Back\DokumentasiController;
 use App\Http\Controllers\Back\VisiMisiController;
 use App\Http\Controllers\Back\TugasfungsiController;
@@ -46,6 +48,7 @@ Route::post('/send-message', [ContactController::class, 'sendMessage']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/partikel/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/pberita/{slug}', [FrontBeritaController::class, 'show']);
+Route::get('/pinfokegiatan/{slug}', [FrontInfokegiatanController::class, 'show']);
 Route::get('/inovasi', [HomeController::class, 'inovasi']);
 Route::get('/galeri', [HomeController::class, 'galeri']);
 Route::get('/kontak', [HomeController::class, 'kontak']);
@@ -94,6 +97,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/sejarah', SejarahController::class);
 
     Route::resource('/lhkpn', LhkpnController::class);
+
+    Route::resource('/infokegiatan', InfokegiatanController::class);
 
     Route::resource('/visimisi', VisiMisiController::class);
 
