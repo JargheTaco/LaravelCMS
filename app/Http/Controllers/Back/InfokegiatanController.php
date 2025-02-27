@@ -17,13 +17,10 @@ class InfokegiatanController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $infokegiatan = InfokegiatanModel::with('Category')->latest()->get();
+            $infokegiatan = InfokegiatanModel::latest()->get();
 
             return DataTables::of($infokegiatan)
                 ->addIndexColumn()
-                ->addColumn('category_id', function ($infokegiatan) {
-                    return $infokegiatan->Category->name;
-                })
                 ->addColumn('status', function ($infokegiatan) {
                     return $infokegiatan->status == 0
                         ? '<span class="badge bg-danger">Private</span>'
