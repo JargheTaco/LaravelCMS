@@ -1,6 +1,6 @@
 @include('front.layout.assets')
 @include('front.layout.navbar')
-@include('front.layout.column', ['title' => 'ARTIKEL'])
+@include('front.layout.column', ['title' => 'Info Kegiatan'])
 
 <!-- Page content-->
 <div class="container">
