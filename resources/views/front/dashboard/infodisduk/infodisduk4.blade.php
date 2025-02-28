@@ -1,5 +1,5 @@
 @include('front.layout.navbar')
-@include('front.layout.column', ['title' => 'Pengumuman'])
+@include('front.layout.column', ['title' => 'PENGUMUMAN'])
 @include('front.layout.assets')
 
 <!-- Page content-->
