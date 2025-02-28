@@ -1,5 +1,5 @@
 @include('front.layout.navbar')
-@include('front.layout.column', ['title' => 'BERITA'])
+@include('front.layout.column', ['title' => 'Info Kegiatan'])
 @include('front.layout.assets')
 
 <!-- Page content-->
@@ -12,7 +12,7 @@
             <!-- Blog post-->
             <div class="card mb-4 shadow-sm">
                 <a href="{{ url('pinfokegiatan/'.$item->slug) }}">
-                    <img class="card-img-top post-img" src="{{ $item->img }}" alt="Gambar Artikel" />
+                    <img class="card-img-top post-img" src="{{ $item->img }}" alt="Gambar" />
                 </a>
                 <div class="card-body card-height">
                     <div class="small text-muted">
@@ -20,7 +20,7 @@
                     </div>
                     <h2 class="card-title h4">{{ $item->title}}</h2>
                     <p class="card-text">{{ Str::limit(strip_tags($item->desc), 200, '...') }}</p>
-                    <a class="btn btn-primary" href="{{ url('partikel/'.$item->slug) }}">Read more →</a>
+                    <a class="btn btn-primary" href="{{ url('pinfokegiatan/'.$item->slug) }}">Read more →</a>
                 </div>
             </div>
         </div>

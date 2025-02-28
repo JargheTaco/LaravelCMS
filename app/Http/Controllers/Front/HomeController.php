@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
 use App\Models\InfokegiatanModel;
+use App\Models\Pengumuman;
 use App\Models\Struktur;
 use App\Models\Lhkpn;
 use App\Models\Sejarah;
@@ -79,6 +80,7 @@ class HomeController extends Controller
             'latest_post_article' => Article::latest()->first(),
             'articles' => Article::whereStatus(1)->latest()->paginate(6),
             'infokegiatan' => InfokegiatanModel::whereStatus(1)->latest()->paginate(6),
+            'pengumuman' => Pengumuman::whereStatus(1)->latest()->paginate(6),
             'beritas' => Berita::whereStatus(1)->latest()->paginate(6),
             'categories' => Category::latest()->get(),
             'latest_post_berita' => Berita::latest()->first(),

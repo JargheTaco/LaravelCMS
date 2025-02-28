@@ -12,11 +12,13 @@ use App\Http\Controllers\Back\BeritaController;
 use App\Http\Controllers\Back\InfokegiatanController;
 use App\Http\Controllers\Front\BeritaController as FrontBeritaController;
 use App\Http\Controllers\Front\InfokegiatanController as FrontInfokegiatanController;
+use App\Http\Controllers\Front\PengumumanController as FrontPengumumanController;
 use App\Http\Controllers\Back\DokumentasiController;
 use App\Http\Controllers\Back\VisiMisiController;
 use App\Http\Controllers\Back\TugasfungsiController;
 use App\Http\Controllers\Back\StrukturController;
 use App\Http\Controllers\Back\SejarahController;
+use App\Http\Controllers\Back\PengumumanController;
 use App\Http\Controllers\Back\LhkpnController;
 use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Models\Berita;
@@ -49,6 +51,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/partikel/{slug}', [FrontArticleController::class, 'show']);
 Route::get('/pberita/{slug}', [FrontBeritaController::class, 'show']);
 Route::get('/pinfokegiatan/{slug}', [FrontInfokegiatanController::class, 'show']);
+Route::get('/ppengumuman/{slug}', [FrontPengumumanController::class, 'show']);
 Route::get('/inovasi', [HomeController::class, 'inovasi']);
 Route::get('/galeri', [HomeController::class, 'galeri']);
 Route::get('/kontak', [HomeController::class, 'kontak']);
@@ -95,6 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/struktur', StrukturController::class);
 
     Route::resource('/sejarah', SejarahController::class);
+
+    Route::resource('/pengumuman', PengumumanController::class);
 
     Route::resource('/lhkpn', LhkpnController::class);
 

@@ -3,41 +3,41 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Models\InfokegiatanModel;
 use Illuminate\Http\Request;
+use App\Models\Pengumuman;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\InfokegiatanRequest;
+use App\Http\Requests\PengumumanRequest;
 use Illuminate\Support\Str;
-use App\Http\Requests\UpdateInfokegiatanRequest;
+use App\Http\Requests\UpdatePengumumanRequest;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 
-class InfokegiatanController extends Controller
+class PengumumanController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $infokegiatan = InfokegiatanModel::latest()->get();
+            $pengumuman = Pengumuman::latest()->get();
 
-            return DataTables::of($infokegiatan)
+            return DataTables::of($pengumuman)
                 ->addIndexColumn()
-                ->addColumn('status', function ($infokegiatan) {
-                    return $infokegiatan->status == 0
+                ->addColumn('status', function ($pengumuman) {
+                    return $pengumuman->status == 0
                         ? '<span class="badge bg-danger">Private</span>'
                         : '<span class="badge bg-success">Published</span>';
                 })
-                ->addColumn('button', function ($infokegiatan) {
+                ->addColumn('button', function ($pengumuman) {
                     return '<div class="text-center">
-                                <a href="infokegiatan/'.$infokegiatan->id.'" class="btn btn-secondary">Detail</a>
-                                <a href="infokegiatan/'.$infokegiatan->id.'/edit" class="btn btn-primary">Edit</a>
-                                <a href="#" onclick="deleteInfokegiatan(this)" data-id="'.$infokegiatan->id.'" class="btn btn-danger">Delete</a>
+                                <a href="pengumuman/'.$pengumuman->id.'" class="btn btn-secondary">Detail</a>
+                                <a href="pengumuman/'.$pengumuman->id.'/edit" class="btn btn-primary">Edit</a>
+                                <a href="#" onclick="deletePengumuman(this)" data-id="'.$pengumuman->id.'" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['status', 'button'])
                 ->make();
         }
 
-        return view('back.infokegiatan.index');
+        return view('back.pengumuman.index');
     }
 
     /**
@@ -45,13 +45,13 @@ class InfokegiatanController extends Controller
      */
     public function create()
     {
-        return view('back.infokegiatan.create');
+        return view('back.pengumuman.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(InfokegiatanRequest $request)
+    public function store(PengumumanRequest $request)
     {
         $data = $request->validated();
 
@@ -78,9 +78,9 @@ class InfokegiatanController extends Controller
         }
 
         $data['slug'] = Str::slug($data['title']);
-        InfokegiatanModel::create($data);
+        Pengumuman::create($data);
 
-        return redirect(url('infokegiatan'))->with('success', 'Info Kegiatan Created Successfully');
+        return redirect(url('pengumuman'))->with('success', 'Pengumuman Created Successfully');
     }
 
     /**
@@ -88,9 +88,9 @@ class InfokegiatanController extends Controller
      */
     public function show(string $id)
     {
-        $infokegiatan = InfokegiatanModel::findOrFail($id);
+        $pengumuman = Pengumuman::findOrFail($id);
 
-        return view('back.infokegiatan.show', compact('infokegiatan'));
+        return view('back.pengumuman.show', compact('pengumuman'));
     }
 
     /**
@@ -98,19 +98,19 @@ class InfokegiatanController extends Controller
      */
     public function edit(string $id)
     {
-        $infokegiatan = InfokegiatanModel::findOrFail($id);
+        $pengumuman = Pengumuman::findOrFail($id);
 
-        return view('back.infokegiatan.update', [
-            'infokegiatan' => $infokegiatan,
+        return view('back.pengumuman.update', [
+            'pengumuman' => $pengumuman,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInfokegiatanRequest $request, string $id)
+    public function update(UpdatePengumumanRequest $request, string $id)
     {
-        $infokegiatan = InfokegiatanModel::findOrFail($id);
+        $pengumuman = Pengumuman::findOrFail($id);
         $data = $request->validated();
         $client = new Client();
 
@@ -120,8 +120,8 @@ class InfokegiatanController extends Controller
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
             // Hapus gambar lama jika ada
-            if ($infokegiatan->img) {
-                $oldFileName = basename($infokegiatan->img);
+            if ($pengumuman->img) {
+                $oldFileName = basename($pengumuman->img);
                 try {
                     // Ambil SHA file dari GitHub
                     $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
@@ -169,13 +169,13 @@ class InfokegiatanController extends Controller
         }
 
         // Update slug hanya jika title berubah
-        if ($data['title'] !== $infokegiatan->title) {
+        if ($data['title'] !== $pengumuman->title) {
             $data['slug'] = Str::slug($data['title']);
         }
 
-        $infokegiatan->update($data);
+        $pengumuman->update($data);
 
-        return redirect(url('infokegiatan'))->with('success', 'info kegiatan Updated Successfully');
+        return redirect(url('pengumuman'))->with('success', 'Pengumuman Updated Successfully');
     }
 
     /**
@@ -186,10 +186,10 @@ class InfokegiatanController extends Controller
         $client = new Client();
 
         try {
-            $infokegiatan = InfokegiatanModel::findOrFail($id);
+            $pengumuman = Pengumuman::findOrFail($id);
 
-            if ($infokegiatan->img) {
-                $fileName = basename($infokegiatan->img);
+            if ($pengumuman->img) {
+                $fileName = basename($pengumuman->img);
 
                 // Ambil SHA file dari GitHub
                 $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
@@ -214,14 +214,14 @@ class InfokegiatanController extends Controller
                 ]);
             }
 
-            $infokegiatan->delete();
+            $pengumuman->delete();
 
             return response()->json([
-                'message' => 'info kegiatan Deleted Successfully',
+                'message' => 'Pengumuman Deleted Successfully',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Failed to delete Info kegiatan',
+                'message' => 'Failed to delete Pengumuman',
                 'error' => $e->getMessage(),
             ], 500);
         }
