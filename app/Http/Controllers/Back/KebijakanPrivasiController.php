@@ -77,9 +77,9 @@ class KebijakanPrivasiController extends Controller
 
             $result = json_decode($response->getBody(), true);
             $downloadUrl = $result['content']['download_url'];
-            $rawUrl = str_replace('github.com', 'raw.githubusercontent.com', $downloadUrl);
-            $rawUrl = str_replace('/blob/', '/', $rawUrl);
+            $rawUrl = str_replace(['github.com', '/blob/'], ['raw.githubusercontent.com', '/'], $downloadUrl);
             $data['pdf'] = $rawUrl;
+            
 
 
         }
@@ -170,9 +170,9 @@ class KebijakanPrivasiController extends Controller
                 ]);
                 $result = json_decode($response->getBody(), true);
                 $downloadUrl = $result['content']['download_url'];
-                $rawUrl = str_replace('github.com', 'raw.githubusercontent.com', $downloadUrl);
-                $rawUrl = str_replace('/blob/', '/', $rawUrl);
+                $rawUrl = str_replace(['github.com', '/blob/'], ['raw.githubusercontent.com', '/'], $downloadUrl);
                 $data['pdf'] = $rawUrl;
+                
 
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload new image.');
