@@ -56,6 +56,7 @@ class KebijakanPrivasiController extends Controller
     public function store(KebijakanPrivasiRequest $request)
     {
         $data = $request->validated();
+        
 
         if ($request->hasFile('pdf')) {
             $file = $request->file('pdf');
@@ -75,7 +76,11 @@ class KebijakanPrivasiController extends Controller
             ]);
 
             $result = json_decode($response->getBody(), true);
-            $data['pdf'] = $result['content']['download_url']; // URL gambar
+            $downloadUrl = $result['content']['download_url'];
+            $rawUrl = str_replace('github.com', 'raw.githubusercontent.com', $downloadUrl);
+            $rawUrl = str_replace('/blob/', '/', $rawUrl);
+            $data['pdf'] = $rawUrl;
+
 
         }
 
@@ -164,7 +169,11 @@ class KebijakanPrivasiController extends Controller
                     ],
                 ]);
                 $result = json_decode($response->getBody(), true);
-                $data['pdf'] = $result['content']['download_url'];
+                $downloadUrl = $result['content']['download_url'];
+                $rawUrl = str_replace('github.com', 'raw.githubusercontent.com', $downloadUrl);
+                $rawUrl = str_replace('/blob/', '/', $rawUrl);
+                $data['pdf'] = $rawUrl;
+
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload new image.');
             }
