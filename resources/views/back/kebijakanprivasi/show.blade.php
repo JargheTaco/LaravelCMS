@@ -53,13 +53,8 @@
             <tr>
                 <th>PDF File</th>
                 <td>
-                    @if($kebijakanprivasi->pdf)
-                    <a href="{{ $kebijakanprivasi->pdf }}" target="_blank" class="btn btn-primary">View PDF</a>
-                    <br><br>
-                    <embed src="{{ $kebijakanprivasi->pdf }}" type="application/pdf" width="100%" height="500px" />
-                    @else
-                    <span class="text-danger">No PDF available</span>
-                    @endif
+                    <iframe src="{{ $kebijakanprivasi->pdf }}" width="100%" height="600px"></iframe>
+
                 </td>
             </tr>
 
