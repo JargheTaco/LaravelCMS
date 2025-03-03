@@ -11,7 +11,7 @@
 <section class="page-section" id="services">
     <div class="container">
         <div class="iframe-container">
-            <iframe src="https://docs.google.com/gview?url={{ urlencode($kebijakanprivasi->pdf) }}&embedded=true" width="640" height="880" allow="autoplay"></iframe>
+            <iframe src="https://docs.google.com/gview?url={{ urlencode($item->pdf) }}&embedded=true" width="640" height="880" allow="autoplay"></iframe>
         </div>
     </div>
 </section>
