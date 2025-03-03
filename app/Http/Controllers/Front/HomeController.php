@@ -16,6 +16,8 @@ use App\Models\KebijakanPrivasi;
 use App\Models\Pengumuman;
 use App\Models\Struktur;
 use App\Models\Lhkpn;
+use App\Models\Saluranpengaduan;
+use App\Models\Faq;
 use App\Models\Sejarah;
 use App\Models\Tugasfungsi;
 use Illuminate\Support\Facades\File;
@@ -75,7 +77,10 @@ class HomeController extends Controller
 
     public function aduan($aduanNumber)
     {
-        return view("front.dashboard.aduan.aduan" . $aduanNumber);
+        return view("front.dashboard.aduan.aduan" . $aduanNumber , [
+            'saluranpengaduan' => Saluranpengaduan::whereStatus(1)->get(),
+            'faq' => Faq::whereStatus(1)->get(),
+        ]);
     }
     public function infodisduk($infodisdukNumber)
     {

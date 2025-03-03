@@ -5,40 +5,39 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\KebijakanPrivasiRequest;
+use App\Http\Requests\FaqRequest;
 use Illuminate\Support\Str;
-use App\Http\Requests\UpdateKebijakanPrivasiRequest;
-use App\Models\KebijakanPrivasi;
+use App\Http\Requests\UpdateFaqRequest;
+use App\Models\Faq;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 
-
-class KebijakanPrivasiController extends Controller
+class FaqController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $kebijakanprivasi = KebijakanPrivasi::latest()->get();
+            $faq = Faq::latest()->get();
 
-            return DataTables::of($kebijakanprivasi)
+            return DataTables::of($faq)
                 ->addIndexColumn()
-                ->addColumn('status', function ($kebijakanprivasi) {
-                    return $kebijakanprivasi->status == 0
+                ->addColumn('status', function ($faq) {
+                    return $faq->status == 0
                         ? '<span class="badge bg-danger">Private</span>'
                         : '<span class="badge bg-success">Published</span>';
                 })
-                ->addColumn('button', function ($kebijakanprivasi) {
+                ->addColumn('button', function ($faq) {
                     return '<div class="text-center">
-                                <a href="kebijakanprivasi/' . $kebijakanprivasi->id . '" class="btn btn-secondary">Detail</a>
-                                <a href="kebijakanprivasi/' . $kebijakanprivasi->id . '/edit" class="btn btn-primary">Edit</a>
-                                <a href="#" onclick="deleteKebijakanprivasi(this)" data-id="' . $kebijakanprivasi->id . '" class="btn btn-danger">Delete</a>
+                                <a href="faq/' . $faq->id . '" class="btn btn-secondary">Detail</a>
+                                <a href="faq/' . $faq->id . '/edit" class="btn btn-primary">Edit</a>
+                                <a href="#" onclick="deleteFaq(this)" data-id="' . $faq->id . '" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['status', 'button'])
                 ->make();
         }
 
-        return view('back.kebijakanprivasi.index');
+        return view('back.faq.index');
     }
 
     /**
@@ -46,13 +45,13 @@ class KebijakanPrivasiController extends Controller
      */
     public function create()
     {
-        return view('back.kebijakanprivasi.create');
+        return view('back.faq.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(KebijakanPrivasiRequest $request)
+    public function store(FaqRequest $request)
     {
         $data = $request->validated();
         
@@ -84,9 +83,9 @@ class KebijakanPrivasiController extends Controller
         }
 
         $data['slug'] = Str::slug($data['title']);
-        KebijakanPrivasi::create($data);
+        Faq::create($data);
 
-        return redirect(url('kebijakanprivasi'))->with('success', 'Kebijakan Privasi Created Successfully');
+        return redirect(url('faq'))->with('success', 'FAQ Created Successfully');
     }
 
     /**
@@ -94,9 +93,9 @@ class KebijakanPrivasiController extends Controller
      */
     public function show(string $id)
     {
-        $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+        $faq = Faq::findOrFail($id);
 
-        return view('back.kebijakanprivasi.show', compact('kebijakanprivasi'));
+        return view('back.faq.show', compact('faq'));
     }
 
     /**
@@ -104,19 +103,19 @@ class KebijakanPrivasiController extends Controller
      */
     public function edit(string $id)
     {
-        $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+        $faq = Faq::findOrFail($id);
 
-        return view('back.kebijakanprivasi.update', [
-            'kebijakanprivasi' => $kebijakanprivasi,
+        return view('back.faq.update', [
+            'faq' => $faq,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKebijakanPrivasiRequest $request, string $id)
+    public function update(UpdateFaqRequest $request, string $id)
     {
-        $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+        $faq = Faq::findOrFail($id);
         $data = $request->validated();
         $client = new Client();
 
@@ -126,8 +125,8 @@ class KebijakanPrivasiController extends Controller
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
             // Hapus gambar lama jika ada
-            if ($kebijakanprivasi->pdf) {
-                $oldFileName = basename($kebijakanprivasi->pdf);
+            if ($faq->pdf) {
+                $oldFileName = basename($faq->pdf);
                 try {
                     // Ambil SHA file dari GitHub
                     $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
@@ -179,13 +178,13 @@ class KebijakanPrivasiController extends Controller
         }
 
         // Update slug hanya jika title berubah
-        if ($data['title'] !== $kebijakanprivasi->title) {
+        if ($data['title'] !== $faq->title) {
             $data['slug'] = Str::slug($data['title']);
         }
 
-        $kebijakanprivasi->update($data);
+        $faq->update($data);
 
-        return redirect(url('kebijakanprivasi'))->with('success', 'kebijakanprivasi Updated Successfully');
+        return redirect(url('faq'))->with('success', 'faq Updated Successfully');
     }
 
     /**
@@ -196,20 +195,20 @@ class KebijakanPrivasiController extends Controller
         $client = new Client();
 
         try {
-            $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+            $faq = Faq::findOrFail($id);
 
-            if ($kebijakanprivasi->pdf) { // Hapus file PDF jika ada
-                $this->deleteFileFromGithub($client, $kebijakanprivasi->pdf);
+            if ($faq->pdf) { // Hapus file PDF jika ada
+                $this->deleteFileFromGithub($client, $faq->pdf);
             }
 
-            $kebijakanprivasi->delete();
+            $faq->delete();
 
             return response()->json([
-                'message' => 'Kebijakan Privasi Deleted Successfully',
+                'message' => 'FAQ Deleted Successfully',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Failed to delete Kebijakan Privasi',
+                'message' => 'Failed to delete FAQ',
                 'error' => $e->getMessage(),
             ], 500);
         }

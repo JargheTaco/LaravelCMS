@@ -22,12 +22,15 @@ use App\Http\Controllers\Back\PengumumanController;
 use App\Http\Controllers\Back\LhkpnController;
 use App\Http\Controllers\Back\KebijakanPrivasiController;
 use App\Http\Controllers\Back\ProfilPejabatController;
+use App\Http\Controllers\Back\SaluranpengaduanController;
+use App\Http\Controllers\Back\FaqController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\InfoRequestController;
+use App\Models\Saluranpengaduan;
 use App\Models\VisiMisi;
 
 /*
@@ -97,6 +100,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/sejarah', SejarahController::class);
 
     Route::resource('/pengumuman', PengumumanController::class);
+
+    Route::resource('/faq', FaqController::class);
+
+    Route::resource('/saluranpengaduan', SaluranpengaduanController::class);
 
     Route::resource('/lhkpn', LhkpnController::class);
 

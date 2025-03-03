@@ -5,40 +5,40 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\KebijakanPrivasiRequest;
+use App\Http\Requests\SaluranpengaduanRequest;
 use Illuminate\Support\Str;
-use App\Http\Requests\UpdateKebijakanPrivasiRequest;
-use App\Models\KebijakanPrivasi;
+use App\Http\Requests\UpdateSaluranpengaduanRequest;
+use App\Models\Saluranpengaduan;
+use Cloudinary\Samples\Sample;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 
-
-class KebijakanPrivasiController extends Controller
+class SaluranpengaduanController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $kebijakanprivasi = KebijakanPrivasi::latest()->get();
+            $saluranpengaduan = Saluranpengaduan::latest()->get();
 
-            return DataTables::of($kebijakanprivasi)
+            return DataTables::of($saluranpengaduan)
                 ->addIndexColumn()
-                ->addColumn('status', function ($kebijakanprivasi) {
-                    return $kebijakanprivasi->status == 0
+                ->addColumn('status', function ($saluranpengaduan) {
+                    return $saluranpengaduan->status == 0
                         ? '<span class="badge bg-danger">Private</span>'
                         : '<span class="badge bg-success">Published</span>';
                 })
-                ->addColumn('button', function ($kebijakanprivasi) {
+                ->addColumn('button', function ($saluranpengaduan) {
                     return '<div class="text-center">
-                                <a href="kebijakanprivasi/' . $kebijakanprivasi->id . '" class="btn btn-secondary">Detail</a>
-                                <a href="kebijakanprivasi/' . $kebijakanprivasi->id . '/edit" class="btn btn-primary">Edit</a>
-                                <a href="#" onclick="deleteKebijakanprivasi(this)" data-id="' . $kebijakanprivasi->id . '" class="btn btn-danger">Delete</a>
+                                <a href="saluranpengaduan/' . $saluranpengaduan->id . '" class="btn btn-secondary">Detail</a>
+                                <a href="saluranpengaduan/' . $saluranpengaduan->id . '/edit" class="btn btn-primary">Edit</a>
+                                <a href="#" onclick="deleteSaluranpengaduan(this)" data-id="' . $saluranpengaduan->id . '" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['status', 'button'])
                 ->make();
         }
 
-        return view('back.kebijakanprivasi.index');
+        return view('back.saluranpengaduan.index');
     }
 
     /**
@@ -46,16 +46,16 @@ class KebijakanPrivasiController extends Controller
      */
     public function create()
     {
-        return view('back.kebijakanprivasi.create');
+        return view('back.saluranpengaduan.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(KebijakanPrivasiRequest $request)
+    public function store(SaluranpengaduanRequest $request)
     {
         $data = $request->validated();
-        
+
 
         if ($request->hasFile('pdf')) {
             $file = $request->file('pdf');
@@ -78,15 +78,12 @@ class KebijakanPrivasiController extends Controller
             $downloadUrl = $result['content']['download_url'];
             $rawUrl = str_replace(['github.com', '/blob/'], ['raw.githubusercontent.com', '/'], $downloadUrl);
             $data['pdf'] = $rawUrl;
-            
-
-
         }
 
         $data['slug'] = Str::slug($data['title']);
-        KebijakanPrivasi::create($data);
+        Saluranpengaduan::create($data);
 
-        return redirect(url('kebijakanprivasi'))->with('success', 'Kebijakan Privasi Created Successfully');
+        return redirect(url('saluranpengaduan'))->with('success', 'Saluran Pengaduan Created Successfully');
     }
 
     /**
@@ -94,9 +91,9 @@ class KebijakanPrivasiController extends Controller
      */
     public function show(string $id)
     {
-        $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+        $saluranpengaduan = Saluranpengaduan::findOrFail($id);
 
-        return view('back.kebijakanprivasi.show', compact('kebijakanprivasi'));
+        return view('back.saluranpengaduan.show', compact('saluranpengaduan'));
     }
 
     /**
@@ -104,19 +101,19 @@ class KebijakanPrivasiController extends Controller
      */
     public function edit(string $id)
     {
-        $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+        $saluranpengaduan = Saluranpengaduan::findOrFail($id);
 
-        return view('back.kebijakanprivasi.update', [
-            'kebijakanprivasi' => $kebijakanprivasi,
+        return view('back.saluranpengaduan.update', [
+            'saluranpengaduan' => $saluranpengaduan,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKebijakanPrivasiRequest $request, string $id)
+    public function update(UpdateSaluranpengaduanRequest $request, string $id)
     {
-        $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+        $saluranpengaduan = Saluranpengaduan::findOrFail($id);
         $data = $request->validated();
         $client = new Client();
 
@@ -126,8 +123,8 @@ class KebijakanPrivasiController extends Controller
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
             // Hapus gambar lama jika ada
-            if ($kebijakanprivasi->pdf) {
-                $oldFileName = basename($kebijakanprivasi->pdf);
+            if ($saluranpengaduan->pdf) {
+                $oldFileName = basename($saluranpengaduan->pdf);
                 try {
                     // Ambil SHA file dari GitHub
                     $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
@@ -171,21 +168,19 @@ class KebijakanPrivasiController extends Controller
                 $downloadUrl = $result['content']['download_url'];
                 $rawUrl = str_replace(['github.com', '/blob/'], ['raw.githubusercontent.com', '/'], $downloadUrl);
                 $data['pdf'] = $rawUrl;
-                
-
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Failed to upload new image.');
             }
         }
 
         // Update slug hanya jika title berubah
-        if ($data['title'] !== $kebijakanprivasi->title) {
+        if ($data['title'] !== $saluranpengaduan->title) {
             $data['slug'] = Str::slug($data['title']);
         }
 
-        $kebijakanprivasi->update($data);
+        $saluranpengaduan->update($data);
 
-        return redirect(url('kebijakanprivasi'))->with('success', 'kebijakanprivasi Updated Successfully');
+        return redirect(url('saluranpengaduan'))->with('success', 'saluranpengaduan Updated Successfully');
     }
 
     /**
@@ -196,20 +191,20 @@ class KebijakanPrivasiController extends Controller
         $client = new Client();
 
         try {
-            $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
+            $saluranpengaduan = Saluranpengaduan::findOrFail($id);
 
-            if ($kebijakanprivasi->pdf) { // Hapus file PDF jika ada
-                $this->deleteFileFromGithub($client, $kebijakanprivasi->pdf);
+            if ($saluranpengaduan->pdf) { // Hapus file PDF jika ada
+                $this->deleteFileFromGithub($client, $saluranpengaduan->pdf);
             }
 
-            $kebijakanprivasi->delete();
+            $saluranpengaduan->delete();
 
             return response()->json([
-                'message' => 'Kebijakan Privasi Deleted Successfully',
+                'message' => 'Saluran Pengaduan Deleted Successfully',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Failed to delete Kebijakan Privasi',
+                'message' => 'Failed to delete Saluran Pengaduan',
                 'error' => $e->getMessage(),
             ], 500);
         }
