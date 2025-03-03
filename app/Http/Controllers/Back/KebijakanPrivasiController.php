@@ -56,27 +56,27 @@ class KebijakanPrivasiController extends Controller
     public function store(KebijakanPrivasiRequest $request)
     {
         $data = $request->validated();
-        $client = new Client();
 
-        // Upload PDF jika ada
         if ($request->hasFile('pdf')) {
-            $pdfFile = $request->file('pdf');
-            $pdfContent = base64_encode(file_get_contents($pdfFile));
-            $pdfName = uniqid() . '.pdf';
+            $file = $request->file('pdf');
+            $fileContent = base64_encode(file_get_contents($file));
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-            $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $pdfName, [
+            $client = new Client();
+            $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
                 'headers' => [
                     'Authorization' => 'token ' . env('GITHUB_TOKEN'),
                     'Accept' => 'application/vnd.github.v3+json',
                 ],
                 'json' => [
-                    'message' => 'Upload PDF ' . $pdfName,
-                    'content' => $pdfContent,
+                    'message' => 'Upload pdf ' . $fileName,
+                    'content' => $fileContent,
                 ],
             ]);
 
             $result = json_decode($response->getBody(), true);
-            $data['pdf_path'] = $result['content']['download_url']; // URL PDF
+            $data['pdf'] = $result['content']['download_url']; // URL gambar
+
         }
 
         $data['slug'] = Str::slug($data['title']);
@@ -116,18 +116,17 @@ class KebijakanPrivasiController extends Controller
         $data = $request->validated();
         $client = new Client();
 
-
-        // Update PDF
         if ($request->hasFile('pdf')) {
-            $pdfFile = $request->file('pdf');
-            $pdfContent = base64_encode(file_get_contents($pdfFile));
-            $pdfName = uniqid() . '.pdf';
+            $file = $request->file('pdf');
+            $fileContent = base64_encode(file_get_contents($file));
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-            // Hapus PDF lama jika ada
-            if ($kebijakanprivasi->pdf_path) {
-                $oldPdfName = basename($kebijakanprivasi->pdf_path);
+            // Hapus gambar lama jika ada
+            if ($kebijakanprivasi->pdf) {
+                $oldFileName = basename($kebijakanprivasi->pdf);
                 try {
-                    $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldPdfName", [
+                    // Ambil SHA file dari GitHub
+                    $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
                         'headers' => [
                             'Authorization' => 'token ' . env('GITHUB_TOKEN'),
                             'Accept' => 'application/vnd.github.v3+json',
@@ -136,39 +135,49 @@ class KebijakanPrivasiController extends Controller
                     $oldFileData = json_decode($response->getBody(), true);
                     $fileSha = $oldFileData['sha'];
 
-                    $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldPdfName", [
+                    // Hapus file lama
+                    $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
                         'headers' => [
                             'Authorization' => 'token ' . env('GITHUB_TOKEN'),
                             'Accept' => 'application/vnd.github.v3+json',
                         ],
                         'json' => [
-                            'message' => 'Delete old PDF ' . $oldPdfName,
+                            'message' => 'Delete old image ' . $oldFileName,
                             'sha' => $fileSha,
                         ],
                     ]);
                 } catch (\Exception $e) {
-                    return redirect()->back()->with('error', 'Failed to delete old PDF.');
+                    return redirect()->back()->with('error', 'Failed to delete old image.');
                 }
             }
 
-            // Upload PDF baru ke GitHub
-            $response = $client->request('PUT', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$pdfName", [
-                'headers' => [
-                    'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                    'Accept' => 'application/vnd.github.v3+json',
-                ],
-                'json' => [
-                    'message' => 'Upload new PDF ' . $pdfName,
-                    'content' => $pdfContent,
-                ],
-            ]);
-            $result = json_decode($response->getBody(), true);
-            $data['pdf_path'] = $result['content']['download_url'];
+            // Upload gambar baru ke GitHub
+            try {
+                $response = $client->request('PUT', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
+                    'headers' => [
+                        'Authorization' => 'token ' . env('GITHUB_TOKEN'),
+                        'Accept' => 'application/vnd.github.v3+json',
+                    ],
+                    'json' => [
+                        'message' => 'Upload new image ' . $fileName,
+                        'content' => $fileContent,
+                    ],
+                ]);
+                $result = json_decode($response->getBody(), true);
+                $data['pdf'] = $result['content']['download_url'];
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload new image.');
+            }
+        }
+
+        // Update slug hanya jika title berubah
+        if ($data['title'] !== $kebijakanprivasi->title) {
+            $data['slug'] = Str::slug($data['title']);
         }
 
         $kebijakanprivasi->update($data);
 
-        return redirect(url('kebijakanprivasi'))->with('success', 'Kebijakan Privasi Updated Successfully');
+        return redirect(url('kebijakanprivasi'))->with('success', 'kebijakanprivasi Updated Successfully');
     }
 
     /**
