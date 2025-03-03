@@ -41,8 +41,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="content">Image / PDF</label>
-                <input type="file" name="img" id="img" class="form-control">
+                <label for="content">PDF</label>
+                <input type="file" name="pdf" id="pdf" class="form-control">
 
                 <div class="mt-1">
                     <img src="" class="img-thumbnail img-preview" width="100px">
