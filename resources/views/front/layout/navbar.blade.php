@@ -63,25 +63,12 @@
                                     ['title' => 'Renja 2020-2023', 'url' => url('/renja/1')],
                                     ['title' => 'Renja 2024-2026', 'url' => url('/renja/2')],
                                 ],
-                                'TAHUN ANGGARAN 2021' => [
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2021/1')],
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2021/2')],
-                                ],
-                                'TAHUN ANGGARAN 2022' => [
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2022/1')],
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2022/2')],
-                                ],
-                                'TAHUN ANGGARAN 2023' => [
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2023/1')],
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2023/2')],
-                                ],
-                                'TAHUN ANGGARAN 2024' => [
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2024/1')],
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2024/2')],
-                                ],
-                                'TAHUN ANGGARAN 2025' => [
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2025/1')],
-                                    ['title' => 'Dokumen', 'url' => url('/anggaran2025/2')],
+                                'TAHUN ANGGARAN' => [
+                                    ['title' => 'Tahun Anggaran 2021', 'url' => url('/anggaran/1')],
+                                    ['title' => 'Tahun Anggaran 2022', 'url' => url('/anggaran/2')],
+                                    ['title' => 'Tahun Anggaran 2023', 'url' => url('/anggaran/3')],
+                                    ['title' => 'Tahun Anggaran 2024', 'url' => url('/anggaran/4')],
+                                    ['title' => 'Tahun Anggaran 2025', 'url' => url('/anggaran/5')],
                                 ],
                             ];
                         @endphp

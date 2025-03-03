@@ -3,7 +3,7 @@
 
 <header class="header2" style="padding-top: 100px">
     <h1>Profil</h1>
-    <h2>Struktur Organisai</h2>
+    <h2>Struktur Organisasi</h2>
     <div class="divider2"></div>
 </header>
 

@@ -154,10 +154,10 @@ class HomeController extends Controller
             return abort(404, 'View not found');
         }
     }
-    public function anggaran2021($anggaran2021_Number)
+    public function anggaran2021($anggaranNumber)
     {
-        // Tentukan nama view sesuai dengan parameter anggaran2021Number
-        $viewName = "front.dashboard.anggaran2021.anggaran2021_" . $anggaran2021_Number;
+        // Tentukan nama view sesuai dengan parameter anggaranNumber
+        $viewName = "front.dashboard.anggaran.anggaran" . $anggaranNumber;
 
         // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
         if (view()->exists($viewName)) {
@@ -165,67 +165,5 @@ class HomeController extends Controller
         } else {
             return abort(404, 'View not found');
         }
-    }
-    public function anggaran2022($anggaran2022_Number)
-    {
-        // Tentukan nama view sesuai dengan parameter anggaran2022Number
-        $viewName = "front.dashboard.anggaran2022.anggaran2022_" . $anggaran2022_Number;
-
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
-    }
-    public function anggaran2023($anggaran2023_Number)
-    {
-        // Tentukan nama view sesuai dengan parameter anggaran2023Number
-        $viewName = "front.dashboard.anggaran2023.anggaran2023_" . $anggaran2023_Number;
-
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
-    }
-    public function anggaran2024($anggaran2024_Number)
-    {
-        // Tentukan nama view sesuai dengan parameter anggaran2024Number
-        $viewName = "front.dashboard.anggaran2024.anggaran2024_" . $anggaran2024_Number;
-
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
-    }
-    public function anggaran2025($anggaran2025_Number)
-    {
-        // Tentukan nama view sesuai dengan parameter anggaran2025Number
-        $viewName = "front.dashboard.anggaran2025.anggaran2025_" . $anggaran2025_Number;
-
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
-    }
-
-    public function download($filename)
-    {
-        // Menentukan path file PDF
-        $filePath = public_path('front/pdf/' . $filename);
-
-        // Memeriksa apakah file ada
-        if (File::exists($filePath)) {
-            return response()->download($filePath);
-        }
-
-        // Jika file tidak ditemukan
-        return abort(404, 'File not found.');
     }
 }

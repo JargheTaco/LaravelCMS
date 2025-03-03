@@ -10,13 +10,13 @@
       <img src="{{$item->img}}" alt="Profile 1">
       <h3>{{$item->title}}</h3>
       <p><strong>{{$item->jabatan}}</strong></p>
-      <a href="#portofolioModal{{ $item->id }}" class="profile-btn">Lihat Profil</a>
+      <a href="#portfolioModal{{ $item->id }}" class="profile-btn">Lihat Profil</a>
     </div>
   @endforeach
-</div>
+
 
 @foreach($profilpejabat as $item)
-<div class="portfolio-modal modal fade" id="portofolioModal{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="portfolio-modal modal fade" id="portfolioModal{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="close-modal" data-bs-dismiss="modal"><img
