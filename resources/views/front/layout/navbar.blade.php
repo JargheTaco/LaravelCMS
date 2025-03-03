@@ -187,7 +187,7 @@
                         @php
                             $aduan = [
                                 1 => 'SALURAN PENGADUAN',
-                                3 => 'FAQ',
+                                2 => 'FAQ',
                             ];
                         @endphp
 
