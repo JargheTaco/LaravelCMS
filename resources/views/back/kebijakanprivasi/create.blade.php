@@ -37,16 +37,12 @@
 
             <div class="mb-3">
                 <label for="content">Description</label>
-                <textarea name="desc" id="myeditor" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="content">PDF</label>
                 <input type="file" name="pdf" id="pdf" class="form-control">
-
-                <div class="mt-1">
-                    <img src="" class="img-thumbnail img-preview" width="100px">
-                </div>
             </div>
 
             <div class="row">
@@ -80,20 +76,9 @@
 
     @push('js')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js"></script>
-
-    <script>
-        var option ={
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
-            clipboard_handleImage: false
-        }
-    </script>
     
     <script>
-        CKEDITOR.replace('myeditor', option);
+
 
         $('#img').change(function() {
             previewImage(this);

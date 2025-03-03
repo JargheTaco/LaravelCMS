@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\VisiMisi;
 use App\Models\Dokumentasi;
 use App\Models\InfokegiatanModel;
+use App\Models\KebijakanPrivasi;
 use App\Models\Pengumuman;
 use App\Models\Struktur;
 use App\Models\Lhkpn;
@@ -51,7 +52,9 @@ class HomeController extends Controller
     }
     public function kebijakan()
     {
-        return view('front.dashboard.kebijakan');
+        return view('front.dashboard.kebijakan' ,[
+            'kebijakanprivasi' => KebijakanPrivasi::latest()->get()
+        ]);
     }
 
     public function profile($profileNumber)
