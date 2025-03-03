@@ -53,7 +53,7 @@
             <tr>
                 <th>PDF File</th>
                 <td>
-                    <iframe src="{{ $kebijakanprivasi->pdf }}" width="100%" height="600px"></iframe>
+                <embed src="{{ $kebijakanprivasi->pdf }}" type="application/pdf" width="100%" height="500px" />
 
                 </td>
             </tr>
