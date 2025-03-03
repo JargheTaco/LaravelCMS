@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('desc');
-            $table->string('img');
             $table->string('pdf');
             $table->string('status');
             $table->date('publish_date');

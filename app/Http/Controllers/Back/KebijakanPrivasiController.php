@@ -58,27 +58,6 @@ class KebijakanPrivasiController extends Controller
         $data = $request->validated();
         $client = new Client();
 
-        // Upload Gambar jika ada
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $fileContent = base64_encode(file_get_contents($file));
-            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-
-            $response = $client->request('PUT', 'https://api.github.com/repos/JargheTaco/LaravelCMS/contents/' . $fileName, [
-                'headers' => [
-                    'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                    'Accept' => 'application/vnd.github.v3+json',
-                ],
-                'json' => [
-                    'message' => 'Upload image ' . $fileName,
-                    'content' => $fileContent,
-                ],
-            ]);
-
-            $result = json_decode($response->getBody(), true);
-            $data['img'] = $result['content']['download_url']; // URL gambar
-        }
-
         // Upload PDF jika ada
         if ($request->hasFile('pdf')) {
             $pdfFile = $request->file('pdf');
@@ -137,54 +116,6 @@ class KebijakanPrivasiController extends Controller
         $data = $request->validated();
         $client = new Client();
 
-        // Update gambar
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $fileContent = base64_encode(file_get_contents($file));
-            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-
-            // Hapus gambar lama di GitHub
-            if ($kebijakanprivasi->img) {
-                $oldFileName = basename($kebijakanprivasi->img);
-                try {
-                    $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
-                        'headers' => [
-                            'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                            'Accept' => 'application/vnd.github.v3+json',
-                        ],
-                    ]);
-                    $oldFileData = json_decode($response->getBody(), true);
-                    $fileSha = $oldFileData['sha'];
-
-                    $client->request('DELETE', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
-                        'headers' => [
-                            'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                            'Accept' => 'application/vnd.github.v3+json',
-                        ],
-                        'json' => [
-                            'message' => 'Delete old image ' . $oldFileName,
-                            'sha' => $fileSha,
-                        ],
-                    ]);
-                } catch (\Exception $e) {
-                    return redirect()->back()->with('error', 'Failed to delete old image.');
-                }
-            }
-
-            // Upload gambar baru ke GitHub
-            $response = $client->request('PUT', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$fileName", [
-                'headers' => [
-                    'Authorization' => 'token ' . env('GITHUB_TOKEN'),
-                    'Accept' => 'application/vnd.github.v3+json',
-                ],
-                'json' => [
-                    'message' => 'Upload new image ' . $fileName,
-                    'content' => $fileContent,
-                ],
-            ]);
-            $result = json_decode($response->getBody(), true);
-            $data['img'] = $result['content']['download_url'];
-        }
 
         // Update PDF
         if ($request->hasFile('pdf')) {
@@ -249,10 +180,6 @@ class KebijakanPrivasiController extends Controller
 
         try {
             $kebijakanprivasi = KebijakanPrivasi::findOrFail($id);
-
-            if ($kebijakanprivasi->img) {
-                $this->deleteFileFromGithub($client, $kebijakanprivasi->img);
-            }
 
             if ($kebijakanprivasi->pdf) { // Hapus file PDF jika ada
                 $this->deleteFileFromGithub($client, $kebijakanprivasi->pdf);

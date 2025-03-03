@@ -24,7 +24,6 @@ class UpdateKebijakanPrivasiRequest extends FormRequest
         return [
             'title'         => 'required',
             'desc'          => 'required',
-            'img'           => 'nullable|image|file|mimes:png,jpg,jpeg,webp|max:5024',
             'pdf'           => 'nullable|file|mimes:pdf|max:10240',
             'status'        => 'required',
             'publish_date'  => 'required',

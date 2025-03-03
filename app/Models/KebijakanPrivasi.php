@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class KebijakanPrivasi extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'slug', 'desc', 'img', 'pdf', 'status', 'publish_date'];
+    protected $fillable = ['title', 'slug', 'desc', 'pdf', 'status', 'publish_date'];
 
     protected $table = 'kebijakan_privasis';
 }
