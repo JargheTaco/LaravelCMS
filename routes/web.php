@@ -20,6 +20,7 @@ use App\Http\Controllers\Back\StrukturController;
 use App\Http\Controllers\Back\SejarahController;
 use App\Http\Controllers\Back\PengumumanController;
 use App\Http\Controllers\Back\LhkpnController;
+use App\Http\Controllers\Back\KebijakanPrivasiController;
 use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
@@ -100,6 +101,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/lhkpn', LhkpnController::class);
 
     Route::resource('/infokegiatan', InfokegiatanController::class);
+
+    Route::resource('/kebijakanprivasi', KebijakanPrivasiController::class);
 
     Route::resource('/visimisi', VisiMisiController::class);
 
