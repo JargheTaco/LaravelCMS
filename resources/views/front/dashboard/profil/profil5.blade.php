@@ -10,7 +10,7 @@
       <img src="{{$item->img}}" alt="Profile 1">
       <h3>{{$item->title}}</h3>
       <p><strong>{{$item->jabatan}}</strong></p>
-      <a href="#portfolio{{ $item->id }}" class="profile-btn">Lihat Profil</a>
+      <a href="#portfolio{{ $item->id }}" data-bs-toggle="modal" class="profile-btn">Lihat Profil</a>
     </div>
   @endforeach
 </div>
