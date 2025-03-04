@@ -117,6 +117,7 @@
     </div>
 </div>
 <!-- Team-->
+@foreach ($kepaladinas as $pejabat)
 <section class="page-section bg-light" id="team">
     <div class="container">
         <div class="text-center" style="padding-top: 50px">
@@ -125,10 +126,10 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{{kepaladinas->img}}" alt="..." />
+                    <img class="mx-auto rounded-circle" src="{{pejabat->img}}" alt="..." />
                         alt="..." />
-                    <h4>{{ $kepaladinas->title}}</h4>
-                    <p class="text-muted">{{$kepaladinas->jabatan}}</p>
+                    <h4>{{ $pejabat->title}}</h4>
+                    <p class="text-muted">{{$pejabat->jabatan}}</p>
                     <a class="btn btn-dark btn-social mx-2" href="#!"
                         aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="#!"
@@ -140,6 +141,7 @@
         </div>
     </div>
 </section>
+@endforeach
 
 <header class="header2" style="padding-top: 100px">
     <h1>Sistem Informasi</h1>
