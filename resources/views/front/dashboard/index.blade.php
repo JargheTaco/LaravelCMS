@@ -125,7 +125,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{{kepaladinass->img}}" alt="..." />
+                    <img class="mx-auto rounded-circle" src="{{kepaladinas->img}}" alt="..." />
                         alt="..." />
                     <h4>{{ $kepaladinas->title}}</h4>
                     <p class="text-muted">{{$kepaladinas->jabatan}}</p>
