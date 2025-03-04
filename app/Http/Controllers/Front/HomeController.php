@@ -75,6 +75,7 @@ class HomeController extends Controller
             'struktur' => Struktur::whereStatus(1)->get(),
             'sejarah' => Sejarah::whereStatus(1)->get(),
             'kepegawaian' => Kepegawaian::whereStatus(1)->get(),
+            'aset' => Kepegawaian::whereStatus(1)->get(),
             'lhkpn' => Lhkpn::whereStatus(1)->paginate(12),
         ]);
     }
