@@ -118,29 +118,31 @@
 </div>
 <!-- Team-->
 @foreach ($kepaladinas as $pejabat)
-<section class="page-section bg-light" id="team">
+<section class="page-section bg-light text-center" id="team">
     <div class="container">
         <div class="text-center" style="padding-top: 50px">
-            <h2 class="section-heading text-uppercase">KEPALA DINAS </h2>
+            <h2 class="section-heading text-uppercase">KEPALA DINAS</h2>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{{$pejabat->img}}" alt="..." />
-                        alt="..." />
-                    <h4>{{ $pejabat->title}}</h4>
-                    <p class="text-muted">{{$pejabat->jabatan}}</p>
-                    <a class="btn btn-dark btn-social mx-2" href="#!"
-                        aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!"
-                        aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-dark btn-social mx-2" href="#!"
-                        aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                    <img class="mx-auto rounded-circle img-fluid shadow" 
+                        src="{{ asset($pejabat->img) }}" 
+                        alt="{{ $pejabat->nama }}" 
+                        style="width: 200px; height: 200px; object-fit: cover;" />
+                    <h4 class="mt-3 font-weight-bold">{{ $pejabat->nama }}</h4>
+                    <p class="text-muted">{{ $pejabat->jabatan }}</p>
+                    <div>
+                        <a class="btn btn-dark btn-social mx-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 @endforeach
 
 <header class="header2" style="padding-top: 100px">
