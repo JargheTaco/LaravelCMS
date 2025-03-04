@@ -168,7 +168,7 @@ class HomeController extends Controller
             return abort(404, 'View not found');
         }
     }
-    public function anggaran2021($anggaranNumber)
+    public function anggaran($anggaranNumber)
     {
         // Tentukan nama view sesuai dengan parameter anggaranNumber
         $viewName = "front.dashboard.anggaran.anggaran" . $anggaranNumber;
