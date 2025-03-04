@@ -24,12 +24,14 @@ use App\Http\Controllers\Back\KebijakanPrivasiController;
 use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Http\Controllers\Back\SaluranpengaduanController;
 use App\Http\Controllers\Back\FaqController;
+use App\Http\Controllers\Back\KepegawaianController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\InfoRequestController;
+use App\Models\Kepegawaian;
 use App\Models\Saluranpengaduan;
 use App\Models\VisiMisi;
 
@@ -102,6 +104,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/pengumuman', PengumumanController::class);
 
     Route::resource('/faq', FaqController::class);
+
+    Route::resource('/kepegawaian', KepegawaianController::class);
 
     Route::resource('/saluranpengaduan', SaluranpengaduanController::class);
 

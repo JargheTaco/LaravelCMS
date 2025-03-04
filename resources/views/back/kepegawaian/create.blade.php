@@ -1,12 +1,12 @@
 @extends('back.layout.template')
 
-@section('title', 'Update kebijakan privasi - Admin')
+@section('title', 'Create Kepegawaian - Admin')
 
 @section('content')
 
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Update kebijakan privasi</h1>
+        <h1 class="h2">Create Kepegawaian</h1>
 
     </div>
 
@@ -23,49 +23,36 @@
         </div>
         @endif
 
-        <form action="{{ url('kebijakanprivasi/' .$kebijakanprivasi->id) }}" method="post" enctype="multipart/form-data">
-            @method('PUT')
+        <form action="{{ url('kepegawaian') }}" method="post" enctype="multipart/form-data">
             @csrf
-
-            <input type="hidden" name="oldImg" value="{{  $kebijakanprivasi->img }}">
 
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $kebijakanprivasi->title) }}">
+                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
                     </div>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label for="content">Description</label>
-                <textarea name="desc" id="myeditor" cols="30" rows="10" class="form-control">{{ old('desc',$kebijakanprivasi->desc) }}</textarea>
+                <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
             </div>
 
             <div class="mb-3">
-                <label for="pdf">PDF File (Max 5MB)</label>
+                <label for="content">PDF</label>
                 <input type="file" name="pdf" id="pdf" class="form-control">
-                <div class="mt-1">
-                    <small>File PDF Lama</small><br>
-                    @if($kebijakanprivasi->pdf)
-                    <a href="{{ $kebijakanprivasi->pdf }}" target="_blank">{{ basename($kebijakanprivasi->pdf) }}</a>
-                    @else
-                    <span class="text-danger">No PDF available</span>
-                    @endif
-                </div>
             </div>
-
-            <input type="hidden" name="oldPdf" value="{{ $kebijakanprivasi->pdf }}">
-
 
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="status">Status</label>
                         <select name="status" id="status" class="form-control">
-                            <option value="1" {{ $kebijakanprivasi->status == 1 ? 'selected' : null }}>Published</option>
-                            <option value="0" {{ $kebijakanprivasi->status == 0 ? 'selected' : null }}>Private</option>
+                            <option value="" hidden>---chose---</option>
+                            <option value="1">Publish</option>
+                            <option value="0">Private</option>
                         </select>
                     </div>
                 </div>
@@ -73,8 +60,7 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="publish_date">Publish Date</label>
-                        <input type="date" name="publish_date" id="publish_date" class="form-control"
-                            value="{{ old('publish_date', $kebijakanprivasi->publish_date) }}">
+                        <input type="date" name="publish_date" id="publish_date" class="form-control">
                     </div>
                 </div>
             </div>
@@ -90,10 +76,9 @@
 
     @push('js')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-   
-
+    
     <script>
-        
+
 
         $('#img').change(function() {
             previewImage(this);
@@ -108,6 +93,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        
     </script>
 
 
