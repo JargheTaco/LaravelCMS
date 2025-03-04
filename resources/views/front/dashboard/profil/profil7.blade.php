@@ -9,7 +9,7 @@
 
 
 <div class="container mt-5">
-    <h2>DAFTAR KEPEGAWAIAN</h2>
+    <h2 class="text-center">DAFTAR KEPEGAWAIAN</h2>
     @foreach($kepegawaian as $item)
     <section class="page-section" id="services">
         <div class="container">
