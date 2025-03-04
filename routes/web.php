@@ -22,6 +22,7 @@ use App\Http\Controllers\Back\PengumumanController;
 use App\Http\Controllers\Back\LhkpnController;
 use App\Http\Controllers\Back\KebijakanPrivasiController;
 use App\Http\Controllers\Back\ProfilPejabatController;
+use App\Http\Controllers\Back\AsetController;
 use App\Http\Controllers\Back\SaluranpengaduanController;
 use App\Http\Controllers\Back\FaqController;
 use App\Http\Controllers\Back\KepegawaianController;
@@ -110,6 +111,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/saluranpengaduan', SaluranpengaduanController::class);
 
     Route::resource('/lhkpn', LhkpnController::class);
+
+    Route::resource('/aset', AsetController::class);
 
     Route::resource('/infokegiatan', InfokegiatanController::class);
 
