@@ -126,7 +126,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="team-member">
-                    <img class="mx-auto rounded-circle" src="{{pejabat->img}}" alt="..." />
+                    <img class="mx-auto rounded-circle" src="{{$pejabat->img}}" alt="..." />
                         alt="..." />
                     <h4>{{ $pejabat->title}}</h4>
                     <p class="text-muted">{{$pejabat->jabatan}}</p>
