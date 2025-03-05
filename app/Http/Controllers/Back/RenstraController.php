@@ -5,39 +5,39 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\RenjaRequest;
+use App\Http\Requests\RenstraRequest;
 use Illuminate\Support\Str;
-use App\Http\Requests\UpdateRenjaRequest;
-use App\Models\Renjaback;
+use App\Http\Requests\UpdateRenstraRequest;
+use App\Models\Renstraback;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 
-class RenjaController extends Controller
+class RenstraController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $renja = Renjaback::latest()->get();
+            $renstra = Renstraback::latest()->get();
 
-            return DataTables::of($renja)
+            return DataTables::of($renstra)
                 ->addIndexColumn()
-                ->addColumn('status', function ($renja) {
-                    return $renja->status == 0
+                ->addColumn('status', function ($renstra) {
+                    return $renstra->status == 0
                         ? '<span class="badge bg-danger">Private</span>'
                         : '<span class="badge bg-success">Published</span>';
                 })
-                ->addColumn('button', function ($renja) {
+                ->addColumn('button', function ($renstra) {
                     return '<div class="text-center">
-                                <a href="renjaback/' . $renja->id . '" class="btn btn-secondary">Detail</a>
-                                <a href="renjaback/' . $renja->id . '/edit" class="btn btn-primary">Edit</a>
-                                <a href="#" onclick="deleteRenjaback(this)" data-id="' . $renja->id . '" class="btn btn-danger">Delete</a>
+                                <a href="renstraback/' . $renstra->id . '" class="btn btn-secondary">Detail</a>
+                                <a href="renstraback/' . $renstra->id . '/edit" class="btn btn-primary">Edit</a>
+                                <a href="#" onclick="deleteRenstraback(this)" data-id="' . $renstra->id . '" class="btn btn-danger">Delete</a>
                             </div>';
                 })
                 ->rawColumns(['status', 'button'])
                 ->make();
         }
 
-        return view('back.renjaback.index');
+        return view('back.renstraback.index');
     }
 
     /**
@@ -45,13 +45,13 @@ class RenjaController extends Controller
      */
     public function create()
     {
-        return view('back.renjaback.create');
+        return view('back.renstraback.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RenjaRequest $request)
+    public function store(RenstraRequest $request)
     {
         $data = $request->validated();
 
@@ -80,9 +80,9 @@ class RenjaController extends Controller
         }
 
         $data['slug'] = Str::slug($data['title']);
-        Renjaback::create($data);
+        Renstraback::create($data);
 
-        return redirect(url('renjaback'))->with('success', 'renja Created Successfully');
+        return redirect(url('renstraback'))->with('success', 'renstra Created Successfully');
     }
 
     /**
@@ -90,9 +90,9 @@ class RenjaController extends Controller
      */
     public function show(string $id)
     {
-        $renja = Renjaback::findOrFail($id);
+        $renstra = Renstraback::findOrFail($id);
 
-        return view('back.renjaback.show', compact('renja'));
+        return view('back.renstraback.show', compact('renstra'));
     }
 
     /**
@@ -100,19 +100,19 @@ class RenjaController extends Controller
      */
     public function edit(string $id)
     {
-        $renja = Renjaback::findOrFail($id);
+        $renstra = Renstraback::findOrFail($id);
 
-        return view('back.renjaback.update', [
-            'renja' => $renja,
+        return view('back.renstraback.update', [
+            'renstra' => $renstra,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRenjaRequest $request, string $id)
+    public function update(UpdateRenstraRequest $request, string $id)
     {
-        $renja = Renjaback::findOrFail($id);
+        $renstra = Renstraback::findOrFail($id);
         $data = $request->validated();
         $client = new Client();
 
@@ -122,8 +122,8 @@ class RenjaController extends Controller
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
             // Hapus gambar lama jika ada
-            if ($renja->pdf) {
-                $oldFileName = basename($renja->pdf);
+            if ($renstra->pdf) {
+                $oldFileName = basename($renstra->pdf);
                 try {
                     // Ambil SHA file dari GitHub
                     $response = $client->request('GET', "https://api.github.com/repos/JargheTaco/LaravelCMS/contents/$oldFileName", [
@@ -173,13 +173,13 @@ class RenjaController extends Controller
         }
 
         // Update slug hanya jika title berubah
-        if ($data['title'] !== $renja->title) {
+        if ($data['title'] !== $renstra->title) {
             $data['slug'] = Str::slug($data['title']);
         }
 
-        $renja->update($data);
+        $renstra->update($data);
 
-        return redirect(url('renjaback'))->with('success', 'renja Updated Successfully');
+        return redirect(url('renstraback'))->with('success', 'renstra Updated Successfully');
     }
 
     /**
@@ -190,20 +190,20 @@ class RenjaController extends Controller
         $client = new Client();
 
         try {
-            $renja = Renjaback::findOrFail($id);
+            $renstra = Renstraback::findOrFail($id);
 
-            if ($renja->pdf) { // Hapus file PDF jika ada
-                $this->deleteFileFromGithub($client, $renja->pdf);
+            if ($renstra->pdf) { // Hapus file PDF jika ada
+                $this->deleteFileFromGithub($client, $renstra->pdf);
             }
 
-            $renja->delete();
+            $renstra->delete();
 
             return response()->json([
-                'message' => 'renja Deleted Successfully',
+                'message' => 'renstra Deleted Successfully',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Failed to delete renja',
+                'message' => 'Failed to delete renstra',
                 'error' => $e->getMessage(),
             ], 500);
         }

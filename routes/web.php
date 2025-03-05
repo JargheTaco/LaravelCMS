@@ -23,6 +23,8 @@ use App\Http\Controllers\Back\LhkpnController;
 use App\Http\Controllers\Back\KebijakanPrivasiController;
 use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Http\Controllers\Back\AsetController;
+use App\Http\Controllers\Back\TahunanggaranController;
+use App\Http\Controllers\Back\RenstraController;
 use App\Http\Controllers\Back\SaluranpengaduanController;
 use App\Http\Controllers\Back\FaqController;
 use App\Http\Controllers\Back\RenjaController;
@@ -35,6 +37,7 @@ use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\InfoRequestController;
 use App\Models\Kepegawaian;
 use App\Models\Saluranpengaduan;
+use App\Models\Tahunanggaran;
 use App\Models\VisiMisi;
 
 /*
@@ -104,6 +107,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('/sejarah', SejarahController::class);
 
     Route::resource('/renjaback', RenjaController::class);
+
+    Route::resource('/renstraback', RenstraController::class);
+
+    Route::resource('/tahunanggaran', TahunanggaranController::class);
 
     Route::resource('/pengumuman', PengumumanController::class);
 

@@ -22,6 +22,8 @@ use App\Models\Saluranpengaduan;
 use App\Models\Faq;
 use App\Models\Kepegawaian;
 use App\Models\Sejarah;
+use App\Models\Tahunanggaran;
+use App\Models\Renstraback;
 use App\Models\Tugasfungsi;
 use Illuminate\Support\Facades\File;
 
@@ -147,15 +149,12 @@ class HomeController extends Controller
     /* program kegiatan */
     public function renstra($renstraNumber)
     {
-        // Tentukan nama view sesuai dengan parameter renstraNumber
-        $viewName = "front.dashboard.renstra.renstra" . $renstraNumber;
+        
+        return view("front.dashboard.renstra.renstra" . $renstraNumber , [
+            'renstra' => Renstraback::whereStatus(1)->latest()->get(),
+        ]);
 
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
+       
     }
     public function renja($renjaNumber)
     {
@@ -167,14 +166,9 @@ class HomeController extends Controller
     }
     public function anggaran($anggaranNumber)
     {
-        // Tentukan nama view sesuai dengan parameter anggaranNumber
-        $viewName = "front.dashboard.anggaran.anggaran" . $anggaranNumber;
 
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
+        return view("front.dashboard.anggaran.anggaran" . $anggaranNumber , [
+            'renja' => Tahunanggaran::whereStatus(1)->latest()->get(),
+        ]);
     }
 }

@@ -114,7 +114,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{url('renja')}}">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('renjaback')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Renja
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('renstraback')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Renja
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('tahunanggaran')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Renja
               </a>
