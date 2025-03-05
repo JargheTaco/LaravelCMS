@@ -5,7 +5,7 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\LaporanInformasiRequest;
+use App\Http\Requests\LaporaninformasiRequest;
 use Illuminate\Support\Str;
 use App\Http\Requests\UpdateLaporaninformasiRequest;
 use App\Models\Laporaninformasi;

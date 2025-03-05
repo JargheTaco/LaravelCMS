@@ -125,10 +125,6 @@
                         name: 'title'
                     },
                     {
-                        data: 'year',
-                        name: 'year'
-                    },
-                    {
                         data: 'status',
                         name: 'status'
                     },
