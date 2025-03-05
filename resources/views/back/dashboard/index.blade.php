@@ -26,31 +26,31 @@
         <div class="card-body">
           <h5 class="card-title">{{ $total_beritas }} Berita</h5>
           <p class="card-text">
-            <a href="{{ url('berita')}}" class="text-white">View Categories</a>
+            <a href="{{ url('berita')}}" class="text-white">View Berita</a>
           </p>
         </div>
       </div>
     </div>
 
     <div class="col-6">
-      <div class="card text-bg-success mb-3" style="max-width: 100%;">
+      <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
         <div class="card-header">Total Pengumuman</div>
         <div class="card-body">
-          <h5 class="card-title">{{ $total_pengumuman }} Berita</h5>
+          <h5 class="card-title">{{ $total_pengumuman }} Pengumuman</h5>
           <p class="card-text">
-            <a href="{{ url('pengumuman')}}" class="text-white">View Categories</a>
+            <a href="{{ url('pengumuman')}}" class="text-white">View Pengumuman</a>
           </p>
         </div>
       </div>
     </div>
 
     <div class="col-6">
-      <div class="card text-bg-success mb-3" style="max-width: 100%;">
+      <div class="card text-bg-danger mb-3" style="max-width: 100%;">
         <div class="card-header">Informasi Berkala</div>
         <div class="card-body">
-          <h5 class="card-title">{{ $total_informasiberkala }} Berita</h5>
+          <h5 class="card-title">{{ $total_informasiberkala }} Informasi Berkala</h5>
           <p class="card-text">
-            <a href="{{ url('informasiberkala')}}" class="text-white">View Categories</a>
+            <a href="{{ url('informasiberkala')}}" class="text-white">View Informasi Berkala</a>
           </p>
         </div>
       </div>
