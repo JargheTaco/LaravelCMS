@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agendapimpinan;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Aset;
@@ -21,6 +22,8 @@ use App\Models\Lhkpn;
 use App\Models\Saluranpengaduan;
 use App\Models\Faq;
 use App\Models\Kepegawaian;
+use App\Models\Laporaninformasi;
+use App\Models\Pengadaanbarangjasa;
 use App\Models\Sejarah;
 use App\Models\Tahunanggaran;
 use App\Models\Renstraback;
@@ -106,7 +109,13 @@ class HomeController extends Controller
 
     public function informasi($informasiNumber)
     {
-        return view("front.dashboard.informasi.informasi" . $informasiNumber);
+        return view("front.dashboard.informasi.informasi" . $informasiNumber, [
+            
+            'agendapimpinan' => Agendapimpinan::whereStatus(1)->latest()->get(),
+            'laporaninformasi' => Laporaninformasi::whereStatus(1)->latest()->get(),
+            'pengadaaanbarangjasa' => Pengadaanbarangjasa::whereStatus(1)->latest()->get(),
+
+        ]);
     }
     public function alurlayanan($alurlayananNumber)
     {
@@ -132,18 +141,7 @@ class HomeController extends Controller
             return abort(404, 'View not found');
         }
     }
-    public function produkhukum($produkhukumNumber)
-    {
-        // Tentukan nama view sesuai dengan parameter produkhukumNumber
-        $viewName = "front.dashboard.produkhukum.produkhukum" . $produkhukumNumber;
 
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
-    }
 
 
     /* program kegiatan */

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\back\Agendapimpinan;
 use App\Http\Controllers\Back\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Back\DashboardController;
@@ -28,6 +29,9 @@ use App\Http\Controllers\Back\RenstraController;
 use App\Http\Controllers\Back\SaluranpengaduanController;
 use App\Http\Controllers\Back\FaqController;
 use App\Http\Controllers\Back\RenjaController;
+use App\Http\Controllers\Back\AgendapimpinanController;
+use App\Http\Controllers\Back\LaporaninformasiController;
+use App\Http\Controllers\Back\PengadaanbarangjasaController;
 use App\Http\Controllers\Back\KepegawaianController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
@@ -36,6 +40,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\InfoRequestController;
 use App\Models\Kepegawaian;
+use App\Models\Laporaninformasi;
+use App\Models\Pengadaanbarangjasa;
 use App\Models\Saluranpengaduan;
 use App\Models\Tahunanggaran;
 use App\Models\VisiMisi;
@@ -105,6 +111,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('/struktur', StrukturController::class);
 
     Route::resource('/sejarah', SejarahController::class);
+
+    Route::resource('/pengadaanbarangjasa', PengadaanbarangjasaController::class);
+
+    Route::resource('/laporaninformasi', LaporaninformasiController::class);
+
+    Route::resource('/agendapimpinan', AgendapimpinanController::class);
 
     Route::resource('/renjaback', RenjaController::class);
 

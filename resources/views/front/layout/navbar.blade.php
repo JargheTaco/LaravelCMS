@@ -136,11 +136,6 @@
                                     ['title' => 'Alur Pengajuan Keberatan Informasi Publik', 'url' => url('/alurlayanan/2')],
                                     ['title' => 'Alur Penyelesaian Sengketan', 'url' => url('/alurlayanan/3')],
                                 ],
-                                'PRODUK HUKUM' => [
-                                    ['title' => 'Kumpulan Produk Hukum', 'url' => url('/produkhukum/1')],
-                                    ['title' => 'Rancangan Peraturan', 'url' => url('/produkhukum/2')],
-                                    ['title' => 'Standar Operasional Prosedur', 'url' => url('/produkhukum/3')],
-                                ],
                             ];
                         @endphp
 

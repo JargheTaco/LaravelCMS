@@ -131,6 +131,24 @@
                 Tahun Anggaran
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('agendapimpinan')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Agenda Pimpinan
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('pengadaanbarangjasa')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Pengadaan Barang/Jasa
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('laporaninformasi')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Laporan Informasi
+              </a>
+            </li>
             @if (Auth::user()->role == 1)
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('categories')}}">
