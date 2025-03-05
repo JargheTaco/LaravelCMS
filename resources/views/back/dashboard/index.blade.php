@@ -92,6 +92,66 @@
       </div>
 
     </div>
+    <div class="row">
+      <div class="col-6">
+        <h4>Latest Articles</h4>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Create At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @foreach($latest_article as $item)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $item->title }}</td>
+              <td>{{ $item->Category->name }}</td>
+              <td>{{ $item->created_at }}</td>
+              <td class="text-center">
+                <a href="{{ url('article/' .$item->id) }}" class="btn btn-sm btn-secondary">Detail</a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-6">
+        <h4>Latest Berita</h4>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Create At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @foreach($latest_berita as $item)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $item->title }}</td>
+              <td>{{ $item->Category->name }}</td>
+              <td>{{ $item->created_at }}</td>
+              <td class="text-center">
+                <a href="{{ url('berita/' .$item->id) }}" class="btn btn-sm btn-secondary">Detail</a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 
 
