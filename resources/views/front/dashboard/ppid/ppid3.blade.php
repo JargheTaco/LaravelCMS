@@ -1,6 +1,6 @@
 @include('front.layout.assets')
 @include('front.layout.navbar')
-@include('front.layout.headppid',['title' => 'Informasi Publik Yang Dikecualikan'])
+@include('front.layout.headppid',['title' => 'Informasi Publik'])
     <div class="container mt-5">
         <div class="row mt-3">
             <div class="col-md-3">
