@@ -11,6 +11,7 @@
                         @break
                     @case('INFO KEGIATAN')
                         INFO KEGIATAN
+                        @break
                     @case('PENGUMUMAN')
                         PENGUMUMAN
                         @break
