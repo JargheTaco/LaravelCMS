@@ -19,8 +19,8 @@ class DashboardController extends Controller
             'total_beritas'  => Berita::count(),
             'latest_article'    => Article::with('Category')->whereStatus(1)->latest()->take(5)->get(),
             'latest_berita'   => Berita::with('Category')->whereStatus(1)->latest()->take(5)->get(),
-            'latest_informasiberkala'   => Informasiberkala::with('Category')->whereStatus(1)->latest()->take(5)->get(),
-            'latest_pengumuman'   => Pengumuman::with('Category')->whereStatus(1)->latest()->take(5)->get(),
+            'latest_informasiberkala'   => Informasiberkala::whereStatus(1)->latest()->take(5)->get(),
+            'latest_pengumuman'   => Pengumuman::whereStatus(1)->latest()->take(5)->get(),
             'total_informasiberkala'   => Pengumuman::count(),
             'total_pengumuman'   => Informasiberkala::count(),
         ]);
