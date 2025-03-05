@@ -25,6 +25,7 @@ use App\Http\Controllers\Back\ProfilPejabatController;
 use App\Http\Controllers\Back\AsetController;
 use App\Http\Controllers\Back\SaluranpengaduanController;
 use App\Http\Controllers\Back\FaqController;
+use App\Http\Controllers\Back\RenjaController;
 use App\Http\Controllers\Back\KepegawaianController;
 use App\Models\Berita;
 use App\Models\Dokumentasi;
@@ -101,6 +102,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/struktur', StrukturController::class);
 
     Route::resource('/sejarah', SejarahController::class);
+
+    Route::resource('/renjaback', RenjaController::class);
 
     Route::resource('/pengumuman', PengumumanController::class);
 
