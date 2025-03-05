@@ -74,7 +74,7 @@
         </table>
 
         <div class="float-end">
-            <a href="{{ url('agendapimpinanback') }}" class="btn btn-secondary">Back</a>
+            <a href="{{ url('agendapimpinan') }}" class="btn btn-secondary">Back</a>
         </div>
     </div>
     @endsection
