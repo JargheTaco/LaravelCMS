@@ -168,7 +168,7 @@ class HomeController extends Controller
     {
 
         return view("front.dashboard.anggaran.anggaran" . $anggaranNumber , [
-            'renja' => Tahunanggaran::whereStatus(1)->latest()->get(),
+            'tahunanggaran' => Tahunanggaran::whereStatus(1)->latest()->get(),
         ]);
     }
 }

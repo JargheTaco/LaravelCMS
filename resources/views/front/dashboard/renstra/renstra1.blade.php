@@ -1,7 +1,7 @@
 @include('front.layout.assets')
 @include('front.layout.navbar')
 
-@include('front.layout.headrenstra',['title' => 'Dokumen Renstra 2017-2022'])
+@include('front.layout.headrenstra',['title' => 'Dokumen Renstra'])
 <!-- Container -->
 <div class="container2" style="padding-top: 0px">
     @foreach($renstra as $item)
@@ -9,6 +9,7 @@
 
         <div class="document-item2">
             <h4>{{$item->title}}</h4>
+            <p>{{$item->year}}</p>
             <tr>
                 <td colspan="2">
                     <div class="iframe-container text-center">
