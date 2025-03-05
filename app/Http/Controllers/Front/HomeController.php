@@ -133,15 +133,11 @@ class HomeController extends Controller
     }
     public function ppid($ppidNumber)
     {
-        // Tentukan nama view sesuai dengan parameter ppidNumber
-        $viewName = "front.dashboard.ppid.ppid" . $ppidNumber;
 
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
+        return view("front.dashboard.ppid.ppid" . $ppidNumber, [
+            
+            'informasiberkala' => Alurinformasi::whereStatus(1)->latest()->get(),
+        ]);
     }
 
 

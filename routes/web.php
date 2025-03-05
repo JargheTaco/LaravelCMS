@@ -33,6 +33,7 @@ use App\Http\Controllers\Back\AlurinformasiController;
 use App\Http\Controllers\Back\AlurpenyelesaianController;
 use App\Http\Controllers\Back\AlurpengajuanController;
 use App\Http\Controllers\Back\AgendapimpinanController;
+use App\Http\Controllers\Back\InformasiberkalaController;
 use App\Http\Controllers\Back\LaporaninformasiController;
 use App\Http\Controllers\Back\PengadaanbarangjasaController;
 use App\Http\Controllers\Back\KepegawaianController;
@@ -42,6 +43,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\InfoRequestController;
+use App\Models\Informasiberkala;
 use App\Models\Kepegawaian;
 use App\Models\Laporaninformasi;
 use App\Models\Pengadaanbarangjasa;
@@ -114,6 +116,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/struktur', StrukturController::class);
 
     Route::resource('/sejarah', SejarahController::class);
+
+    Route::resource('/informasiberkala', InformasiberkalaController::class);
 
     Route::resource('/pengadaanbarangjasa', PengadaanbarangjasaController::class);
 
