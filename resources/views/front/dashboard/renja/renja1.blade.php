@@ -7,7 +7,7 @@
     <section class="document-section2">
 
         <div class="document-item2">
-            @foreach($aset as $index => $item)
+            @foreach($renja as $index => $item)
             <tr data-tahun="{{ $item->year }}" data-judul="{{ $item->title }}">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $item->title }}</td>

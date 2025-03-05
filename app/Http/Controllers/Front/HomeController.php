@@ -15,6 +15,7 @@ use App\Models\Dokumentasi;
 use App\Models\InfokegiatanModel;
 use App\Models\KebijakanPrivasi;
 use App\Models\Pengumuman;
+use App\Models\Renjaback;
 use App\Models\Struktur;
 use App\Models\Lhkpn;
 use App\Models\Saluranpengaduan;
@@ -158,15 +159,11 @@ class HomeController extends Controller
     }
     public function renja($renjaNumber)
     {
-        // Tentukan nama view sesuai dengan parameter renjaNumber
-        $viewName = "front.dashboard.renja.renja" . $renjaNumber;
 
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
+        return view("front.dashboard.renja.renja" . $renjaNumber , [
+            'renja' => Renjaback::whereStatus(1)->latest()->get(),
+        ]);
+        
     }
     public function anggaran($anggaranNumber)
     {
