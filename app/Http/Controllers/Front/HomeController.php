@@ -113,7 +113,7 @@ class HomeController extends Controller
             
             'agendapimpinan' => Agendapimpinan::whereStatus(1)->latest()->get(),
             'laporaninformasi' => Laporaninformasi::whereStatus(1)->latest()->get(),
-            'pengadaaanbarangjasa' => Pengadaanbarangjasa::whereStatus(1)->latest()->get(),
+            'pengadaanbarangjasa' => Pengadaanbarangjasa::whereStatus(1)->latest()->get(),
 
         ]);
     }
