@@ -78,7 +78,7 @@
         </table>
 
         <div class="float-end">
-            <a href="{{ url('renja') }}" class="btn btn-secondary">Back</a>
+            <a href="{{ url('renjaback') }}" class="btn btn-secondary">Back</a>
         </div>
     </div>
     @endsection

@@ -4,41 +4,21 @@
 @include('front.layout.headrenstra',['title' => 'Dokumen Renstra 2017-2022'])
 <!-- Container -->
 <div class="container2" style="padding-top: 0px">
+    @foreach($renstra as $item)
     <section class="document-section2">
 
         <div class="document-item2">
-            <h4>judul</h4>
-            <p>judul</p>
-            <div class="button-group2">
-                <a href="#" class="btn-custom btn-custom-download-1"><i class="fas fa-download"></i> Download</a>
-                <a href="#" class="btn-custom btn-custom-read-2"><i class="fas fa-book-open"></i> Lihat</a>
-                <a href="#" class="btn-custom btn-custom-link-3"><i class="fas fa-link"></i> Copy Link</a>
-
-            </div>
-        </div>
-
-        <div class="document-item2">
-            <h4>judul</h4>
-            <p>judul</p>
-            <div class="button-group2">
-                <a href="#" class="btn-custom btn-custom-download-1"><i class="fas fa-download"></i> Download</a>
-                <a href="#" class="btn-custom btn-custom-read-2"><i class="fas fa-book-open"></i> Lihat</a>
-                <a href="#" class="btn-custom btn-custom-link-3"><i class="fas fa-link"></i> Copy Link</a>
-
-            </div>
-        </div>
-
-        <div class="document-item2">
-            <h4>judul</h4>
-            <p>judul</p>
-            <div class="button-group2">
-                <a href="#" class="btn-custom btn-custom-download-1"><i class="fas fa-download"></i> Download</a>
-                <a href="#" class="btn-custom btn-custom-read-2"><i class="fas fa-book-open"></i> Lihat</a>
-                <a href="#" class="btn-custom btn-custom-link-3"><i class="fas fa-link"></i> Copy Link</a>
-
-            </div>
+            <h4>{{$item->title}}</h4>
+            <tr>
+                <td colspan="2">
+                    <div class="iframe-container text-center">
+                        <iframe src="https://docs.google.com/gview?url={{ urlencode($item->pdf) }}&embedded=true" width="100%" height="500" allow="autoplay"></iframe>
+                    </div>
+                </td>
+            </tr>
         </div>
     </section>
+    @endforeach
 </div>
 
 
