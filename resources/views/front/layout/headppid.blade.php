@@ -5,6 +5,10 @@
             @case('Laporan Informasi Publik')
                 Laporan Informasi Publik
             @break
+
+            @default
+                Laporan Informasi Publik
+        @endswitch
     </h3>
     <div class="divider2"></div>
 </header>
