@@ -92,7 +92,7 @@ class RenjaController extends Controller
     {
         $renja = Renjaback::findOrFail($id);
 
-        return view('back.renjaback.show', compact('renjaback'));
+        return view('back.renjaback.show', compact('renja'));
     }
 
     /**
