@@ -170,7 +170,7 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('informasiberkala')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Alur penyelesaian sengketan
+                Informasi Berkala
               </a>
             </li>
             @if (Auth::user()->role == 1)
