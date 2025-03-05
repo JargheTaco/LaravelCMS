@@ -27,7 +27,6 @@
             @method('PUT')
             @csrf
 
-            <input type="hidden" name="oldImg" value="{{  $renja->img }}">
 
             <div class="row">
                 <div class="col-6">
