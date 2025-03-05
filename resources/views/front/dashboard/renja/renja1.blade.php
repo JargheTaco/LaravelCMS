@@ -1,7 +1,7 @@
 @include('front.layout.stylesheet')
 @include('front.layout.navbar')
 
-
+@include('front.layout.headrenja')
 <!-- Container -->
 <div class="container2" style="padding-top: 0px">
     <section class="document-section2">
