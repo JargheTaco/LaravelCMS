@@ -126,8 +126,7 @@
                             $informasi = [
                                 'PPID/INFORMASI PUBLIK' => [
                                     ['title' => 'Informasi Berkala', 'url' => url('/ppid/1')],
-                                    ['title' => 'informasi Setiap Saat', 'url' => url('/ppid/2')],
-                                    ['title' => 'informasi Serta Merta', 'url' => url('/ppid/3')],
+                                    ['title' => 'informasi Setiap Saat', 'url' => url('/ppid/2')],,
                                     ['title' => 'Daftar Informasi Publik', 'url' => url('/ppid/4')],
                                     ['title' => 'Daftar Informasi Publik Yang Dikecualikan', 'url' => url('/ppid/5')],
                                 ],

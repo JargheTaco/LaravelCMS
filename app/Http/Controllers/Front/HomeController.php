@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Agendapimpinan;
+use App\Models\Alurinformasi;
+use App\Models\Alurpengajuan;
+use App\Models\Alurpenyelesaian;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Aset;
@@ -119,15 +122,14 @@ class HomeController extends Controller
     }
     public function alurlayanan($alurlayananNumber)
     {
-        // Tentukan nama view sesuai dengan parameter alurlayananNumber
-        $viewName = "front.dashboard.alurlayanan.alurlayanan" . $alurlayananNumber;
+        
+        return view("front.dashboard.alurlayanan.alurlayanan" . $alurlayananNumber, [
+            
+            'alurinformasi' => Alurinformasi::whereStatus(1)->latest()->get(),
+            'alurpengajuan' => Alurpengajuan::whereStatus(1)->latest()->get(),
+            'alurpenyelesaian' => Alurpenyelesaian::whereStatus(1)->latest()->get(),
 
-        // Periksa apakah file view ada, jika ada tampilkan, jika tidak tampilkan error 404
-        if (view()->exists($viewName)) {
-            return view($viewName);
-        } else {
-            return abort(404, 'View not found');
-        }
+        ]);
     }
     public function ppid($ppidNumber)
     {

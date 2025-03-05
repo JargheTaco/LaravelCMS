@@ -1,13 +1,21 @@
 @include('front.layout.stylesheet');
 @include('front.layout.navbar')
+<!-- Header -->
+<header class="header2" style="padding-top: 100px">
+    <h1>Alur penyelesaian sengketan</h1>
+    <div class="divider2"></div>
+</header>
+<!-- Frame -->
+ @foreach($alurpenyelesaian as $item)
 <section class="page-section" id="services">
     <div class="container">
         <div class="iframe-container">
-            <!-- Gantilah tag iframe dengan tag img -->
-            <img src="{{ asset('front/img/portfolio/1.jpg') }}" alt="Deskripsi Gambar">
+            <iframe src="https://docs.google.com/gview?url={{ urlencode($item->pdf) }}&embedded=true" width="640" height="880" allow="autoplay"></iframe>
         </div>
     </div>
 </section>
+@endforeach
+
 
 
 @include('front.layout.footer')

@@ -29,6 +29,9 @@ use App\Http\Controllers\Back\RenstraController;
 use App\Http\Controllers\Back\SaluranpengaduanController;
 use App\Http\Controllers\Back\FaqController;
 use App\Http\Controllers\Back\RenjaController;
+use App\Http\Controllers\Back\AlurinformasiController;
+use App\Http\Controllers\Back\AlurpenyelesaianController;
+use App\Http\Controllers\Back\AlurpengajuanController;
 use App\Http\Controllers\Back\AgendapimpinanController;
 use App\Http\Controllers\Back\LaporaninformasiController;
 use App\Http\Controllers\Back\PengadaanbarangjasaController;
@@ -115,6 +118,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('/pengadaanbarangjasa', PengadaanbarangjasaController::class);
 
     Route::resource('/laporaninformasi', LaporaninformasiController::class);
+
+    Route::resource('/alurpenyelesaian', AlurpenyelesaianController::class);
+
+    Route::resource('/alurinformasi', AlurinformasiController::class);
+
+    Route::resource('/alurpengajuan', AlurpengajuanController::class);
 
     Route::resource('/agendapimpinan', AgendapimpinanController::class);
 
