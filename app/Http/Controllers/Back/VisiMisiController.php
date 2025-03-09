@@ -102,7 +102,7 @@ class VisiMisiController extends Controller
         // Update data ke database
         $visimisi->update($data);
     
-        return redirect()->route('visimisi')->with('success', 'Visi Misi berhasil diperbarui');
+        return redirect(url('visimisi'))->with('success', 'visi misi Updated Successfully');
     }
 
     /**
