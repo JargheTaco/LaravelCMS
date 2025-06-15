@@ -132,11 +132,6 @@
                         style="width: 200px; height: 200px; object-fit: cover;" />
                     <h4 class="mt-3 font-weight-bold">{{ $pejabat->title }}</h4>
                     <p class="text-muted">{{ $pejabat->jabatan }}</p>
-                    <div>
-                        <a class="btn btn-dark btn-social mx-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -157,7 +152,7 @@
         <p>{{$item->desc}}</p>
         <div class="system-card-buttons">
             <a href="#" class="btn-system">Kunjungi Sistem</a>
-            <a href="#" class="btn-system-outline">Selengkapnya</a>
+            
         </div>
     </div>
 @endforeach

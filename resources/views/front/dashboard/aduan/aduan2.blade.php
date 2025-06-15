@@ -6,7 +6,7 @@
     <h2>FAQ</h2>
     <div class="divider2"></div>
 </header>
-@foreach($saluranpengaduan as $item)
+@foreach($faq as $item)
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">

@@ -117,7 +117,8 @@
             $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url()->current() }}'.replace('http://', 'https://'),
+                ajax: '{{ url()->current() }}',
+
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'

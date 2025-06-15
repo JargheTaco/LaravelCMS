@@ -13,6 +13,9 @@
             @case('Permohonan Informasi')
                 Permohonan Informasi
             @break
+            @case('Anggaran Tahunan')
+                Anggaran Tahunan
+            @break
 
             @default
                 Agenda Pimpinan
@@ -29,6 +32,9 @@
 
             @case('Pengadaan Barang Dan Jasa')
                 Daftar Pengadaan Barang Dan Jasa
+            @break
+            @case('Anggaran Tahunan')
+                Daftar Anggaran Tahunan
             @break
 
             @case('Permohonan Informasi')

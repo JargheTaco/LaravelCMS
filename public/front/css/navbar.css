@@ -354,7 +354,7 @@ a {
 
 /* Setiap tombol */
 .btn {
-  display: inline-block;
+  
   padding: 8px 15px;
   margin: 5px 0;
   background-color: #007bff;

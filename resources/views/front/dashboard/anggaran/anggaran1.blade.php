@@ -1,6 +1,6 @@
 @include('front.layout.assets')
 @include('front.layout.navbar')
-@include('front.layout.headproduk',['title' => 'Standar Operasional Prosedur'])
+@include('front.layout.headproduk',['title' => 'Anggaran Tahunan'])
     
 <div class="container2" style="padding-top: 0px">
     @foreach($tahunanggaran as $item)

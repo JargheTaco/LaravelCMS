@@ -13,7 +13,6 @@
         <p>{{$item->desc}}</p>
         <div class="system-card-buttons">
             <a href="#" class="btn-system">Kunjungi Sistem</a>
-            <a href="#" class="btn-system-outline">Selengkapnya</a>
         </div>
     </div>
 @endforeach
